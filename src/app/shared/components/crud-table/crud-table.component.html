@@ -1,0 +1,30 @@
+<div class="crud-table">
+	<div class="table-header">
+		<h2>{{ title }}</h2>
+		<div (click)="onAdd()">+ New</div>
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				@for (col of columns; track col) {
+				<th>{{ col.header }}</th>
+				}
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (row of data; track row) {
+			<tr>
+				@for (col of columns; track col) {
+				<td>{{ row[col.field] }}</td> <!-- Muéstrame el valor de la columna field para esta fila row. -->
+				}
+				<td>
+					<button (click)="onEdit(row)">Edit</button>
+					<button (click)="onDelete(row)">Delete</button>
+				</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+</div>
