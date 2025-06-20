@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { customersMock } from '../../../../features/admin/mocks/customers-data.mock';
 import { User } from '../../../../features/models/user.model';
+import { ModalService } from '../../../../features/services/modal.service';
+import { FormCustomerComponent } from '../../components/form-customer/form-customer.component';
 
 
 
@@ -14,7 +16,11 @@ import { User } from '../../../../features/models/user.model';
 })
 export class CustomersComponent {
 
-  customers:User[] = customersMock;
+  private modalService = inject(ModalService);
+
+  customers: User[] = customersMock;
+
+  @Input() message: string = '';
 
   columns = [
     { field: 'name', header: 'Name' },
@@ -26,9 +32,9 @@ export class CustomersComponent {
     { field: 'state', header: 'State' }
   ];
 
-
   createCustomer() {
     console.log('Create customer clicked');
+    this.modalService.open(FormCustomerComponent);
   }
 
   editCustomer(customer: any) {

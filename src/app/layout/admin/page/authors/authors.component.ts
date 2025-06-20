@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Author } from '../../../../features/models/author.model';
 import { authorsMock } from '../../../../features/admin/mocks/authors-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
+import { ModalService } from '../../../../features/services/modal.service';
+import { FormAuthorComponent } from '../../components/form-author/form-author.component';
 
 @Component({
   selector: 'app-authors',
@@ -11,6 +13,8 @@ import { CrudTableComponent } from '../../../../shared/components/crud-table/cru
   styleUrl: './authors.component.scss'
 })
 export class AuthorsComponent {
+
+  modalService = inject(ModalService);
 
   authors: Author[] = authorsMock;
   columns = [
@@ -22,6 +26,7 @@ export class AuthorsComponent {
 
   createAuthor() {
     console.log('Create author clicked');
+    this.modalService.open(FormAuthorComponent); // Assuming you have a FormAuthorComponent
   }
   editAuthor(author: Author) {
     console.log('Edit:', author);

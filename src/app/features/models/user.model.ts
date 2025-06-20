@@ -11,3 +11,4 @@ export class User {
 	phone: string = '';
 	state: string = '';
 }
+

@@ -1,0 +1,95 @@
+<div class="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center">
+  <div [ngClass]="animationState" class="w-full max-w-4xl bg-white rounded-xl shadow-lg mx-4 md:mx-0">
+
+    <!-- Título -->
+    <h1 class="py-8 text-center font-bold text-2xl text-gray-800">BOOK FORM</h1>
+
+    <form class="px-8 pb-8 space-y-6">
+      <!-- Grid layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Title -->
+        <div>
+          <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+          <input type="text" id="title" name="title"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter book title" required />
+        </div>
+
+        <!-- Category -->
+        <div>
+          <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
+          <input type="text" id="category" name="category"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter category" required />
+        </div>
+
+        <!-- Publication Date -->
+        <div>
+          <label for="publication_date" class="block mb-2 text-sm font-medium text-gray-900">Publication Date</label>
+          <input type="date" id="publication_date" name="publication_date"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <!-- Price -->
+        <div>
+          <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+          <input type="number" step="0.01" id="price" name="price"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            placeholder="0.00" required />
+        </div>
+
+        <!-- Stock -->
+        <div>
+          <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
+          <input type="number" id="stock" name="stock"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
+
+        <!-- Authors (checkbox list) -->
+        <div class="md:col-span-2">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Authors</label>
+          <div class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm max-h-48 overflow-y-auto bg-gray-50">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm text-gray-800">
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Jane Austen</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> William Shakespeare</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> George Orwell</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Virginia Woolf</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Ernest Hemingway</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Mark Twain</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> F. Scott Fitzgerald</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Leo Tolstoy</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> J.K. Rowling</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Gabriel García Márquez</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Haruki Murakami</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Isabel Allende</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Paulo Coelho</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Charles Dickens</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Franz Kafka</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Jules Verne</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Homer</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Edgar Allan Poe</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Miguel de Cervantes</label></li>
+              <li><label class="flex items-center gap-2"><input type="checkbox"> Antoine de Saint-Exupéry</label></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="flex justify-around pt-4">
+        <button type="button"
+					(click)="close()"
+          class="text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center">
+          Cancel
+        </button>
+        <button type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

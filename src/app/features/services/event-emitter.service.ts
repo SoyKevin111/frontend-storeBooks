@@ -15,8 +15,8 @@ export class EventEmitterService {
     id: 1,
     name: 'Kevin Rata',
     lastName: 'Una mas',
-    isAdmin: false,
-    isCustomer: true,
+    isAdmin: true,
+    isCustomer: false,
     username: '',
     dateOfBirth: '16/10/2004',
     address: 'flor de bastion #22',
@@ -36,7 +36,7 @@ export class EventEmitterService {
     this.userChanged.emit(this.user);
 
 
-        if (this.user.isAdmin) {
+    if (this.user.isAdmin) {
       this.router.navigate(['/storebooks/dashboard']);
     } else {
       this.router.navigate(['/storebooks']);

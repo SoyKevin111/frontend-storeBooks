@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { Editorial } from '../../../../features/models/editorial.model';
 import { editorialsMock } from '../../../../features/admin/mocks/editorials-data.mock';
+import { ModalService } from '../../../../features/services/modal.service';
+import { FormEditorialComponent } from '../../components/form-editorial/form-editorial.component';
 
 @Component({
   selector: 'app-editorials',
@@ -11,6 +13,8 @@ import { editorialsMock } from '../../../../features/admin/mocks/editorials-data
   styleUrl: './editorials.component.scss'
 })
 export class EditorialsComponent {
+
+  modalService = inject(ModalService);
 
   editorials: Editorial[] = editorialsMock;
   columns = [
@@ -23,6 +27,7 @@ export class EditorialsComponent {
 
   createEditorial() {
     console.log('Create editorial clicked');
+    this.modalService.open(FormEditorialComponent);
   }
 
   editEditorial(editorial: Editorial) {

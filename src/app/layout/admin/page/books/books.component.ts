@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Book } from '../../../../features/models/book.model';
 import { booksMock } from '../../../../features/admin/mocks/book-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
+import { ModalService } from '../../../../features/services/modal.service';
+import { FormBookComponent } from '../../components/form-book/form-book.component';
 
 @Component({
   selector: 'app-books',
@@ -13,6 +15,8 @@ import { CrudTableComponent } from '../../../../shared/components/crud-table/cru
 export class BooksComponent {
 
   books: Book[] = booksMock;
+
+  modalService = inject(ModalService);
 
   columns = [
     /* { field: 'id', header: 'ID' }, */
@@ -26,6 +30,7 @@ export class BooksComponent {
 
   createBook() {
     console.log('Create book clicked');
+    this.modalService.open(FormBookComponent);
   }
 
   editBook(book: any) {
