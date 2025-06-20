@@ -1,0 +1,13 @@
+<div class="px-6">
+	<h1 class="py-6 text-lg font-medium">Editorials</h1>
+	<div class="table-books">
+		<app-crud-table
+			[columns]="columns"
+			[data]="editorials"
+			(create)="createEditorial()"
+			(edit)="editEditorial($event)"
+			(delete)="deleteEditorial($event)"
+			(view)="viewEditorial($event)">
+		</app-crud-table>
+	</div>
+</div>

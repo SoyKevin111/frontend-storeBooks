@@ -1,0 +1,13 @@
+<div class="px-6">
+	<h1 class="py-6 text-lg font-medium">Customers</h1>
+	<div class="table-books">
+		<app-crud-table
+			[columns]="columns"
+			[data]="customers"
+			(create)="createCustomer()"
+			(edit)="editCustomer($event)"
+			(delete)="deleteCustomer($event)"
+			(view)="viewCustomer($event)">
+		</app-crud-table>
+	</div>
+</div>
