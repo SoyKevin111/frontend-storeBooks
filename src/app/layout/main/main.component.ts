@@ -4,12 +4,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-main',
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, HeaderPageComponent],
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  templateUrl: './main.component.html',
+  styleUrl: './main.component.scss'
 })
-export class UserComponent {
+export class MainComponent {
 
 }

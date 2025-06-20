@@ -1,5 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, inject, Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,14 @@ export class EventEmitterService {
 
   constructor() { }
 
+  router = inject(Router)
+
   user: User = {
     id: 1,
     name: 'Kevin Rata',
     lastName: 'Una mas',
-    isAdmin: true,
-    isCustomer: false,
+    isAdmin: false,
+    isCustomer: true,
     username: '',
     dateOfBirth: '16/10/2004',
     address: 'flor de bastion #22',
@@ -31,5 +34,12 @@ export class EventEmitterService {
     this.user.isAdmin = !this.user.isAdmin;
     this.user.isCustomer = !this.user.isCustomer;
     this.userChanged.emit(this.user);
+
+
+        if (this.user.isAdmin) {
+      this.router.navigate(['/storebooks/dashboard']);
+    } else {
+      this.router.navigate(['/storebooks']);
+    }
   }
 }

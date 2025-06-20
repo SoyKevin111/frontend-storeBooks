@@ -10,17 +10,17 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CrudTableComponent {
 
-  @Input() title!: string;
   @Input() columns: Array<{ field: string, header: string }> = [];
   @Input() data: any[] = [];
 
-  @Output() add = new EventEmitter<void>();
+  @Output() create = new EventEmitter<void>();
   @Output() edit = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  @Output() view = new EventEmitter<any>();
 
 
-  onAdd() {
-    this.add.emit();
+  onCreate() {
+    this.create.emit();
   }
 
   onEdit(item: any) {
@@ -29,6 +29,10 @@ export class CrudTableComponent {
 
   onDelete(item: any) {
     this.delete.emit(item);
+  }
+
+  onView(item: any) {
+    this.view.emit(item);
   }
 
 
