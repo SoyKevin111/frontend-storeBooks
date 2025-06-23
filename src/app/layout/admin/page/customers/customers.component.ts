@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { customersMock } from '../../../../features/admin/mocks/customers-data.mock';
+import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
 import { User } from '../../../../features/models/user.model';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormCustomerComponent } from '../../components/form-customer/form-customer.component';
@@ -18,15 +18,17 @@ export class CustomersComponent {
 
   private modalService = inject(ModalService);
 
-  customers: User[] = customersMock;
+  customers: User[] = MOCK_CUSTOMERS;
 
   @Input() message: string = '';
 
   columns = [
+    { field: 'id', header: 'Id' },
+    { field: 'username', header: 'Username' },
     { field: 'name', header: 'Name' },
     { field: 'lastName', header: 'Last Name' },
-    { field: 'username', header: 'Username' },
     { field: 'dateOfBirth', header: 'Date of Birth' },
+    {field: 'identityNumber', header: 'Identification number'},
     { field: 'address', header: 'Address' },
     { field: 'phone', header: 'Phone' },
     { field: 'state', header: 'State' }

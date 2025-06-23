@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Author } from '../../../../features/models/author.model';
-import { authorsMock } from '../../../../features/admin/mocks/authors-data.mock';
+import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormAuthorComponent } from '../../components/form-author/form-author.component';
@@ -16,10 +16,12 @@ export class AuthorsComponent {
 
   modalService = inject(ModalService);
 
-  authors: Author[] = authorsMock;
+  authors: Author[] = MOCK_AUTHORS;
   columns = [
+    { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
     { field: 'lastName', header: 'Last Name' },
+    {field: 'identityNumber', header: 'Identification number'},
     { field: 'email', header: 'Email' },
     { field: 'state', header: 'State' }
   ];

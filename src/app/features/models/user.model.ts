@@ -9,6 +9,7 @@ export class User {
 	dateOfBirth: string = '';
 	address: string = '';
 	phone: string = '';
+	identityNumber: string = '';
 	state: string = '';
 }
 

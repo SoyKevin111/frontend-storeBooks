@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Book } from '../../../../features/models/book.model';
-import { booksMock } from '../../../../features/admin/mocks/book-data.mock';
+import { MOCK_BOOKS } from '../../../../features/mocks/books-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormBookComponent } from '../../components/form-book/form-book.component';
@@ -14,15 +14,16 @@ import { FormBookComponent } from '../../components/form-book/form-book.componen
 })
 export class BooksComponent {
 
-  books: Book[] = booksMock;
+  books: Book[] = MOCK_BOOKS;
 
   modalService = inject(ModalService);
 
   columns = [
-    /* { field: 'id', header: 'ID' }, */
     { field: 'isbn', header: 'ISBN' },
     { field: 'title', header: 'Title' },
+    {field: 'category', header: 'Category'},
     { field: 'editorial', header: 'Editorial' },
+    {field: 'authors', header: 'Authors'},
     { field: 'dateCreated', header: 'Date Created' },
     { field: 'price', header: 'Price' },
     { field: 'stock', header: 'Stock' }

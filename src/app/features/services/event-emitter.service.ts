@@ -17,6 +17,7 @@ export class EventEmitterService {
     lastName: 'Una mas',
     isAdmin: true,
     isCustomer: false,
+    identityNumber: '0990204404',
     username: '',
     dateOfBirth: '16/10/2004',
     address: 'flor de bastion #22',

@@ -6,4 +6,6 @@ export class Book {
 	dateCreated: string = '';
 	price: number = 0;
 	stock: number = 0;
+	category:string = '';
+	authors:string[] = [];
 }

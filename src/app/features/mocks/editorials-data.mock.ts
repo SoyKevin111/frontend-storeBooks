@@ -1,4 +1,4 @@
-import { Editorial } from "../../models/editorial.model";
+import { Editorial } from "../models/editorial.model";
 
 export const editorialsMock: Editorial[] = [
   {
