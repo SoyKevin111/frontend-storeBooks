@@ -4,6 +4,7 @@ import { Editorial } from '../../../../features/models/editorial.model';
 import { editorialsMock } from '../../../../features/mocks/editorials-data.mock';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormEditorialComponent } from '../../components/form-editorial/form-editorial.component';
+import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
 
 @Component({
   selector: 'app-editorials',
@@ -15,26 +16,30 @@ import { FormEditorialComponent } from '../../components/form-editorial/form-edi
 export class EditorialsComponent {
 
   modalService = inject(ModalService);
+  private modalConfirmationService = inject(ModalConfirmationService);
 
   editorials: Editorial[] = editorialsMock;
   columns = [
-  { field: 'name', header: 'Name' },
-  { field: 'phone', header: 'Phone' },
-  { field: 'website', header: 'Website' },
-  { field: 'email', header: 'Email' },
-  { field: 'state', header: 'State' }
-];
+    { field: 'id', header: 'Id' },
+    { field: 'name', header: 'Name' },
+    { field: 'phone', header: 'Phone' },
+    { field: 'website', header: 'Website' },
+    { field: 'email', header: 'Email' },
+    { field: 'state', header: 'State' }
+  ];
 
   createEditorial() {
     console.log('Create editorial clicked');
-    this.modalService.open(FormEditorialComponent);
+    this.modalService.open(FormEditorialComponent, { functionTyeEm: 'create' });
   }
 
   editEditorial(editorial: Editorial) {
     console.log('Edit:', editorial);
+    this.modalService.open(FormEditorialComponent, { functionTyeEm: 'update' });
   }
 
   deleteEditorial(editorial: Editorial) {
+    this.modalConfirmationService.deleteBook("Editorial");
     console.log('Delete:', editorial);
   }
 

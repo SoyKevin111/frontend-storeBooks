@@ -4,6 +4,7 @@ import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormAuthorComponent } from '../../components/form-author/form-author.component';
+import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
 
 @Component({
   selector: 'app-authors',
@@ -15,25 +16,28 @@ import { FormAuthorComponent } from '../../components/form-author/form-author.co
 export class AuthorsComponent {
 
   modalService = inject(ModalService);
+  private modalConfirmationService = inject(ModalConfirmationService);
 
   authors: Author[] = MOCK_AUTHORS;
   columns = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
     { field: 'lastName', header: 'Last Name' },
-    {field: 'identityNumber', header: 'Identification number'},
+    { field: 'identityNumber', header: 'Identification number' },
     { field: 'email', header: 'Email' },
     { field: 'state', header: 'State' }
   ];
 
   createAuthor() {
     console.log('Create author clicked');
-    this.modalService.open(FormAuthorComponent); // Assuming you have a FormAuthorComponent
+    this.modalService.open(FormAuthorComponent, { functionTyeEm: 'create' });
   }
   editAuthor(author: Author) {
     console.log('Edit:', author);
+    this.modalService.open(FormAuthorComponent, { functionTyeEm: 'update' });
   }
   deleteAuthor(author: Author) {
+    this.modalConfirmationService.deleteBook("Author");
     console.log('Delete:', author);
   }
   viewAuthor(author: Author) {

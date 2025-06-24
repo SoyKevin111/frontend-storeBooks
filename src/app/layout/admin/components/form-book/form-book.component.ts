@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ModalService } from '../../../../features/services/modal.service';
+import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 
 @Component({
   selector: 'app-form-book',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CancelSaveButtonsComponent],
   templateUrl: './form-book.component.html',
   styleUrl: './form-book.component.scss'
 })
@@ -13,6 +14,7 @@ export class FormBookComponent {
 
   private modalService = inject(ModalService);
   animationState = 'modal-animate-in';
+  @Input() functionTyeEm: string = '';
 
   close() {
     this.animationState = 'modal-animate-out';

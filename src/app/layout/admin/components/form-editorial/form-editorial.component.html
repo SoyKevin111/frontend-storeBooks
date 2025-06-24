@@ -45,18 +45,11 @@
           placeholder="Enter state" required />
       </div>
 
-      <!-- Botones -->
-      <div class="flex justify-around pt-4">
-        <button type="button"
-        (click)="close()"
-          class="text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center">
-          Cancel
-        </button>
-        <button type="submit"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center">
-          Save
-        </button>
-      </div>
+       <!-- Botones -->
+      <app-cancel-save-buttons
+        (closeModal)="close()"
+        [functionTyeRec]="functionTyeEm"
+      ></app-cancel-save-buttons>
     </form>
   </div>
 </div>

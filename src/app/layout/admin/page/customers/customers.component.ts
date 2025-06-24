@@ -4,6 +4,7 @@ import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
 import { User } from '../../../../features/models/user.model';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormCustomerComponent } from '../../components/form-customer/form-customer.component';
+import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
 
 
 
@@ -17,6 +18,7 @@ import { FormCustomerComponent } from '../../components/form-customer/form-custo
 export class CustomersComponent {
 
   private modalService = inject(ModalService);
+  private modalConfirmationService = inject(ModalConfirmationService);
 
   customers: User[] = MOCK_CUSTOMERS;
 
@@ -35,15 +37,17 @@ export class CustomersComponent {
   ];
 
   createCustomer() {
+    this.modalService.open(FormCustomerComponent, {functionTyeEm: 'create'});
     console.log('Create customer clicked');
-    this.modalService.open(FormCustomerComponent);
   }
 
   editCustomer(customer: any) {
+    this.modalService.open(FormCustomerComponent, {functionTyeEm: 'update'});
     console.log('Edit:', customer);
   }
 
   deleteCustomer(customer: any) {
+    this.modalConfirmationService.deleteBook("Customer");
     console.log('Delete:', customer);
   }
 
