@@ -15,30 +15,35 @@ import { ModalConfirmationService } from '../../../../features/services/modal-co
 })
 export class BooksComponent {
 
-  books: Book[] = MOCK_BOOKS;
-
-  modalService = inject(ModalService);
+  private modalService = inject(ModalService);
   private modalConfirmationService = inject(ModalConfirmationService);
+
+  booksWithExtras: Book[] = MOCK_BOOKS.map(book => ({
+    ...book,
+    editorialName: book.editorial?.name || '',
+    authorsNames: (book.authors ?? []).map(a => a.name).join(', ')
+  }));
 
   columns = [
     { field: 'isbn', header: 'ISBN' },
     { field: 'title', header: 'Title' },
-    {field: 'category', header: 'Category'},
-    { field: 'editorial', header: 'Editorial' },
-    {field: 'authors', header: 'Authors'},
+    { field: 'category', header: 'Category' },
+    { field: 'editorialName', header: 'Editorial' },
+    { field: 'authorsNames', header: 'Authors' }, 
     { field: 'dateCreated', header: 'Publication Date' },
     { field: 'price', header: 'Price' },
     { field: 'stock', header: 'Stock' }
   ];
 
+
   createBook() {
     console.log('Create book clicked');
-    this.modalService.open(FormBookComponent, {functionTyeEm: 'create'});
+    this.modalService.open(FormBookComponent, { functionTyeEm: 'create' });
   }
 
   editBook(book: any) {
     console.log('Edit:', book);
-    this.modalService.open(FormBookComponent, {functionTyeEm: 'update'});
+    this.modalService.open(FormBookComponent, { functionTyeEm: 'update' });
   }
 
   deleteBook(book: any) {

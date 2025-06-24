@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnDestroy } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalService } from '../../../../features/services/modal.service';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
+import { User } from '../../../../features/models/user.model';
 
 @Component({
   selector: 'app-form-customer',
@@ -11,14 +12,17 @@ import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel
   templateUrl: './form-customer.component.html',
   styleUrl: './form-customer.component.scss'
 })
-export class FormCustomerComponent {
+export class FormCustomerComponent implements OnInit{
 
   private modalService = inject(ModalService);
   private _fb = inject(FormBuilder);
 
   animationState = 'modal-animate-in';
   @Input() functionTyeEm: string = '';
+  @Input() customer!: User;
+  toggleState: boolean = false;
 
+  stateOptions: string[] = ['Active', 'Inactive'];
 
   createCustomerForm = this._fb.group({
     name: [
@@ -38,6 +42,14 @@ export class FormCustomerComponent {
       ]
     ],
     username: [
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(10),
+        Validators.pattern(/^(?!\s*$).+/)
+      ]
+    ],
+    identityNumber: [
       '',
       [
         Validators.required,
@@ -68,11 +80,31 @@ export class FormCustomerComponent {
       '',
       [
         Validators.required,
-        Validators.pattern(/^(frequent|occasional|rare|inactive)$/)
+        (control: AbstractControl) =>
+          this.stateOptions.includes(control.value) ? null : { invalidState: true }
       ]
     ]
   });
 
+    ngOnInit() {
+    if (this.customer) {
+      this.createCustomerForm.patchValue({
+        name: this.customer.name,
+        lastName: this.customer.lastName,
+        username: this.customer.username,
+        identityNumber: this.customer.identityNumber,
+        dateOfBirth: this.customer.dateOfBirth,
+        address: this.customer.address,
+        phone: this.customer.phone,
+        state: this.customer.state
+      });
+    }
+  }
+
+  selectState(state: string) {
+    this.createCustomerForm.get('state')?.setValue(state);
+    this.toggleState = false;
+  }
 
   onSubmit() {
     if (this.createCustomerForm.valid) {

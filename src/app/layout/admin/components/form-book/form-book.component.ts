@@ -16,6 +16,17 @@ export class FormBookComponent {
   animationState = 'modal-animate-in';
   @Input() functionTyeEm: string = '';
 
+  dropdownState = {
+    authors: false,
+    editorials: false,
+    category: false
+  };
+
+
+  toggleDropdown(type: 'authors' | 'editorials' | 'category') {
+    this.dropdownState[type] = !this.dropdownState[type];
+  }
+
   close() {
     this.animationState = 'modal-animate-out';
     setTimeout(() => {
@@ -23,4 +34,5 @@ export class FormBookComponent {
     }, 150);
 
   }
+
 }

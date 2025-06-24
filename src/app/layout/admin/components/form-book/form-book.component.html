@@ -5,9 +5,8 @@
     <h1 class="py-8 text-center font-bold text-2xl text-gray-800">BOOK FORM</h1>
 
     <form class="px-8 pb-8 space-y-6">
-      <!-- Grid layout -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
+
         <!-- Title -->
         <div>
           <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
@@ -16,20 +15,22 @@
             placeholder="Enter book title" required />
         </div>
 
-        <!-- Category -->
-        <div>
-          <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
-          <input type="text" id="category" name="category"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter category" required />
-        </div>
-
-        <!-- Publication Date -->
-        <div>
-          <label for="publication_date" class="block mb-2 text-sm font-medium text-gray-900">Publication Date</label>
-          <input type="date" id="publication_date" name="publication_date"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            required />
+        <!-- Category Dropdown -->
+        <div class="relative">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Category</label>
+          <button type="button" (click)="toggleDropdown('category')"
+            class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
+            Choose category
+            <span class="float-right">▼</span>
+          </button>
+          <div [ngClass]="dropdownState.category ? 'block' : 'hidden'"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
+            <ng-container *ngFor="let category of ['Tech', 'Design', 'IA', 'Security', 'DevOps', 'Databases']">
+              <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                {{ category }}
+              </div>
+            </ng-container>
+          </div>
         </div>
 
         <!-- Price -->
@@ -39,7 +40,6 @@
             class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             placeholder="0.00" required />
         </div>
-
         <!-- Stock -->
         <div>
           <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
@@ -47,42 +47,55 @@
             class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
+        <!-- Publication Date -->
+        <div>
+          <label for="publication_date" class="block mb-2 text-sm font-medium text-gray-900">Publication Date</label>
+          <input type="date" id="publication_date" name="publication_date"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            required />
+        </div>
 
-        <!-- Authors (checkbox list) -->
-        <div class="md:col-span-2">
-          <label class="block mb-2 text-sm font-medium text-gray-900">Authors</label>
-          <div class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm max-h-48 overflow-y-auto bg-gray-50">
-            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm text-gray-800">
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Jane Austen</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> William Shakespeare</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> George Orwell</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Virginia Woolf</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Ernest Hemingway</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Mark Twain</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> F. Scott Fitzgerald</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Leo Tolstoy</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> J.K. Rowling</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Gabriel García Márquez</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Haruki Murakami</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Isabel Allende</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Paulo Coelho</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Charles Dickens</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Franz Kafka</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Jules Verne</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Homer</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Edgar Allan Poe</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Miguel de Cervantes</label></li>
-              <li><label class="flex items-center gap-2"><input type="checkbox"> Antoine de Saint-Exupéry</label></li>
-            </ul>
+        <!-- Choose Editorial -->
+        <div class="relative">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Editorials</label>
+          <button type="button" (click)="toggleDropdown('editorials')"
+            class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
+            Choose editorials
+            <span class="float-right">▼</span>
+          </button>
+          <div [ngClass]="dropdownState.editorials ? 'block' : 'hidden'"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
+            <ng-container *ngFor="let i of [].constructor(20); let index = index">
+              <div class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                Editorial {{ index + 1 }}
+              </div>
+            </ng-container>
           </div>
         </div>
+
+        <!-- Choose Authors -->
+        <div class="relative md:col-span-2">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Authors</label>
+          <button type="button" (click)="toggleDropdown('authors')"
+            class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
+            Choose authors
+            <span class="float-right">▼</span>
+          </button>
+          <div [ngClass]="dropdownState.authors ? 'block' : 'hidden'"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
+            <ng-container *ngFor="let i of [].constructor(20); let index = index">
+              <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+                <input type="checkbox" class="mr-2" [id]="'author' + (index+1)">
+                <label [for]="'author' + (index+1)">Author {{ index + 1 }}</label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
       </div>
 
-      <app-cancel-save-buttons
-        (closeModal)="close()"
-        [functionTyeRec]="functionTyeEm"
-      ></app-cancel-save-buttons>
-
+      <!-- Buttons -->
+      <app-cancel-save-buttons (closeModal)="close()" [functionTyeRec]="functionTyeEm"></app-cancel-save-buttons>
     </form>
   </div>
 </div>

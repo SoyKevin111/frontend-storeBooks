@@ -41,8 +41,8 @@ export class CustomersComponent {
     console.log('Create customer clicked');
   }
 
-  editCustomer(customer: any) {
-    this.modalService.open(FormCustomerComponent, {functionTyeEm: 'update'});
+  editCustomer(customer: User) {
+    this.modalService.open(FormCustomerComponent, {functionTyeEm: 'update', customer: customer});
     console.log('Edit:', customer);
   }
 

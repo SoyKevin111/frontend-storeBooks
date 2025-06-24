@@ -3,7 +3,7 @@
 	<div class="table-books">
 		<app-crud-table
 			[columns]="columns"
-			[data]="books"
+			[data]="booksWithExtras"
 			(create)="createBook()"
 			(edit)="editBook($event)"
 			(delete)="deleteBook($event)"
