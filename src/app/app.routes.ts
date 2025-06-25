@@ -11,7 +11,6 @@ export const routes: Routes = [
 		loadChildren: () =>
 			import('./layout/main/main.routes').then(m => m.MAIN_ROUTES)
 	},
-
 	{
 		path: 'unauthorized',
 		loadComponent: () =>

@@ -33,6 +33,18 @@ export const MAIN_ROUTES: Routes = [
         loadComponent: () =>
           import('../admin/page/authors/authors.component').then(m => m.AuthorsComponent)
       },
+      {
+        path: 'invoices',
+        loadComponent: () =>
+          import('../../shared/pages/invoice/invoice.component').then(m => m.InvoiceComponent)
+      }
     ]
+  }
+  ,
+  {
+    path: 'invoice-details',
+    loadComponent: () =>
+      import('../../shared/pages/invoice-details/invoice-details.component').then(m => m.InvoiceDetailsComponent),
+    canActivate: [adminGuard]
   }
 ];

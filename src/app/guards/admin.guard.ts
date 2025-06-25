@@ -11,7 +11,5 @@ export const adminGuard: CanActivateFn = () => {
   if (user?.isAdmin) {
     return true;
   }
-
-  // ✅ Más seguro y compatible: retornar una redirección en vez de usar navigate()
   return router.createUrlTree(['/unauthorized']);
 };

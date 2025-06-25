@@ -40,7 +40,7 @@ export class EventEmitterService {
     if (this.user.isAdmin) {
       this.router.navigate(['/storebooks/dashboard']);
     } else {
-      this.router.navigate(['/storebooks']);
+      this.router.navigate(['/storebooks/home']);
     }
   }
 }

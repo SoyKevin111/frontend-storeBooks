@@ -12,6 +12,7 @@ export class CrudTableComponent {
 
   @Input() columns: Array<{ field: string, header: string }> = [];
   @Input() data: any[] = [];
+  @Input() type: string = '';
 
   @Output() create = new EventEmitter<void>();
   @Output() edit = new EventEmitter<any>();

@@ -22,8 +22,6 @@ export class CustomersComponent {
 
   customers: User[] = MOCK_CUSTOMERS;
 
-  @Input() message: string = '';
-
   columns = [
     { field: 'id', header: 'Id' },
     { field: 'username', header: 'Username' },

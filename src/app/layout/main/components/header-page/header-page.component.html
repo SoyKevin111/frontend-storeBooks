@@ -1,4 +1,4 @@
-<header class="flex justify-end items-center gap-[5rem] px-8 h-[80px]">
+<header class="flex justify-end items-center gap-[5rem] px-6 py-4 h-[80px]">
   <div class="px-3 py-2 bg-red-400 mr-auto cursor-pointer select-none" (click)="toggleUser()">admin/user</div>
   @if (user.isCustomer) {
   <div class="cart-icon cursor-pointer">
@@ -11,9 +11,9 @@
 
   <div class="flex items-center gap-3 cursor-pointer">
     <div
-      class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 overflow-hidden border border-gray-300">
+      class="w-[3rem] h-[3rem] rounded-full flex items-center justify-center bg-gray-200 overflow-hidden border border-gray-300">
       <img class="" src="/assets/profile/profile.png" alt="">
     </div>
-    <div class="font-medium text-[.9rem]">Kevin Steven</div>
+    <div class="font-semibold text-[.9rem]">Kevin Steven</div>
   </div>
 </header>

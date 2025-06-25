@@ -1,0 +1,12 @@
+<div class="px-6">
+	<h1 class="pb-6 text-lg font-medium">Invoices</h1>
+	<div class="table-books">
+		<app-crud-table
+			[columns]="columns"
+			[data]="invoices"
+			(view)="viewInvoice($event)"
+			[type]="'view'"
+			>
+		</app-crud-table>
+	</div>
+</div>

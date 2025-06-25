@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { User } from '../../../../features/models/user.model';
 import { EventEmitterService } from '../../../../features/services/event-emitter.service';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import {  RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
