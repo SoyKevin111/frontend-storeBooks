@@ -29,7 +29,7 @@ export class BooksComponent {
     { field: 'title', header: 'Title' },
     { field: 'category', header: 'Category' },
     { field: 'editorialName', header: 'Editorial' },
-    { field: 'authorsNames', header: 'Authors' }, 
+    { field: 'authorsNames', header: 'Authors' },
     { field: 'dateCreated', header: 'Publication Date' },
     { field: 'price', header: 'Price' },
     { field: 'stock', header: 'Stock' }
@@ -43,7 +43,7 @@ export class BooksComponent {
 
   editBook(book: any) {
     console.log('Edit:', book);
-    this.modalService.open(FormBookComponent, { functionTyeEm: 'update' });
+    this.modalService.open(FormBookComponent, { functionTyeEm: 'update', book: book });
   }
 
   deleteBook(book: any) {

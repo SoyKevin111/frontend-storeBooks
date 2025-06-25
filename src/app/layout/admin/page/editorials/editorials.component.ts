@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { Editorial } from '../../../../features/models/editorial.model';
-import { editorialsMock } from '../../../../features/mocks/editorials-data.mock';
+import { MOCK_EDITORIALS } from '../../../../features/mocks/editorials-data.mock';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormEditorialComponent } from '../../components/form-editorial/form-editorial.component';
 import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
@@ -18,7 +18,7 @@ export class EditorialsComponent {
   modalService = inject(ModalService);
   private modalConfirmationService = inject(ModalConfirmationService);
 
-  editorials: Editorial[] = editorialsMock;
+  editorials: Editorial[] = MOCK_EDITORIALS;
   columns = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
@@ -35,7 +35,7 @@ export class EditorialsComponent {
 
   editEditorial(editorial: Editorial) {
     console.log('Edit:', editorial);
-    this.modalService.open(FormEditorialComponent, { functionTyeEm: 'update' });
+    this.modalService.open(FormEditorialComponent, { functionTyeEm: 'update', editorial: editorial });
   }
 
   deleteEditorial(editorial: Editorial) {

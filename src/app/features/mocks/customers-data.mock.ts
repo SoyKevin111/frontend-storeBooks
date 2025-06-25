@@ -38,7 +38,7 @@ export const MOCK_CUSTOMERS: User[] = [
 		address: 'Calle Luna 789',
 		phone: '5559012',
 		identityNumber: '11223344',
-		state: 'Active'
+		state: 'Inactive'
 	},
 	{
 		id: 4,
@@ -64,7 +64,7 @@ export const MOCK_CUSTOMERS: User[] = [
 		address: 'Pasaje Norte 654',
 		phone: '5557890',
 		identityNumber: '99887766',
-		state: 'Active'
+		state: 'Inactive'
 	},
 	{
 		id: 6,

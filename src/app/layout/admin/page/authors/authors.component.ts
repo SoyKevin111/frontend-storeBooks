@@ -34,7 +34,7 @@ export class AuthorsComponent {
   }
   editAuthor(author: Author) {
     console.log('Edit:', author);
-    this.modalService.open(FormAuthorComponent, { functionTyeEm: 'update' });
+    this.modalService.open(FormAuthorComponent, { functionTyeEm: 'update', author: author });
   }
   deleteAuthor(author: Author) {
     this.modalConfirmationService.deleteBook("Author");

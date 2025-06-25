@@ -1,6 +1,6 @@
 import { Editorial } from "../models/editorial.model";
 
-export const editorialsMock: Editorial[] = [
+export const MOCK_EDITORIALS: Editorial[] = [
   {
     id: 1,
     name: 'Penguin Random House',

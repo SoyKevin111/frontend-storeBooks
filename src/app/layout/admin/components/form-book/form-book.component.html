@@ -4,13 +4,13 @@
     <!-- Título -->
     <h1 class="py-8 text-center font-bold text-2xl text-gray-800">BOOK FORM</h1>
 
-    <form class="px-8 pb-8 space-y-6">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="px-8 pb-8 space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <!-- Title -->
         <div>
           <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-          <input type="text" id="title" name="title"
+          <input type="text" id="title" name="title" formControlName="title"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter book title" required />
         </div>
@@ -20,37 +20,37 @@
           <label class="block mb-2 text-sm font-medium text-gray-900">Category</label>
           <button type="button" (click)="toggleDropdown('category')"
             class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
-            Choose category
+            {{ bookForm.get("category")?.value || 'Choose category'}}
             <span class="float-right">▼</span>
           </button>
           <div [ngClass]="dropdownState.category ? 'block' : 'hidden'"
             class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-            <ng-container *ngFor="let category of ['Tech', 'Design', 'IA', 'Security', 'DevOps', 'Databases']">
-              <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                {{ category }}
-              </div>
-            </ng-container>
+            @for (category of categoryOptions; track $index) {
+            <div (click)="toggleSelect('category', category)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              {{ category }}
+            </div>
+            }
           </div>
         </div>
 
         <!-- Price -->
         <div>
           <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
-          <input type="number" step="0.01" id="price" name="price"
+          <input type="number" step="0.01" id="price" name="price" formControlName="price"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             placeholder="0.00" required />
         </div>
         <!-- Stock -->
         <div>
           <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
-          <input type="number" id="stock" name="stock"
+          <input type="number" id="stock" name="stock" formControlName="stock"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
         <!-- Publication Date -->
         <div>
           <label for="publication_date" class="block mb-2 text-sm font-medium text-gray-900">Publication Date</label>
-          <input type="date" id="publication_date" name="publication_date"
+          <input type="date" id="publication_date" name="publication_date" formControlName="dateCreated"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
             required />
         </div>
@@ -58,37 +58,39 @@
         <!-- Choose Editorial -->
         <div class="relative">
           <label class="block mb-2 text-sm font-medium text-gray-900">Editorials</label>
-          <button type="button" (click)="toggleDropdown('editorials')"
+          <button type="button" (click)="toggleDropdown('editorial')"
             class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
-            Choose editorials
+            {{bookForm.get("editorial")?.value || 'choose editorials'}}
             <span class="float-right">▼</span>
           </button>
-          <div [ngClass]="dropdownState.editorials ? 'block' : 'hidden'"
+          <div [ngClass]="dropdownState.editorial ? 'block' : 'hidden'"
             class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-            <ng-container *ngFor="let i of [].constructor(20); let index = index">
-              <div class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Editorial {{ index + 1 }}
-              </div>
-            </ng-container>
+            @for (editorial of editorialOptions; track $index) {
+            <div (click)="toggleSelect('editorial', editorial.name)"
+              class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              {{editorial.name}}
+            </div>
+            }
           </div>
         </div>
 
         <!-- Choose Authors -->
         <div class="relative md:col-span-2">
           <label class="block mb-2 text-sm font-medium text-gray-900">Authors</label>
-          <button type="button" (click)="toggleDropdown('authors')"
+          <button type="button"
+            (click)="toggleDropdown('authors')"
             class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
             Choose authors
             <span class="float-right">▼</span>
           </button>
           <div [ngClass]="dropdownState.authors ? 'block' : 'hidden'"
             class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-            <ng-container *ngFor="let i of [].constructor(20); let index = index">
-              <div class="flex items-center px-4 py-2 hover:bg-gray-100">
-                <input type="checkbox" class="mr-2" [id]="'author' + (index+1)">
-                <label [for]="'author' + (index+1)">Author {{ index + 1 }}</label>
-              </div>
-            </ng-container>
+            @for (author of authorOptions; track $index) {
+            <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+              <input type="checkbox" class="mr-2" [id]="'author-'+author.id">
+              <label [for]="'author-'+ author.id"> {{author.name}}</label>
+            </div>
+            }
           </div>
         </div>
 
