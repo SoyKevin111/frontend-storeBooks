@@ -1,6 +1,8 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
 import { User } from '../../../../features/models/user.model';
 import { EventEmitterService } from '../../../../features/services/event-emitter.service';
+import { ModalService } from '../../../../features/services/modal.service';
+import { ShoppingCartComponent } from '../../../customer/components/shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-header-page',
@@ -11,8 +13,7 @@ import { EventEmitterService } from '../../../../features/services/event-emitter
 })
 export class HeaderPageComponent implements OnInit {
 
-
-
+  private modalService = inject(ModalService);
   user!: User;
 
   eventEmitterService = inject(EventEmitterService);
@@ -22,6 +23,10 @@ export class HeaderPageComponent implements OnInit {
     this.eventEmitterService.userChanged.subscribe(user => {
       this.user = user;
     });
+  }
+
+  openShoppingCart(): void {
+    this.modalService.open(ShoppingCartComponent);
   }
 
   toggleUser(): void {
