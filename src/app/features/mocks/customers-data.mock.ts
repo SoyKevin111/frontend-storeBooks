@@ -130,18 +130,5 @@ export const MOCK_CUSTOMERS: User[] = [
 		phone: '5558888',
 		identityNumber: '88990011',
 		state: 'Active'
-	},
-	{
-		id: 11,
-		name: 'Kevin',
-		lastName: 'Steven',
-		isAdmin: false,
-		isCustomer: true,
-		username: 'SoyKevin111',
-		dateOfBirth: '1994-08-08',
-		address: 'Mall el Fortin',
-		phone: '0990204404',
-		identityNumber: '0990205506',
-		state: 'Active'
 	}
 ];
