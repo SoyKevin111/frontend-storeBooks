@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { CrudTableComponent } from '../../components/crud-table/crud-table.component';
 import { Router } from '@angular/router';
-import { Invoice } from '../../../features/models/invoice.model';
-import { MOCK_INVOICES } from '../../../features/mocks/invoice-data.mocks';
+import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
+import { Invoice } from '../../../../features/models/invoice.model';
+import { MOCK_INVOICES } from '../../../../features/mocks/invoice-data.mocks';
+
 
 @Component({
   selector: 'app-invoice',
@@ -17,8 +18,6 @@ export class InvoiceComponent {
 
 
   invoices: Invoice[] = MOCK_INVOICES.map((invoice) => {
-    console.log(invoice);
-
     return {
       customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
       state: 'Issued',

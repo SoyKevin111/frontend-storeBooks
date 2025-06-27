@@ -34,7 +34,7 @@ export const ADMIN_ROUTES: Routes = [
 			},
 			{
 				path: 'invoices',
-				loadComponent: () => import('../../shared/pages/invoice/invoice.component').then(m => m.InvoiceComponent)
+				loadComponent: () => import('../admin/page/invoice/invoice.component').then(m => m.InvoiceComponent)
 			}
 		]
 	}

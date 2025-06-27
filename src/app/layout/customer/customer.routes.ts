@@ -16,6 +16,10 @@ export const CUSTOMER_ROUTES: Routes = [
 			{
 				path: 'store',
 				loadComponent: () => import('../customer/page/store/store.component').then(m => m.StoreComponent)
+			},
+			{
+				path: 'history',
+				loadComponent: () => import('../customer/page/history/history.component').then(m => m.HistoryComponent)
 			}
 		]
 	}
