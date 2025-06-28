@@ -1,8 +1,10 @@
 import { Routes } from "@angular/router";
+import { customerGuard } from "../../guards/customer.guard";
 
 export const CUSTOMER_ROUTES: Routes = [
 	{
 		path: '',
+		canActivateChild: [customerGuard],
 		children: [
 			{
 				path: '',

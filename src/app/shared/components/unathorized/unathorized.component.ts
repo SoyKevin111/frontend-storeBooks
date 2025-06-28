@@ -15,7 +15,9 @@ export class UnathorizedComponent {
   private eventEmitter = inject(EventEmitterService)
 
   goBack(): void {
-    this.router.navigate(['/storebooks/customer/home']);
+    this.eventEmitter.getUser().isAdmin
+      ? this.router.navigate(['/storebooks/admin/dashboard'])
+      : this.router.navigate(['/storebooks/customer/home']);
   }
 
 }

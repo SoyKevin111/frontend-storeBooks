@@ -129,6 +129,16 @@
 
       </div>
 
+      <!-- Best Seller -->
+      <div>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" formControlName="bestSeller"
+            class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+          <span class="text-sm font-medium text-gray-900">Mark as Best Seller</span>
+        </label>
+      </div>
+
+
       <!-- Buttons -->
       <app-cancel-save-buttons (closeModal)="close()" [functionTyeRec]="functionTyeEm"></app-cancel-save-buttons>
     </form>

@@ -35,10 +35,11 @@ export class FormBookComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     editorial: ['', Validators.required],
     dateCreated: ['', Validators.required],
-    price: [1, [Validators.required, Validators.min(1)]],
-    stock: [1, [Validators.required, Validators.min(1)]],
+    price: [0, [Validators.required, Validators.min(1)]],
+    stock: [0/*  */, [Validators.required, Validators.min(1)]],
     category: ['', [Validators.required, Validators.maxLength(10)]],
-    authors: this.fb.array([], [Validators.required])
+    authors: this.fb.array([], [Validators.required]),
+    bestSeller: [false]
   });
 
   ngOnInit() {

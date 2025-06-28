@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { ModalService } from '../../../../features/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Author } from '../../../../features/models/author.model';
 
 @Component({
@@ -23,13 +23,14 @@ export class FormAuthorComponent implements OnInit {
   toggleState = false;
   stateOptions = ['Active', 'Inactive'];
 
-  authorForm = this._fb.group({
-    name: ['', [Validators.required, Validators.maxLength(15)]],
-    lastName: ['', [Validators.required, Validators.maxLength(15)]],
-    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-    email: ['', [Validators.required, Validators.email]],
-    state: ['', [Validators.required]]
-  });
+authorForm = this._fb.group({
+  name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
+  lastName: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
+  identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+  email: ['', [Validators.required, Validators.email]],
+  state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
+});
+
 
 
   ngOnInit() {
