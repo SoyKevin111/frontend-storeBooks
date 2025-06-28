@@ -5,11 +5,12 @@ import { CrudTableComponent } from '../../../../shared/components/crud-table/cru
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormBookComponent } from '../../components/form-book/form-book.component';
 import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
+import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [CrudTableComponent],
+  imports: [CrudTableComponent, PaginationComponent],
   templateUrl: './books.component.html',
   styleUrl: './books.component.scss'
 })
