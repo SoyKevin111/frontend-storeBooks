@@ -1,89 +1,139 @@
 <div class="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center">
   <div [ngClass]="animationState" class="w-[500px] bg-white rounded-xl shadow-lg mx-4 md:mx-0">
-    <!-- Título -->
     <h1 class="py-8 text-center font-bold text-2xl text-gray-800">CUSTOMER FORM</h1>
-    <form [formGroup]="createCustomerForm" (ngSubmit)="onSubmit()" class="px-8 pb-8 space-y-6">
-      <!-- Row 1: First Name & Last Name -->
+
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="px-8 pb-8 space-y-6">
+
+      <!-- First Name & Last Name -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- First Name -->
         <div>
           <label for="name" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
-          <input type="text" id="name" name="name" formControlName="name"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter first name" required />
+          <input type="text" id="name" formControlName="name"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+            placeholder="Enter first name" />
+          <div *ngIf="customerForm.get('name')?.touched && customerForm.get('name')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="customerForm.get('name')?.errors?.['required']">First name is required.</div>
+            <div *ngIf="customerForm.get('name')?.errors?.['maxlength']">Max 30 characters.</div>
+            <div *ngIf="customerForm.get('name')?.errors?.['pattern']">Cannot be blank or spaces only.</div>
+          </div>
         </div>
+
+        <!-- Last Name -->
         <div>
           <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
-          <input type="text" id="lastname" name="lastname" formControlName="lastName"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter last name" required />
+          <input type="text" id="lastname" formControlName="lastName"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+            placeholder="Enter last name" />
+          <div *ngIf="customerForm.get('lastName')?.touched && customerForm.get('lastName')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="customerForm.get('lastName')?.errors?.['required']">Last name is required.</div>
+            <div *ngIf="customerForm.get('lastName')?.errors?.['maxlength']">Max 30 characters.</div>
+            <div *ngIf="customerForm.get('lastName')?.errors?.['pattern']">Cannot be blank or spaces only.</div>
+          </div>
         </div>
       </div>
 
-      <!-- Row 2: Identity Number (full width) -->
+      <!-- Identity Number -->
       <div>
         <label for="identityNumber" class="block mb-2 text-sm font-medium text-gray-900">Identity Number</label>
-        <input type="text" id="identityNumber" name="identityNumber" formControlName="identityNumber"
-          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Enter identity number" required />
+        <input type="text" id="identityNumber" formControlName="identityNumber"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+          placeholder="Enter identity number" />
+        <div
+          *ngIf="customerForm.get('identityNumber')?.touched && customerForm.get('identityNumber')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="customerForm.get('identityNumber')?.errors?.['required']">Identity number is required.</div>
+          <div *ngIf="customerForm.get('identityNumber')?.errors?.['maxlength']">Max 10 characters.</div>
+          <div *ngIf="customerForm.get('identityNumber')?.errors?.['pattern']">Cannot be blank or spaces only.
+          </div>
+        </div>
       </div>
 
-      <!-- Row 3: Username & Date of Birth -->
+      <!-- Username & Date of Birth -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Username -->
         <div>
           <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
-          <input type="text" id="username" name="username" formControlName="username"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter username" required />
+          <input type="text" id="username" formControlName="username"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+            placeholder="Enter username" />
+          <div *ngIf="customerForm.get('username')?.touched && customerForm.get('username')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="customerForm.get('username')?.errors?.['required']">Username is required.</div>
+            <div *ngIf="customerForm.get('username')?.errors?.['maxlength']">Max 10 characters.</div>
+            <div *ngIf="customerForm.get('username')?.errors?.['pattern']">Cannot be blank or spaces only.</div>
+          </div>
         </div>
+
+        <!-- Date of Birth -->
         <div>
           <label for="dateOfBirth" class="block mb-2 text-sm font-medium text-gray-900">Date of Birth</label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            required />
+          <input type="date" id="dateOfBirth" formControlName="dateOfBirth"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border" />
+          <div *ngIf="customerForm.get('dateOfBirth')?.touched && customerForm.get('dateOfBirth')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="customerForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</div>
+          </div>
         </div>
       </div>
 
-      <!-- Row 4: Address -->
+      <!-- Address -->
       <div>
         <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Address</label>
-        <input type="text" id="address" name="address" formControlName="address"
-          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Enter address" required />
+        <input type="text" id="address" formControlName="address"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+          placeholder="Enter address" />
+        <div *ngIf="customerForm.get('address')?.touched && customerForm.get('address')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="customerForm.get('address')?.errors?.['required']">Address is required.</div>
+          <div *ngIf="customerForm.get('address')?.errors?.['maxlength']">Max 50 characters.</div>
+          <div *ngIf="customerForm.get('address')?.errors?.['pattern']">Cannot be blank or spaces only.</div>
+        </div>
       </div>
 
-      <!-- Row 5: Phone & State -->
+      <!-- Phone & State -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Phone -->
         <div>
           <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone</label>
-          <input type="text" id="phone" name="phone" formControlName="phone"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter phone number" required />
+          <input type="text" id="phone" formControlName="phone"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+            placeholder="Enter phone number" />
+          <div *ngIf="customerForm.get('phone')?.touched && customerForm.get('phone')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="customerForm.get('phone')?.errors?.['required']">Phone number is required.</div>
+            <div *ngIf="customerForm.get('phone')?.errors?.['pattern']">Phone must be 7 to 15 digits.</div>
+          </div>
         </div>
 
-        <!-- Choose State -->
+        <!-- State -->
         <div class="relative">
           <label class="block mb-2 text-sm font-medium text-gray-900">State</label>
           <button type="button" (click)="toggleState = !toggleState"
             class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
-            {{ createCustomerForm.get('state')?.value || 'Choose State' }}
+            {{ customerForm.get('state')?.value || 'Choose State' }}
             <span class="float-right">▼</span>
           </button>
           <div [ngClass]="toggleState ? 'block' : 'hidden'"
             class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-
             @for (state of stateOptions; track state) {
             <div (click)="selectState(state)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
               {{ state }}
             </div>
             }
-
+          </div>
+          <div *ngIf="customerForm.get('state')?.touched && customerForm.get('state')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="customerForm.get('state')?.errors?.['required']">State is required.</div>
+            <div *ngIf="customerForm.get('state')?.errors?.['invalidState']">Invalid state selected.</div>
           </div>
         </div>
-
       </div>
 
+      <!-- Buttons -->
       <app-cancel-save-buttons (closeModal)="close()" [functionTyeRec]="functionTyeEm"></app-cancel-save-buttons>
-
     </form>
   </div>
 </div>

@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ModalService } from '../../../../features/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 import { Book } from '../../../../features/models/book.model';
 import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
 import { MOCK_EDITORIALS } from '../../../../features/mocks/editorials-data.mock';
+import { FormControl } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-book',
@@ -29,20 +32,19 @@ export class FormBookComponent implements OnInit {
   dropdownState = { editorial: false, category: false, authors: false };
 
   bookForm = this.fb.group({
-    isbn: ['', [Validators.required, Validators.maxLength(13), Validators.pattern(/^\d+$/)]],
     title: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     editorial: ['', Validators.required],
     dateCreated: ['', Validators.required],
-    price: [0, [Validators.required, Validators.min(0)]],
-    stock: [0, [Validators.required, Validators.min(0)]],
+    price: [1, [Validators.required, Validators.min(1)]],
+    stock: [1, [Validators.required, Validators.min(1)]],
     category: ['', [Validators.required, Validators.maxLength(10)]],
-    authors: [[], Validators.required]
+    authors: this.fb.array([], [Validators.required])
   });
 
   ngOnInit() {
     if (!this.book) return;
     const { isbn, title, editorial, dateCreated, price, stock, category, authors } = this.book;
-    this.bookForm.patchValue({ isbn, title, editorial: editorial.name, dateCreated, price, stock, category, authors: authors as any });
+    this.bookForm.patchValue({ title, editorial: editorial.name, dateCreated, price, stock, category, authors: authors as any });
     console.log(authors);
   }
 
@@ -60,13 +62,41 @@ export class FormBookComponent implements OnInit {
     setTimeout(() => this.modalService.close(), 150);
   }
 
+
+  onAuthorChange(event: any, author: any) {
+    const authorsArray = this.bookForm.get('authors') as FormArray;
+    if (event.target.checked) {
+      if (authorsArray.length >= 3) {
+        event.target.checked = false; // Revierte la selección
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'You can select up to 3 authors only.',
+          confirmButtonColor: '#3085d6'
+        });
+        return;
+      }
+      authorsArray.push(new FormControl(author));
+    } else {
+      const index = authorsArray.controls.findIndex(ctrl => ctrl.value.id === author.id);
+      if (index !== -1) authorsArray.removeAt(index);
+    }
+  }
+
+  isAuthorSelected(author: any): boolean {
+    const authorsArray = this.bookForm.get('authors') as FormArray;
+    return authorsArray.value.some((a: any) => a.id === author.id);
+  }
+
   onSubmit() {
     if (this.bookForm.valid) {
-      console.log('Book Data:', this.bookForm.value);
+      console.log('Customer Data:', this.bookForm.value);
       this.close();
     } else {
       this.bookForm.markAllAsTouched();
-      console.warn('Formulario inválido', this.bookForm.errors);
+      for (const [key, control] of Object.entries(this.bookForm.controls)) {
+        if (control.errors) console.log(`Errores en ${key}:`, control.errors);
+      }
     }
   }
 }

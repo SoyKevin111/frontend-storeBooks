@@ -23,9 +23,9 @@ export class FormCustomerComponent implements OnInit {
   toggleState = false;
   stateOptions = ['Active', 'Inactive'];
 
-  createCustomerForm = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
-    lastName: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
+  customerForm = this.fb.group({
+    name: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
+    lastName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     username: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
     identityNumber: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
     dateOfBirth: ['', Validators.required],
@@ -36,21 +36,21 @@ export class FormCustomerComponent implements OnInit {
 
   ngOnInit() {
     if (!this.customer) return;
-    this.createCustomerForm.patchValue({ ...this.customer });
+    this.customerForm.patchValue({ ...this.customer });
   }
 
   selectState(state: string) {
-    this.createCustomerForm.get('state')?.setValue(state);
+    this.customerForm.get('state')?.setValue(state);
     this.toggleState = false;
   }
 
   onSubmit() {
-    if (this.createCustomerForm.valid) {
-      console.log('Customer Data:', this.createCustomerForm.value);
+    if (this.customerForm.valid) {
+      console.log('Customer Data:', this.customerForm.value);
       this.close();
     } else {
-      this.createCustomerForm.markAllAsTouched();
-      for (const [key, control] of Object.entries(this.createCustomerForm.controls)) {
+      this.customerForm.markAllAsTouched();
+      for (const [key, control] of Object.entries(this.customerForm.controls)) {
         if (control.errors) console.log(`Errores en ${key}:`, control.errors);
       }
     }

@@ -1,43 +1,62 @@
 <div class="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center">
   <div [ngClass]="animationState" class="w-full max-w-md bg-white rounded-xl shadow-lg mx-4 md:mx-0">
-
-    <!-- Título -->
     <h1 class="py-8 text-center font-bold text-2xl text-gray-800">EDITORIAL FORM</h1>
 
     <form [formGroup]="editorialForm" (ngSubmit)="onSubmit()" class="px-8 pb-8 space-y-6">
+
       <!-- Name -->
       <div>
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-        <input type="text" id="name" name="name" formControlName="name"
+        <input type="text" id="name" formControlName="name"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Enter editorial name" required />
+          placeholder="Enter editorial name" />
+        <div *ngIf="editorialForm.get('name')?.touched && editorialForm.get('name')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="editorialForm.get('name')?.errors?.['required']">Name is required.</div>
+          <div *ngIf="editorialForm.get('name')?.errors?.['maxlength']">Max 50 characters allowed.</div>
+        </div>
       </div>
 
       <!-- Phone -->
       <div>
         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone</label>
-        <input type="text" id="phone" name="phone" formControlName="phone"
+        <input type="text" id="phone" formControlName="phone"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Enter phone number" required />
+          placeholder="Enter phone number" />
+        <div *ngIf="editorialForm.get('phone')?.touched && editorialForm.get('phone')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="editorialForm.get('phone')?.errors?.['required']">Phone number is required.</div>
+          <div *ngIf="editorialForm.get('phone')?.errors?.['pattern']">Phone must be 7 to 15 digits.</div>
+        </div>
       </div>
 
       <!-- Website -->
       <div>
         <label for="website" class="block mb-2 text-sm font-medium text-gray-900">Website</label>
-        <input type="url" id="website" name="website" formControlName="website"
+        <input type="url" id="website" formControlName="website"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          placeholder="https://example.com" required />
+          placeholder="https://example.com" />
+        <div *ngIf="editorialForm.get('website')?.touched && editorialForm.get('website')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="editorialForm.get('website')?.errors?.['required']">Website is required.</div>
+          <div *ngIf="editorialForm.get('website')?.errors?.['pattern']">Enter a valid website URL.</div>
+        </div>
       </div>
 
       <!-- Email -->
       <div>
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-        <input type="email" id="email" name="email" formControlName="email"
+        <input type="email" id="email" formControlName="email"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Enter email address" required />
+          placeholder="Enter email address" />
+        <div *ngIf="editorialForm.get('email')?.touched && editorialForm.get('email')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="editorialForm.get('email')?.errors?.['required']">Email is required.</div>
+          <div *ngIf="editorialForm.get('email')?.errors?.['email']">Invalid email format.</div>
+        </div>
       </div>
 
-      <!-- Choose State -->
+      <!-- State Dropdown -->
       <div class="relative">
         <label class="block mb-2 text-sm font-medium text-gray-900">State</label>
         <button type="button" (click)="toggleState = !toggleState"
@@ -47,13 +66,15 @@
         </button>
         <div [ngClass]="toggleState ? 'block' : 'hidden'"
           class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-
           @for (state of stateOptions; track state) {
           <div (click)="selectState(state)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
             {{ state }}
           </div>
           }
-
+        </div>
+        <div *ngIf="editorialForm.get('state')?.touched && editorialForm.get('state')?.invalid"
+          class="text-red-500 text-sm mt-1">
+          <div *ngIf="editorialForm.get('state')?.errors?.['required']">State is required.</div>
         </div>
       </div>
 
