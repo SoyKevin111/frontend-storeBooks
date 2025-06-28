@@ -1,6 +1,6 @@
-<div class="w-full flex flex-col bg-white text-sm rounded-md">
+<div class="max-w-full flex flex-col bg-white text-sm rounded-md">
   <!-- Header -->
-  <div class="flex justify-between items-center mb-4 pt-4" [style.visibility]="type ? 'hidden' : 'visible'">
+  <div class="flex justify-end items-center mb-4 pt-4" [style.visibility]="type == 'view' ? 'hidden' : 'visible'">
     <button (click)="onCreate()"
       class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 pr-6 rounded-md transition duration-150 focus:outline-none shadow">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -9,6 +9,8 @@
       </svg>
       <span class="font-semibold">New</span>
     </button>
+
+    <button></button>
   </div>
 
   <!-- Tabla -->
