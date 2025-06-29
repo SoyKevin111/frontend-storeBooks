@@ -35,6 +35,7 @@ export class FormBookComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     editorial: ['', Validators.required],
     dateCreated: ['', Validators.required],
+    description: ['', Validators.required],
     price: [0, [Validators.required, Validators.min(1)]],
     stock: [0/*  */, [Validators.required, Validators.min(1)]],
     category: ['', [Validators.required, Validators.maxLength(10)]],
@@ -44,8 +45,8 @@ export class FormBookComponent implements OnInit {
 
   ngOnInit() {
     if (!this.book) return;
-    const { isbn, title, editorial, dateCreated, price, stock, category, authors } = this.book;
-    this.bookForm.patchValue({ title, editorial: editorial.name, dateCreated, price, stock, category, authors: authors as any });
+    const { isbn, title, editorial, description, dateCreated, price, stock, category, bestSeller, authors } = this.book;
+    this.bookForm.patchValue({ title, editorial: editorial.name, description, dateCreated, price, stock, category, bestSeller, authors: authors as any });
     console.log(authors);
   }
 

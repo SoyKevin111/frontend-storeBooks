@@ -1,84 +1,15 @@
 import { Editorial } from "../models/editorial.model";
 
 export const MOCK_EDITORIALS: Editorial[] = [
-  {
-    id: 1,
-    name: 'Penguin Random House',
-    phone: '555-1001',
-    website: 'https://www.penguinrandomhouse.com',
-    email: 'contact@penguin.com',
-    state: 'active'
-  },
-  {
-    id: 2,
-    name: 'HarperCollins',
-    phone: '555-1002',
-    website: 'https://www.harpercollins.com',
-    email: 'info@harpercollins.com',
-    state: 'active'
-  },
-  {
-    id: 3,
-    name: 'Macmillan Publishers',
-    phone: '555-1003',
-    website: 'https://us.macmillan.com',
-    email: 'support@macmillan.com',
-    state: 'inactive'
-  },
-  {
-    id: 4,
-    name: 'Simon & Schuster',
-    phone: '555-1004',
-    website: 'https://www.simonandschuster.com',
-    email: 'hello@simonandschuster.com',
-    state: 'active'
-  },
-  {
-    id: 5,
-    name: 'Hachette Book Group',
-    phone: '555-1005',
-    website: 'https://www.hachettebookgroup.com',
-    email: 'service@hachette.com',
-    state: 'retired'
-  },
-  {
-    id: 6,
-    name: 'Scholastic',
-    phone: '555-1006',
-    website: 'https://www.scholastic.com',
-    email: 'contact@scholastic.com',
-    state: 'active'
-  },
-  {
-    id: 7,
-    name: 'Planeta',
-    phone: '555-1007',
-    website: 'https://www.planetadelibros.com',
-    email: 'editorial@planeta.com',
-    state: 'active'
-  },
-  {
-    id: 8,
-    name: 'Anagrama',
-    phone: '555-1008',
-    website: 'https://www.anagrama-ed.es',
-    email: 'info@anagrama.com',
-    state: 'inactive'
-  },
-  {
-    id: 9,
-    name: 'Alfaguara',
-    phone: '555-1009',
-    website: 'https://www.megustaleer.com/editorial/alfaguara',
-    email: 'contacto@alfaguara.com',
-    state: 'active'
-  },
-  {
-    id: 10,
-    name: 'Tusquets Editores',
-    phone: '555-1010',
-    website: 'https://www.tusquetseditores.com',
-    email: 'info@tusquets.com',
-    state: 'inactive'
-  }
+  { id: 1, name: 'Addison-Wesley', phone: '123-456-7890', website: 'https://www.awl.com', email: 'contact@awl.com', state: 'Massachusetts' },
+  { id: 2, name: 'O’Reilly Media', phone: '987-654-3210', website: 'https://www.oreilly.com', email: 'info@oreilly.com', state: 'California' },
+  { id: 3, name: 'HarperOne', phone: '800-123-4567', website: 'https://www.harperone.com', email: 'support@harperone.com', state: 'New York' },
+  { id: 4, name: 'Harper', phone: '888-456-7890', website: 'https://www.harper.com', email: 'contact@harper.com', state: 'New Jersey' },
+  { id: 5, name: 'Celadon Books', phone: '321-654-9870', website: 'https://www.celadonbooks.com', email: 'info@celadon.com', state: 'New York' },
+  { id: 6, name: 'G.P. Putnam’s Sons', phone: '999-888-7777', website: 'https://www.penguinrandomhouse.com', email: 'help@putnam.com', state: 'New York' },
+  { id: 7, name: 'Prentice Hall', phone: '800-555-1212', website: 'https://www.pearson.com', email: 'info@prentice.com', state: 'New Jersey' },
+  { id: 8, name: 'Addison-Wesley Professional', phone: '123-123-1234', website: 'https://www.awl.com/professional', email: 'editorial@awl.com', state: 'Massachusetts' },
+  { id: 9, name: 'Penguin Random House', phone: '877-777-7777', website: 'https://www.penguinrandomhouse.com', email: 'prh@penguin.com', state: 'New York' },
+  { id: 10, name: 'Crown Publishing', phone: '800-999-0000', website: 'https://www.crownpublishing.com', email: 'info@crown.com', state: 'New York' }
+
 ];

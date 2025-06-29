@@ -32,6 +32,7 @@ export class BooksComponent {
     { field: 'editorialName', header: 'Editorial' },
     { field: 'authorsNames', header: 'Authors' },
     { field: 'dateCreated', header: 'Publication Date' },
+    //{field : 'bestSeller', header: 'Best Seller'},
     { field: 'price', header: 'Price' },
     { field: 'stock', header: 'Stock' }
   ];

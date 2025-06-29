@@ -42,6 +42,23 @@
           </div>
         </div>
 
+
+        <!-- Description -->
+        <div class="md:col-span-2">
+          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+          <textarea id="description" formControlName="description" rows="3" maxlength="100"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 resize-none"
+            placeholder="Enter a short description (max 100 characters)">
+          </textarea>
+          <div *ngIf="bookForm.get('description')?.touched && bookForm.get('description')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('description')?.errors?.['required']">Description is required.</div>
+            <div *ngIf="bookForm.get('description')?.errors?.['maxlength']">Max 100 characters allowed.</div>
+            <div *ngIf="bookForm.get('description')?.errors?.['pattern']">Description cannot be blank.</div>
+          </div>
+        </div>
+
+
         <!-- Price -->
         <div>
           <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
@@ -66,7 +83,6 @@
             <div *ngIf="bookForm.get('stock')?.errors?.['min']">Stock must be at least 1.</div>
           </div>
         </div>
-
 
         <!-- Publication Date -->
         <div>
