@@ -36,8 +36,8 @@
       <!-- Identity Number -->
       <div>
         <label for="identityNumber" class="block mb-2 text-sm font-medium text-gray-900">Identity Number</label>
-        <input type="text" id="identityNumber" formControlName="identityNumber"
-          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        <input type="number" id="identityNumber" formControlName="identityNumber"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 no-spinner"
           placeholder="Enter identity number" />
         <div *ngIf="authorForm.get('identityNumber')?.touched && authorForm.get('identityNumber')?.invalid"
           class="text-red-500 text-sm mt-1">

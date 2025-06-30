@@ -38,18 +38,16 @@
       <!-- Identity Number -->
       <div>
         <label for="identityNumber" class="block mb-2 text-sm font-medium text-gray-900">Identity Number</label>
-        <input type="text" id="identityNumber" formControlName="identityNumber"
-          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+        <input type="number" id="identityNumber" formControlName="identityNumber"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border no-spinner"
           placeholder="Enter identity number" />
-        <div
-          *ngIf="customerForm.get('identityNumber')?.touched && customerForm.get('identityNumber')?.invalid"
+        <div *ngIf="customerForm.get('identityNumber')?.touched && customerForm.get('identityNumber')?.invalid"
           class="text-red-500 text-sm mt-1">
-          <div *ngIf="customerForm.get('identityNumber')?.errors?.['required']">Identity number is required.</div>
-          <div *ngIf="customerForm.get('identityNumber')?.errors?.['maxlength']">Max 10 characters.</div>
-          <div *ngIf="customerForm.get('identityNumber')?.errors?.['pattern']">Cannot be blank or spaces only.
-          </div>
+          <div *ngIf="customerForm.get('identityNumber')?.errors?.['required']">identityNumber number is required.</div>
+          <div *ngIf="customerForm.get('identityNumber')?.errors?.['pattern']">identityNumber must be 10 digits.</div>
         </div>
       </div>
+
 
       <!-- Username & Date of Birth -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -98,8 +96,8 @@
         <!-- Phone -->
         <div>
           <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone</label>
-          <input type="text" id="phone" formControlName="phone"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
+          <input type="number" id="phone" formControlName="phone"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border  no-spinner"
             placeholder="Enter phone number" />
           <div *ngIf="customerForm.get('phone')?.touched && customerForm.get('phone')?.invalid"
             class="text-red-500 text-sm mt-1">

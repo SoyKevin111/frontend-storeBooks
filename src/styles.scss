@@ -37,3 +37,16 @@ body{
 .modal-animate-out {
   animation: modal-fade-out 0.150s ease-in forwards;
 }
+
+
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.no-spinner {
+	-moz-appearance: textfield;
+	/* Firefox */
+}

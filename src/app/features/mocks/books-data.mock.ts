@@ -1,4 +1,4 @@
-import { Book } from '../models/book.model';
+import { Book } from "../models/book.model";
 
 export const MOCK_BOOKS: Book[] = [
   {
@@ -20,9 +20,9 @@ export const MOCK_BOOKS: Book[] = [
     category: 'History',
     bestSeller: false,
     authors: [
-      { id: 5, name: 'Bert', lastName: 'Bates', identityNumber: 'BB567890', email: 'bbates@example.com', state: 'New York' },
-      { id: 6, name: 'Kathy', lastName: 'Sierra', identityNumber: 'KS678901', email: 'ksierra@example.com', state: 'California' },
-      { id: 4, name: 'Eric', lastName: 'Freeman', identityNumber: 'EF456789', email: 'efreeman@example.com', state: 'California' }
+      { id: 5, name: 'Bert', lastName: 'Bates', identityNumber: '5678901234', email: 'bbates@example.com', state: 'New York' },
+      { id: 6, name: 'Kathy', lastName: 'Sierra', identityNumber: '6789012345', email: 'ksierra@example.com', state: 'California' },
+      { id: 4, name: 'Eric', lastName: 'Freeman', identityNumber: '4567890123', email: 'efreeman@example.com', state: 'California' }
     ]
   },
   {
@@ -44,8 +44,8 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Fiction',
     bestSeller: false,
     authors: [
-      { id: 4, name: 'Eric', lastName: 'Freeman', identityNumber: 'EF456789', email: 'efreeman@example.com', state: 'California' },
-      { id: 6, name: 'Kathy', lastName: 'Sierra', identityNumber: 'KS678901', email: 'ksierra@example.com', state: 'California' }
+      { id: 4, name: 'Eric', lastName: 'Freeman', identityNumber: '4567890123', email: 'efreeman@example.com', state: 'California' },
+      { id: 6, name: 'Kathy', lastName: 'Sierra', identityNumber: '6789012345', email: 'ksierra@example.com', state: 'California' }
     ]
   },
   {
@@ -67,8 +67,8 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Thriller',
     bestSeller: true,
     authors: [
-      { id: 2, name: 'Richard', lastName: 'Helm', identityNumber: 'RH234567', email: 'rhelm@example.com', state: 'Sydney' },
-      { id: 10, name: 'Delia', lastName: 'Owens', identityNumber: 'DO012345', email: 'dowens@example.com', state: 'Georgia' }
+      { id: 2, name: 'Richard', lastName: 'Helm', identityNumber: '2345678901', email: 'rhelm@example.com', state: 'Sydney' },
+      { id: 10, name: 'Delia', lastName: 'Owens', identityNumber: '0123456789', email: 'dowens@example.com', state: 'Georgia' }
     ]
   },
   {
@@ -90,8 +90,8 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Thriller',
     bestSeller: true,
     authors: [
-      { id: 3, name: 'Ralph', lastName: 'Johnson', identityNumber: 'RJ345678', email: 'rjohnson@example.com', state: 'Illinois' },
-      { id: 8, name: 'Yuval', lastName: 'Harari', identityNumber: 'YH890123', email: 'yharari@example.com', state: 'Tel Aviv' }
+      { id: 3, name: 'Ralph', lastName: 'Johnson', identityNumber: '3456789012', email: 'rjohnson@example.com', state: 'Illinois' },
+      { id: 8, name: 'Yuval', lastName: 'Harari', identityNumber: '8901234567', email: 'yharari@example.com', state: 'Tel Aviv' }
     ]
   },
   {
@@ -113,9 +113,9 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Thriller',
     bestSeller: true,
     authors: [
-      { id: 5, name: 'Bert', lastName: 'Bates', identityNumber: 'BB567890', email: 'bbates@example.com', state: 'New York' },
-      { id: 7, name: 'Paulo', lastName: 'Coelho', identityNumber: 'PC789012', email: 'pcoelho@example.com', state: 'Rio de Janeiro' },
-      { id: 9, name: 'Alex', lastName: 'Michaelides', identityNumber: 'AM901234', email: 'amichaelides@example.com', state: 'London' }
+      { id: 5, name: 'Bert', lastName: 'Bates', identityNumber: '5678901234', email: 'bbates@example.com', state: 'New York' },
+      { id: 7, name: 'Paulo', lastName: 'Coelho', identityNumber: '7890123456', email: 'pcoelho@example.com', state: 'Rio de Janeiro' },
+      { id: 9, name: 'Alex', lastName: 'Michaelides', identityNumber: '9012345678', email: 'amichaelides@example.com', state: 'London' }
     ]
   },
   {
@@ -137,8 +137,8 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Fiction',
     bestSeller: false,
     authors: [
-      { id: 9, name: 'Alex', lastName: 'Michaelides', identityNumber: 'AM901234', email: 'amichaelides@example.com', state: 'London' },
-      { id: 8, name: 'Yuval', lastName: 'Harari', identityNumber: 'YH890123', email: 'yharari@example.com', state: 'Tel Aviv' }
+      { id: 9, name: 'Alex', lastName: 'Michaelides', identityNumber: '9012345678', email: 'amichaelides@example.com', state: 'London' },
+      { id: 8, name: 'Yuval', lastName: 'Harari', identityNumber: '8901234567', email: 'yharari@example.com', state: 'Tel Aviv' }
     ]
   },
   {
@@ -160,9 +160,9 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Programming',
     bestSeller: true,
     authors: [
-      { id: 6, name: 'Kathy', lastName: 'Sierra', identityNumber: 'KS678901', email: 'ksierra@example.com', state: 'California' },
-      { id: 1, name: 'Erich', lastName: 'Gamma', identityNumber: 'AG123456', email: 'egamma@example.com', state: 'Zurich' },
-      { id: 2, name: 'Richard', lastName: 'Helm', identityNumber: 'RH234567', email: 'rhelm@example.com', state: 'Sydney' }
+      { id: 6, name: 'Kathy', lastName: 'Sierra', identityNumber: '6789012345', email: 'ksierra@example.com', state: 'California' },
+      { id: 1, name: 'Erich', lastName: 'Gamma', identityNumber: '1234567890', email: 'egamma@example.com', state: 'Zurich' },
+      { id: 2, name: 'Richard', lastName: 'Helm', identityNumber: '2345678901', email: 'rhelm@example.com', state: 'Sydney' }
     ]
   },
   {
@@ -184,8 +184,8 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Thriller',
     bestSeller: false,
     authors: [
-      { id: 10, name: 'Delia', lastName: 'Owens', identityNumber: 'DO012345', email: 'dowens@example.com', state: 'Georgia' },
-      { id: 7, name: 'Paulo', lastName: 'Coelho', identityNumber: 'PC789012', email: 'pcoelho@example.com', state: 'Rio de Janeiro' }
+      { id: 10, name: 'Delia', lastName: 'Owens', identityNumber: '0123456789', email: 'dowens@example.com', state: 'Georgia' },
+      { id: 7, name: 'Paulo', lastName: 'Coelho', identityNumber: '7890123456', email: 'pcoelho@example.com', state: 'Rio de Janeiro' }
     ]
   },
   {
@@ -207,9 +207,9 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Programming',
     bestSeller: true,
     authors: [
-      { id: 1, name: 'Erich', lastName: 'Gamma', identityNumber: 'AG123456', email: 'egamma@example.com', state: 'Zurich' },
-      { id: 3, name: 'Ralph', lastName: 'Johnson', identityNumber: 'RJ345678', email: 'rjohnson@example.com', state: 'Illinois' },
-      { id: 4, name: 'Eric', lastName: 'Freeman', identityNumber: 'EF456789', email: 'efreeman@example.com', state: 'California' }
+      { id: 1, name: 'Erich', lastName: 'Gamma', identityNumber: '1234567890', email: 'egamma@example.com', state: 'Zurich' },
+      { id: 3, name: 'Ralph', lastName: 'Johnson', identityNumber: '3456789012', email: 'rjohnson@example.com', state: 'Illinois' },
+      { id: 4, name: 'Eric', lastName: 'Freeman', identityNumber: '4567890123', email: 'efreeman@example.com', state: 'California' }
     ]
   },
   {
@@ -231,8 +231,8 @@ export const MOCK_BOOKS: Book[] = [
     category: 'Programming',
     bestSeller: false,
     authors: [
-      { id: 8, name: 'Yuval', lastName: 'Harari', identityNumber: 'YH890123', email: 'yharari@example.com', state: 'Tel Aviv' },
-      { id: 2, name: 'Richard', lastName: 'Helm', identityNumber: 'RH234567', email: 'rhelm@example.com', state: 'Sydney' }
+      { id: 8, name: 'Yuval', lastName: 'Harari', identityNumber: '8901234567', email: 'yharari@example.com', state: 'Tel Aviv' },
+      { id: 2, name: 'Richard', lastName: 'Helm', identityNumber: '2345678901', email: 'rhelm@example.com', state: 'Sydney' }
     ]
   }
 ];

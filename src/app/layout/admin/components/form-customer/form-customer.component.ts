@@ -27,7 +27,7 @@ export class FormCustomerComponent implements OnInit {
     name: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     lastName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     username: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
-    identityNumber: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
+    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     dateOfBirth: ['', Validators.required],
     address: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!\s*$).+/)]],
     phone: ['', [Validators.required, Validators.pattern(/^\d{7,15}$/)]],

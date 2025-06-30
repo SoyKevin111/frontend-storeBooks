@@ -35,6 +35,10 @@ export class FormEditorialComponent {
 
   ngOnInit() {
     if (!this.editorial) return;
+    console.log("Editorial cargado: ");
+    
+    console.log(this.editorial);
+    
     this.editorialForm.patchValue({ ...this.editorial });
   }
 
