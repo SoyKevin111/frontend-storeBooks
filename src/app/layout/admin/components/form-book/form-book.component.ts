@@ -37,7 +37,7 @@ export class FormBookComponent implements OnInit {
     dateCreated: ['', Validators.required],
     description: ['', Validators.required],
     price: [0, [Validators.required, Validators.min(1)]],
-    stock: [0/*  */, [Validators.required, Validators.min(1)]],
+    stock: [0, [Validators.required, Validators.min(1)]],
     category: ['', [Validators.required, Validators.maxLength(10)]],
     authors: this.fb.array([], [Validators.required]),
     bestSeller: [false]
@@ -45,10 +45,17 @@ export class FormBookComponent implements OnInit {
 
   ngOnInit() {
     if (!this.book) return;
-    const { isbn, title, editorial, description, dateCreated, price, stock, category, bestSeller, authors } = this.book;
-    this.bookForm.patchValue({ title, editorial: editorial.name, description, dateCreated, price, stock, category, bestSeller, authors: authors as any });
-    console.log(authors);
+    const { title, editorial, description, dateCreated, price, stock, category, bestSeller, authors } = this.book;
+    this.bookForm.patchValue({ title, editorial: editorial.name, description, dateCreated, price, stock, category, bestSeller });
+
+    const authorsArray = this.bookForm.get('authors') as FormArray;
+    authorsArray.clear();
+    authors.forEach((author: any) => {
+      authorsArray.push(new FormControl(author));
+    });
+    console.log(this.bookForm.value);
   }
+
 
   toggleDropdown(type: keyof typeof this.dropdownState) {
     this.dropdownState[type] = !this.dropdownState[type];
