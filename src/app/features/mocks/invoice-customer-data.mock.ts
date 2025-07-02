@@ -1,7 +1,7 @@
 import { Invoice } from "../models/invoice.model";
-import { User } from "../models/user.model";
+import { Customer } from "../models/customer.model";
 
-const commonCustomer: User = {
+const commonCustomer: Customer = {
 	id: 1,
 	name: 'Ana',
 	lastName: 'Lopez',

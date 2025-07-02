@@ -1,6 +1,6 @@
-import { User } from "../models/user.model";
+import { Customer } from "../models/customer.model";
 
-export const MOCK_CUSTOMERS: User[] = [
+export const MOCK_CUSTOMERS: Customer[] = [
 	{
 		id: 1,
 		name: 'Juan',

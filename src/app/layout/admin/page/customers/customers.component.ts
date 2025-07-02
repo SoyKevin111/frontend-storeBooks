@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
-import { User } from '../../../../features/models/user.model';
+import { Customer } from '../../../../features/models/customer.model';
 import { ModalService } from '../../../../features/services/modal.service';
 import { FormCustomerComponent } from '../../components/form-customer/form-customer.component';
 import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
@@ -20,7 +20,7 @@ export class CustomersComponent {
   private modalService = inject(ModalService);
   private modalConfirmationService = inject(ModalConfirmationService);
 
-  customers: User[] = MOCK_CUSTOMERS;
+  customers: Customer[] = MOCK_CUSTOMERS;
 
   columns = [
     { field: 'id', header: 'Id' },
@@ -38,7 +38,7 @@ export class CustomersComponent {
     console.log('Create customer clicked');
   }
 
-  editCustomer(customer: User) {
+  editCustomer(customer: Customer) {
     this.modalService.open(FormCustomerComponent, {functionTyeEm: 'update', customer: customer});
     console.log('Edit:', customer);
   }

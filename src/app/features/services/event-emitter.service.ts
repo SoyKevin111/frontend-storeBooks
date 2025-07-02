@@ -1,5 +1,5 @@
 import { EventEmitter, inject, Injectable } from '@angular/core';
-import { User } from '../models/user.model';
+import { Customer } from '../models/customer.model';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class EventEmitterService {
 
   router = inject(Router)
 
-  user: User = {
+  Customer: Customer = {
     id: 1,
     name: 'Kevin Rata',
     lastName: 'Una mas',
@@ -22,9 +22,9 @@ export class EventEmitterService {
     state: 'dead'
   };
 
-  userChanged = new EventEmitter<User>();
+  CustomerChanged = new EventEmitter<Customer>();
 
-  getUser(): User {
-    return this.user;
+  getCustomer(): Customer {
+    return this.Customer;
   }
 }

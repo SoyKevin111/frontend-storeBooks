@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Invoice } from '../../../../features/models/invoice.model';
-import { User } from '../../../../features/models/user.model';
+import { Customer } from '../../../../features/models/customer.model';
 import { Book } from '../../../../features/models/book.model';
 import { MOCK_BOOKS } from '../../../../features/mocks/books-data.mock';
 import { InvoiceItemDetails } from '../../../../features/models/invoice-item-details.mode';
@@ -21,20 +21,20 @@ export class FormInvoiceComponent {
   searchCustomerText = '';
   searchBookText = '';
 
-  filteredCustomers: User[] = [];
+  filteredCustomers: Customer[] = [];
   filteredBooks: Book[] = [];
 
-  selectedCustomer: User | null = null;
+  selectedCustomer: Customer | null = null;
 
   // Datos simulados
-  customers: User[] = MOCK_CUSTOMERS;
+  customers: Customer[] = MOCK_CUSTOMERS;
 
   books: Book[] = MOCK_BOOKS;
 
   // Factura
   invoice: Invoice = {
     numberInvoice: '',
-    customer: new User(),
+    customer: new Customer(),
     createdAt: new Date().toISOString(),
     iva: 15,
     ivaTotal: 0,
@@ -58,7 +58,7 @@ export class FormInvoiceComponent {
     );
   }
 
-  selectCustomer(customer: User) {
+  selectCustomer(customer: Customer) {
     this.searchCustomerText = '';
     this.selectedCustomer = customer;
     this.invoice.customer = customer;
@@ -100,7 +100,7 @@ export class FormInvoiceComponent {
 
   clearSelectedCustomer() {
     this.selectedCustomer = null;
-    this.invoice.customer = new User();
+    this.invoice.customer = new Customer();
   }
 
 

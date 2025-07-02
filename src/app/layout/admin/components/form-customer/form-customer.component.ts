@@ -3,7 +3,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { ModalService } from '../../../../features/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
-import { User } from '../../../../features/models/user.model';
+import { Customer } from '../../../../features/models/customer.model';
 
 @Component({
   selector: 'app-form-customer',
@@ -17,7 +17,7 @@ export class FormCustomerComponent implements OnInit {
   private fb = inject(FormBuilder);
 
   @Input() functionTyeEm = '';
-  @Input() customer!: User;
+  @Input() customer!: Customer;
 
   animationState = 'modal-animate-in';
   toggleState = false;
@@ -26,7 +26,7 @@ export class FormCustomerComponent implements OnInit {
   customerForm = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
     lastName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
-    username: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
+    Customername: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
     identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     dateOfBirth: ['', Validators.required],
     address: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!\s*$).+/)]],

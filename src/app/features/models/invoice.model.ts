@@ -1,9 +1,9 @@
 import { InvoiceItemDetails } from "./invoice-item-details.mode";
-import { User } from "./user.model";
+import { Customer } from "./customer.model";
 
 export class Invoice {
 	numberInvoice:string = '';
-	customer: User = new User();
+	customer: Customer = new Customer();
 	createdAt: string = '';
 	iva: number = 15;
 	ivaTotal: number = 0;

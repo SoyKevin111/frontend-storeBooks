@@ -1,5 +1,5 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
-import { User } from '../../../../features/models/user.model';
+import { Customer } from '../../../../features/models/customer.model';
 import { EventEmitterService } from '../../../../features/services/event-emitter.service';
 import { ModalService } from '../../../../features/services/modal.service';
 import { ShoppingCartComponent } from '../../../customer/components/shopping-cart/shopping-cart.component';
@@ -14,14 +14,14 @@ import { ShoppingCartComponent } from '../../../customer/components/shopping-car
 export class HeaderPageComponent implements OnInit {
 
   private modalService = inject(ModalService);
-  user!: User;
+  Customer!: Customer;
 
   eventEmitterService = inject(EventEmitterService);
 
   ngOnInit(): void {
-    this.user = this.eventEmitterService.getUser();
-    this.eventEmitterService.userChanged.subscribe(user => {
-      this.user = user;
+    this.Customer = this.eventEmitterService.getCustomer();
+    this.eventEmitterService.CustomerChanged.subscribe(Customer => {
+      this.Customer = Customer;
     });
   }
 

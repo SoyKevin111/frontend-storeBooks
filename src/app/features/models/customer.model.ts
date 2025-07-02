@@ -1,5 +1,5 @@
 
-export class User {
+export class Customer {
 	id: number = 0;
 	name: string = '';
 	lastName: string = '';

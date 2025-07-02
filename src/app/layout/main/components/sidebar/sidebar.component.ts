@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { User } from '../../../../features/models/user.model';
+import { Customer } from '../../../../features/models/customer.model';
 import { EventEmitterService } from '../../../../features/services/event-emitter.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent implements OnInit {
 
-  user!: User;
+  Customer!: Customer;
   eventEmitterService = inject(EventEmitterService);
 
   isCollapsed = true;
@@ -22,9 +22,9 @@ export class SidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = this.eventEmitterService.getUser();
-    this.eventEmitterService.userChanged.subscribe(user => {
-      this.user = user;
+    this.Customer = this.eventEmitterService.getCustomer();
+    this.eventEmitterService.CustomerChanged.subscribe(Customer => {
+      this.Customer = Customer;
     });
   }
 
