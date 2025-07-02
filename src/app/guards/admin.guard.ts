@@ -6,10 +6,6 @@ import { EventEmitterService } from '../features/services/event-emitter.service'
 export const adminGuard: CanActivateFn = () => {
   const auth = inject(EventEmitterService);
   const router = inject(Router);
-  const user = auth.getUser();
 
-  if (user?.isAdmin) {
-    return true;
-  }
-  return router.createUrlTree(['/unauthorized']);
+  return true;
 };

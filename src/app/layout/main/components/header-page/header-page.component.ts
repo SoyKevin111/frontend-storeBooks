@@ -29,8 +29,4 @@ export class HeaderPageComponent implements OnInit {
     this.modalService.open(ShoppingCartComponent);
   }
 
-  toggleUser(): void {
-    this.eventEmitterService.toggleUser();
-  }
-
 }

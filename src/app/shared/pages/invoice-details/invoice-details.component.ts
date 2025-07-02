@@ -26,9 +26,7 @@ export class InvoiceDetailsComponent implements OnInit {
   }
 
   redirectBack() {
-    this.eventEmitter.getUser().isAdmin
-      ? this.router.navigate(['/storebooks/admin/invoices'])
-      : this.router.navigate(['/storebooks/customer/history']);
+    this.router.navigate(['/storebooks/admin/invoices'])
   }
 
 }

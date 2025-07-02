@@ -24,7 +24,6 @@ export class CustomersComponent {
 
   columns = [
     { field: 'id', header: 'Id' },
-    { field: 'username', header: 'Username' },
     { field: 'name', header: 'Name' },
     { field: 'lastName', header: 'Last Name' },
     { field: 'dateOfBirth', header: 'Date of Birth' },
