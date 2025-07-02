@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Invoice } from '../../../../features/models/invoice.model';
+import { Invoice } from '../../../../shared/models/invoice.model';
 import { Router } from '@angular/router';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { MOCK_INVOICES_CUSTOMER } from '../../../../features/mocks/invoice-customer-data.mock';

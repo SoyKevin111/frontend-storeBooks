@@ -1,5 +1,5 @@
 import { EventEmitter, inject, Injectable } from '@angular/core';
-import { Customer } from '../models/customer.model';
+import { Customer } from '../../shared/models/customer.model';
 import { Router } from '@angular/router';
 
 @Injectable({

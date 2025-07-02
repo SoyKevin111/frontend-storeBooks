@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Invoice } from '../../../../features/models/invoice.model';
-import { Customer } from '../../../../features/models/customer.model';
-import { Book } from '../../../../features/models/book.model';
+import { Invoice } from '../../../../shared/models/invoice.model';
+import { Customer } from '../../../../shared/models/customer.model';
+import { Book } from '../../../../shared/models/book.model';
 import { MOCK_BOOKS } from '../../../../features/mocks/books-data.mock';
-import { InvoiceItemDetails } from '../../../../features/models/invoice-item-details.mode';
+import { InvoiceItemDetails } from '../../../../shared/models/invoice-item-details.mode';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';

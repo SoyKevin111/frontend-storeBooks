@@ -1,4 +1,4 @@
-import { Customer } from "../models/customer.model";
+import { Customer } from "../../shared/models/customer.model";
 
 export const MOCK_CUSTOMERS: Customer[] = [
 	{

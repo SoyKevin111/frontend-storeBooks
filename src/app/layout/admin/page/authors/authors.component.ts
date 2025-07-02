@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { Author } from '../../../../features/models/author.model';
+import { Author } from '../../../../shared/models/author.model';
 import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { FormAuthorComponent } from '../../components/form-author/form-author.component';
-import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
+import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
 
 @Component({
   selector: 'app-authors',

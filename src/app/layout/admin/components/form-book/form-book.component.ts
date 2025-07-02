@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
-import { Book } from '../../../../features/models/book.model';
+import { Book } from '../../../../shared/models/book.model';
 import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
 import { MOCK_EDITORIALS } from '../../../../features/mocks/editorials-data.mock';
 import { FormControl } from '@angular/forms';

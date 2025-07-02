@@ -1,10 +1,10 @@
 import { Component, inject, Input } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
-import { Customer } from '../../../../features/models/customer.model';
-import { ModalService } from '../../../../features/services/modal.service';
+import { Customer } from '../../../../shared/models/customer.model';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { FormCustomerComponent } from '../../components/form-customer/form-customer.component';
-import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
+import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
 
 
 

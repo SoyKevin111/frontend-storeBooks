@@ -1,4 +1,4 @@
-import { Invoice } from "../models/invoice.model";
+import { Invoice } from "../../shared/models/invoice.model";
 
 export const MOCK_INVOICES: Invoice[] = [
 	{

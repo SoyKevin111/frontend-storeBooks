@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Customer } from '../../../../features/models/customer.model';
-import { EventEmitterService } from '../../../../features/services/event-emitter.service';
+import { Customer } from '../../../../shared/models/customer.model';
+import { EventEmitterService } from '../../../../shared/services/event-emitter.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 

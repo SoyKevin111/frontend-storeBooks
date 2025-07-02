@@ -1,5 +1,5 @@
-import { Invoice } from "../models/invoice.model";
-import { Customer } from "../models/customer.model";
+import { Invoice } from "../../shared/models/invoice.model";
+import { Customer } from "../../shared/models/customer.model";
 
 const commonCustomer: Customer = {
 	id: 1,

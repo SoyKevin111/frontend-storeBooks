@@ -1,8 +1,8 @@
 import { Component, inject, Inject, OnInit } from '@angular/core';
-import { Customer } from '../../../../features/models/customer.model';
-import { EventEmitterService } from '../../../../features/services/event-emitter.service';
-import { ModalService } from '../../../../features/services/modal.service';
+import { Customer } from '../../../../shared/models/customer.model';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { ShoppingCartComponent } from '../../../customer/components/shopping-cart/shopping-cart.component';
+import { EventEmitterService } from '../../../../shared/services/event-emitter.service';
 
 @Component({
   selector: 'app-header-page',

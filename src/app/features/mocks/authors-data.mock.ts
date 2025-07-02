@@ -1,4 +1,4 @@
-import { Author } from '../models/author.model';
+import { Author } from '../../shared/models/author.model';
 
 export const MOCK_AUTHORS: Author[] = [
   { id: 1, name: 'Erich', lastName: 'Gamma', identityNumber: '1234567890', email: 'egamma@example.com', state: 'Zurich' },

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { ModalService } from '../../../../features/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Author } from '../../../../features/models/author.model';
+import { Author } from '../../../../shared/models/author.model';
+import { ModalService } from '../../../../shared/services/modal.service';
 
 @Component({
   selector: 'app-form-author',

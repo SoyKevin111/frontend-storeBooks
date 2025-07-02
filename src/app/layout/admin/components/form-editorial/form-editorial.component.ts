@@ -1,9 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { CommonModule } from '@angular/common';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Editorial } from '../../../../features/models/editorial.model';
+import { Editorial } from '../../../../shared/models/editorial.model';
 
 @Component({
   selector: 'app-form-editorial',

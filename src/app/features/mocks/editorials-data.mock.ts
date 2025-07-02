@@ -1,4 +1,4 @@
-import { Editorial } from "../models/editorial.model";
+import { Editorial } from "../../shared/models/editorial.model";
 
 export const MOCK_EDITORIALS: Editorial[] = [
   { id: 1, name: 'Addison-Wesley', phone: '1234567890', website: 'https://www.awl.com', email: 'contact@awl.com', state: 'Massachusetts' },

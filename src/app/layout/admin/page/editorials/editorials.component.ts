@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { Editorial } from '../../../../features/models/editorial.model';
+import { Editorial } from '../../../../shared/models/editorial.model';
 import { MOCK_EDITORIALS } from '../../../../features/mocks/editorials-data.mock';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { FormEditorialComponent } from '../../components/form-editorial/form-editorial.component';
-import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
+import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
 
 @Component({
   selector: 'app-editorials',

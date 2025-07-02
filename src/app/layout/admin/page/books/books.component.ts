@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { Book } from '../../../../features/models/book.model';
+import { Book } from '../../../../shared/models/book.model';
 import { MOCK_BOOKS } from '../../../../features/mocks/books-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { FormBookComponent } from '../../components/form-book/form-book.component';
-import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
+import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
 
 @Component({
