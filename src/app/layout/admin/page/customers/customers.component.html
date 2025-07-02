@@ -3,7 +3,7 @@
 		Customers
 	</h1>
 	<div class="table-books">
-		<app-crud-table [columns]="columns" [data]="customers" (create)="createCustomer()" (edit)="editCustomer($event)"
+		<app-crud-table [columns]="columns" [data]="customers$" (create)="createCustomer()" (edit)="editCustomer($event)"
 			(delete)="deleteCustomer($event)" (view)="viewCustomer($event)">
 
 		</app-crud-table>

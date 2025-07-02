@@ -4,6 +4,8 @@ import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl } from '@
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 import { Customer } from '../../../../shared/models/customer.model';
 import { ModalService } from '../../../../shared/services/modal.service';
+import { Store } from '@ngrx/store';
+import { createCustomer } from '../../../../features/customers/store/customer.actions';
 
 @Component({
   selector: 'app-form-customer',
@@ -13,25 +15,48 @@ import { ModalService } from '../../../../shared/services/modal.service';
   styleUrl: './form-customer.component.scss'
 })
 export class FormCustomerComponent implements OnInit {
-  private modalService = inject(ModalService);
   private fb = inject(FormBuilder);
+  private store = inject(Store);
+  private modalService = inject(ModalService);
 
   @Input() functionTyeEm = '';
   @Input() customer!: Customer;
 
   animationState = 'modal-animate-in';
   toggleState = false;
+
   stateOptions = ['Active', 'Inactive'];
 
   customerForm = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
-    lastName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
-    Customername: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
-    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+    name: [
+      '',
+      [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]
+    ],
+    lastName: [
+      '',
+      [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]
+    ],
+    identityNumber: [
+      '',
+      [Validators.required, Validators.pattern(/^\d{10}$/)]
+    ],
     dateOfBirth: ['', Validators.required],
-    address: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!\s*$).+/)]],
-    phone: ['', [Validators.required, Validators.pattern(/^\d{7,15}$/)]],
-    state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
+    address: [
+      '',
+      [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!\s*$).+/)]
+    ],
+    phone: [
+      '',
+      [Validators.required, Validators.pattern(/^\d{7,15}$/)]
+    ],
+    state: [
+      '',
+      [
+        Validators.required,
+        (control: AbstractControl) =>
+          this.stateOptions.includes(control.value) ? null : { invalidState: true }
+      ]
+    ]
   });
 
   ngOnInit() {
@@ -46,13 +71,36 @@ export class FormCustomerComponent implements OnInit {
 
   onSubmit() {
     if (this.customerForm.valid) {
-      console.log('Customer Data:', this.customerForm.value);
+      this.save();
       this.close();
     } else {
       this.customerForm.markAllAsTouched();
       for (const [key, control] of Object.entries(this.customerForm.controls)) {
-        if (control.errors) console.log(`Errores en ${key}:`, control.errors);
+        if (control.errors) {
+          console.log(`Errores en ${key}:`, control.errors);
+        }
       }
+    }
+  }
+
+  save() {
+    const customer: Customer = {
+      id: this.customer ? this.customer.id : 0,
+      name: this.customerForm.get('name')?.value || '',
+      lastName: this.customerForm.get('lastName')?.value || '',
+      identityNumber: this.customerForm.get('identityNumber')?.value || '',
+      dateOfBirth: this.customerForm.get('dateOfBirth')?.value || '',
+      address: this.customerForm.get('address')?.value || '',
+      phone: this.customerForm.get('phone')?.value || '',
+      state: this.customerForm.get('state')?.value || ''
+    };
+
+    console.log(customer);
+
+    if (!this.customer) {
+      this.store.dispatch(createCustomer({ newCustomer: customer }));
+    } else {
+      console.log('pa actualizarrr.');
     }
   }
 

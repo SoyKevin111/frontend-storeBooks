@@ -28,7 +28,7 @@
       "address": "Calle Luna 789",
       "phone": "5559012",
       "identityNumber": "11223344",
-      "state": "InACTIVE"
+      "state": "ACTIVE"
     },
     {
       "id": 4,
@@ -48,7 +48,7 @@
       "address": "Pasaje Norte 654",
       "phone": "5557890",
       "identityNumber": "99887766",
-      "state": "InACTIVE"
+      "state": "ACTIVE"
     },
     {
       "id": 6,
@@ -99,6 +99,16 @@
       "phone": "5558888",
       "identityNumber": "88990011",
       "state": "ACTIVE"
+    },
+    {
+      "id": 802089,
+      "name": "Kevin",
+      "lastName": "Lema",
+      "identityNumber": 9513996822,
+      "dateOfBirth": "2025-07-16",
+      "address": "Flor de bastión",
+      "phone": 984164357,
+      "state": "Active"
     }
   ]
 }
