@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { CustomersService } from "../customers.service";
 import { Store } from "@ngrx/store";
 import { catchError, map, of, switchMap, tap } from "rxjs";
-import { createCustomer, createCustomerSuccess, loadCustomers, loadCustomersFailure, loadCustomersSuccess } from "./customer.actions";
+import { createCustomer, createCustomerSuccess, editCustomer, editCustomerSuccess, loadCustomers, loadCustomersFailure, loadCustomersSuccess } from "./customer.actions";
 
 
 @Injectable()
@@ -42,6 +42,24 @@ export class CustomersEffects {
 				)
 			)
 	)
+
+	updateCustomer$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(editCustomer),
+				switchMap(({ editedCustomer }) => {
+					console.log('id', editedCustomer.id);
+					
+					return this.customersService.update(editedCustomer, editedCustomer.id)
+						.pipe(
+							map((updatedCustomer) => {
+								return editCustomerSuccess({ editedCustomer: updatedCustomer });
+							}),
+							catchError((error) => of(loadCustomersFailure({ error })))
+						)
+				}
+				)
+			))
 
 
 }

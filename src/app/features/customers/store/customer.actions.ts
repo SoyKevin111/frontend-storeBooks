@@ -30,3 +30,20 @@ export const createCustomerFailure = createAction(
 	'[customer] create customer failure',
 	props<{ error: any }>()
 )
+
+//Edit
+
+export const editCustomer = createAction(
+	'[customer] edit customer',
+	props<{ editedCustomer: Customer }>()
+)
+
+export const editCustomerSuccess = createAction(
+	'[customer] edit customer success',
+	props<{ editedCustomer: Customer }>()
+)
+
+export const editCustomerFailure = createAction(
+	'[customer] edit customer failure',
+	props<{ error: any }>()
+)

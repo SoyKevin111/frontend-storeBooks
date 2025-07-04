@@ -5,7 +5,7 @@ import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel
 import { Customer } from '../../../../shared/models/customer.model';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { Store } from '@ngrx/store';
-import { createCustomer } from '../../../../features/customers/store/customer.actions';
+import { createCustomer, editCustomer } from '../../../../features/customers/store/customer.actions';
 
 @Component({
   selector: 'app-form-customer',
@@ -25,7 +25,7 @@ export class FormCustomerComponent implements OnInit {
   animationState = 'modal-animate-in';
   toggleState = false;
 
-  stateOptions = ['Active', 'Inactive'];
+  stateOptions = ['ACTIVE', 'INACTIVE'];
 
   customerForm = this.fb.group({
     name: [
@@ -85,22 +85,22 @@ export class FormCustomerComponent implements OnInit {
 
   save() {
     const customer: Customer = {
-      id: this.customer ? this.customer.id : 0,
+      id: this.customer ? Number(this.customer.id) : 0, 
       name: this.customerForm.get('name')?.value || '',
       lastName: this.customerForm.get('lastName')?.value || '',
-      identityNumber: this.customerForm.get('identityNumber')?.value || '',
+      identityNumber: String(this.customerForm.get('identityNumber')?.value || ''),
       dateOfBirth: this.customerForm.get('dateOfBirth')?.value || '',
       address: this.customerForm.get('address')?.value || '',
-      phone: this.customerForm.get('phone')?.value || '',
+      phone: String(this.customerForm.get('phone')?.value || ''),
       state: this.customerForm.get('state')?.value || ''
     };
 
-    console.log(customer);
+    console.log('Customer Data:', customer);
 
     if (!this.customer) {
       this.store.dispatch(createCustomer({ newCustomer: customer }));
     } else {
-      console.log('pa actualizarrr.');
+      this.store.dispatch(editCustomer({ editedCustomer: customer }));
     }
   }
 

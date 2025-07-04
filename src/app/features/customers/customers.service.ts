@@ -23,9 +23,17 @@ export class CustomersService {
   create(customer: Customer): Observable<Customer> {
     const customerWithId = { //id aleatorio
       ...customer,
-      id: Math.floor(Math.random() * 1000000) + 1
+      id: String(Math.floor(Math.random() * 1000000) + 1)
     };
     return this.http.post<Customer>(this.apiUrl, customerWithId);
+  }
+
+  update(customer: Customer, id: number): Observable<Customer> {
+    return this.http.put<Customer>(this.apiUrl + '/' + String(id), customer);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(this.apiUrl + '/' + id);
   }
 
 
