@@ -11,6 +11,10 @@ export const routes: Routes = [
 		pathMatch: 'full'
 	},
 	{
+		path: 'login',
+		loadComponent: () => import('./layout/auth/login/login.component').then(m => m.LoginComponent)
+	},
+	{
 		path: 'storebooks',
 		component: MainComponent,
 		children: [

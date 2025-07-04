@@ -3,6 +3,7 @@ import { Customer } from '../../../../shared/models/customer.model';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { ShoppingCartComponent } from '../../../customer/components/shopping-cart/shopping-cart.component';
 import { EventEmitterService } from '../../../../shared/services/event-emitter.service';
+import { AuthenticationService } from '../../../../features/auth/authentication.service';
 
 @Component({
   selector: 'app-header-page',
@@ -14,6 +15,7 @@ import { EventEmitterService } from '../../../../shared/services/event-emitter.s
 export class HeaderPageComponent implements OnInit {
 
   private modalService = inject(ModalService);
+  private authService = inject(AuthenticationService);
   Customer!: Customer;
 
   eventEmitterService = inject(EventEmitterService);
@@ -23,6 +25,10 @@ export class HeaderPageComponent implements OnInit {
     this.eventEmitterService.CustomerChanged.subscribe(Customer => {
       this.Customer = Customer;
     });
+  }
+
+  getUsername(): string | null {
+    return this.authService.getToken()?.username || '';
   }
 
   openShoppingCart(): void {
