@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { CustomersService } from "../customers.service";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import { createCustomer, createCustomerSuccess, deleteCustomer, deleteCustomerFailure, deleteCustomerSuccess, editCustomer, editCustomerSuccess, loadCustomers, loadCustomersFailure, loadCustomersSuccess } from "./customer.actions";
-import { sharedCreateSuccess, sharedEditSuccess } from "../../../shared/store/shared.actions";
+import { NotificationCreateSuccess, NotificationEditSuccess } from "../../../shared/store/notification.actions";
 
 
 @Injectable()
@@ -32,7 +32,7 @@ export class CustomersEffects {
 					switchMap((createdCustomer) =>
 						of(
 							createCustomerSuccess({ newCustomer: createdCustomer }),
-							sharedCreateSuccess()
+							NotificationCreateSuccess()
 						)
 					),
 					catchError((error) => of(loadCustomersFailure({ error })))
@@ -50,7 +50,7 @@ export class CustomersEffects {
 					switchMap((updatedCustomer) => {
 						return of(
 							editCustomerSuccess({ editedCustomer: updatedCustomer }),
-							sharedEditSuccess()
+							NotificationEditSuccess()
 						);
 					}),
 					catchError((error) => of(loadCustomersFailure({ error })))

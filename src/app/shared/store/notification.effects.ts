@@ -5,7 +5,7 @@ import { NotificationService } from "../services/notification.service";
 import { tap } from "rxjs";
 
 @Injectable()
-export class SharedEffects {
+export class NotificationEffects {
 
 
 	private actions$ = inject(Actions);

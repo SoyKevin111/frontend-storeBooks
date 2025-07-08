@@ -1,10 +1,10 @@
 import { createAction, props } from "@ngrx/store";
 
 
-export const sharedCreateSuccess = createAction(
+export const NotificationCreateSuccess = createAction(
 	'[shared] create success'
 )
 
-export const sharedEditSuccess = createAction(
+export const NotificationEditSuccess = createAction(
 	'[shared] edit success'
 )

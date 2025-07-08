@@ -8,7 +8,7 @@ import { provideEffects } from '@ngrx/effects';
 import { customersReducer } from './features/customers/store/customer.reducer';
 import { CustomersEffects } from './features/customers/store/customers.effects';
 import { provideHttpClient } from '@angular/common/http';
-import { SharedEffects } from './shared/store/shared.effects';
+import { NotificationEffects } from './shared/store/notification.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +17,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     ReactiveFormsModule,
     provideStore({ customers: customersReducer }),
-    provideEffects([CustomersEffects, SharedEffects])]
+    provideEffects([CustomersEffects, NotificationEffects])]
 };
