@@ -47,3 +47,19 @@ export const editCustomerFailure = createAction(
 	'[customer] edit customer failure',
 	props<{ error: any }>()
 )
+
+//Delete
+export const deleteCustomer = createAction(
+	'[customer] delete customer',
+	props<{ id: number }>()
+)
+
+export const deleteCustomerSuccess = createAction(
+	'[customer] delete customer success',
+	props<{ id: number }>()
+)
+
+export const deleteCustomerFailure = createAction(
+	'[customer] delete customer failure',
+	props<{ error: any }>()
+)

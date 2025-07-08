@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Customer } from "../../../shared/models/customer.model";
-import { createCustomerSuccess, editCustomerSuccess, loadCustomersSuccess } from "./customer.actions";
+import { createCustomerSuccess, deleteCustomerSuccess, editCustomerSuccess, loadCustomersSuccess } from "./customer.actions";
 
 
 const customers: Customer[] = [];
@@ -31,6 +31,12 @@ export const customersReducer = createReducer(
 			customers: state.customers.map(c => c.id === editedCustomer.id ? editedCustomer : c)
 		}
 	}),
+	on(deleteCustomerSuccess, (state, { id }) => {
+		return {
+			...state,
+			customers: state.customers.filter(c => c.id !== id)
+		}
+	})
 
 
 )

@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { loadCustomers } from '../../../../features/customers/store/customer.actions';
 import { loadCustomersSelector } from '../../../../features/customers/store/customer.selectors';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-customers',
@@ -19,7 +20,7 @@ import { loadCustomersSelector } from '../../../../features/customers/store/cust
 export class CustomersComponent implements OnInit, OnDestroy {
   private store = inject(Store);
   private modalService = inject(ModalService);
-  private modalConfirmationService = inject(ModalConfirmationService);
+  private notificationService = inject(NotificationService);
 
   private subscription: Subscription = new Subscription();
 
@@ -57,7 +58,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   deleteCustomer(customer: any) {
-    this.modalConfirmationService.deleteBook('Customer');
+    this.notificationService.showConfirmationDelete(customer.id);
     console.log('Delete:', customer);
   }
 

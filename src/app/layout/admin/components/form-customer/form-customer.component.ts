@@ -88,7 +88,7 @@ export class FormCustomerComponent implements OnInit {
       id: this.customer ? Number(this.customer.id) : 0, 
       name: this.customerForm.get('name')?.value || '',
       lastName: this.customerForm.get('lastName')?.value || '',
-      identityNumber: String(this.customerForm.get('identityNumber')?.value || ''),
+      identityNumber: String(this.customerForm.get('identityNumber')?.value || ''), 
       dateOfBirth: this.customerForm.get('dateOfBirth')?.value || '',
       address: this.customerForm.get('address')?.value || '',
       phone: String(this.customerForm.get('phone')?.value || ''),
