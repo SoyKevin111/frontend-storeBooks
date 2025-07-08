@@ -1,14 +1,12 @@
-import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { Customer } from '../../../../shared/models/customer.model';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { FormCustomerComponent } from '../../components/form-customer/form-customer.component';
-import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { loadCustomers } from '../../../../features/customers/store/customer.actions';
-import { loadCustomersSelector } from '../../../../features/customers/store/customer.selectors';
 import { NotificationService } from '../../../../shared/services/notification.service';
+import { loadCustomers, loadCustomersSelector } from '../../../../features/customers/store';
 
 @Component({
   selector: 'app-customers',
