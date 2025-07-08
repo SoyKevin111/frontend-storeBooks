@@ -3,13 +3,14 @@ import { Customer } from "../../../shared/models/customer.model";
 import { createCustomerSuccess, editCustomerSuccess, loadCustomersSuccess } from "./customer.actions";
 
 
+const customers: Customer[] = [];
 
 export interface State {
 	customers: Customer[]
 }
 
 export const initialState: State = {
-	customers: []
+	customers
 }
 
 

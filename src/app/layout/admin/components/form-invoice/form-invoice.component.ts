@@ -43,6 +43,12 @@ export class FormInvoiceComponent {
     items: []
   };
 
+  blockMinus(event: KeyboardEvent) {
+    if (event.key === '-' || event.key === 'e' || event.key === '+' || event.key === '.') {
+      event.preventDefault();
+    }
+  }
+
   onSearchCustomer() {
     const term = this.searchCustomerText.toLowerCase();
     this.filteredCustomers = this.customers.filter(c =>

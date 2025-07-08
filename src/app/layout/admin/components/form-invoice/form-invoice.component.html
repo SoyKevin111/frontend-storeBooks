@@ -115,6 +115,7 @@
                 type="number"
                 class="w-20 p-1 rounded border border-gray-300 text-center focus:outline-none focus:ring-2 focus:ring-gray-500 no-spinner"
                 [(ngModel)]="item.quantity"
+                (keydown)="blockMinus($event)"
                 (change)="updateInvoiceTotals()"
                 min="1"
               />

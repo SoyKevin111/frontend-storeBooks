@@ -50,3 +50,35 @@ body{
 	-moz-appearance: textfield;
 	/* Firefox */
 }
+
+// Scrollbar súper minimalista
+
+.scroll-minimal {
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+
+  // Webkit (Chrome, Edge, Safari)
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}

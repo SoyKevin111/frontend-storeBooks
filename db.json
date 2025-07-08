@@ -109,6 +109,16 @@
       "address": "Flor de bastión",
       "phone": "984164357",
       "state": "INACTIVE"
+    },
+    {
+      "id": "529889",
+      "name": "Kevin nuevoxd",
+      "lastName": "Lema",
+      "identityNumber": "9513996822",
+      "dateOfBirth": "2025-07-15",
+      "address": "Flor de bastión",
+      "phone": "984164357",
+      "state": "ACTIVE"
     }
   ],
   "administrators": [
