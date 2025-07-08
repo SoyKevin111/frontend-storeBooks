@@ -26,7 +26,7 @@ export class FormAuthorComponent implements OnInit {
 authorForm = this._fb.group({
   name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
   lastName: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
-  identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+  identityNumber: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
   email: ['', [Validators.required, Validators.email]],
   state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
 });

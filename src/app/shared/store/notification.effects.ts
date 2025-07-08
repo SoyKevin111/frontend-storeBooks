@@ -3,6 +3,7 @@ import { createCustomerSuccess, editCustomerSuccess } from "../../features/custo
 import { inject, Injectable } from "@angular/core";
 import { NotificationService } from "../services/notification.service";
 import { tap } from "rxjs";
+import { NotificationCreateSuccess, NotificationEditSuccess } from "./notification.actions";
 
 @Injectable()
 export class NotificationEffects {
@@ -16,13 +17,13 @@ export class NotificationEffects {
 		() =>
 			this.actions$
 				.pipe(
-					ofType(createCustomerSuccess, editCustomerSuccess),
+					ofType(NotificationCreateSuccess, NotificationEditSuccess),
 					tap(({ type }) => {
 						switch (type) {
-							case createCustomerSuccess.type:
+							case NotificationCreateSuccess.type:
 								this.notificationService.showSuccess('CREATE');
 								break;
-							case editCustomerSuccess.type:
+							case NotificationEditSuccess.type:
 								this.notificationService.showSuccess('UPDATE');
 								break;
 						}

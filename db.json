@@ -2,7 +2,7 @@
   "customers": [
     {
       "id": "1",
-      "name": "Juanxd",
+      "name": "Juan",
       "lastName": "Pérez",
       "identityNumber": "1234567890",
       "dateOfBirth": "1990-05-12",
@@ -109,36 +109,6 @@
       "address": "Flor de bastión",
       "phone": "984164357",
       "state": "ACTIVE"
-    },
-    {
-      "id": "581262",
-      "name": "nada",
-      "lastName": "Lema",
-      "identityNumber": "9513996822",
-      "dateOfBirth": "2025-07-02",
-      "address": "Flor de bastión",
-      "phone": "984164357",
-      "state": "ACTIVE"
-    },
-    {
-      "id": "343402",
-      "name": "Kevin nuevo",
-      "lastName": "Lema",
-      "identityNumber": "9513996822",
-      "dateOfBirth": "2025-07-04",
-      "address": "Flor de bastión",
-      "phone": "984164357",
-      "state": "ACTIVE"
-    },
-    {
-      "id": "70108",
-      "name": "Kevin nuevo",
-      "lastName": "Lema",
-      "identityNumber": "9513996822",
-      "dateOfBirth": "2025-07-04",
-      "address": "Flor de bastión",
-      "phone": "984164357",
-      "state": "INACTIVE"
     }
   ],
   "administrators": [

@@ -38,7 +38,7 @@ export class FormCustomerComponent implements OnInit {
     ],
     identityNumber: [
       '',
-      [Validators.required, Validators.pattern(/^\d{10}$/)]
+      [Validators.required, Validators.pattern(/^\d{9}$/)]
     ],
     dateOfBirth: ['', Validators.required],
     address: [
@@ -98,9 +98,9 @@ export class FormCustomerComponent implements OnInit {
     console.log('Customer Data:', customer);
 
     if (!this.customer) {
-      this.store.dispatch(createCustomer({ newCustomer: customer }));
+      this.store.dispatch(createCustomer({ newItem: customer }));
     } else {
-      this.store.dispatch(editCustomer({ editedCustomer: customer }));
+      this.store.dispatch(editCustomer({ editedItem: customer }));
     }
   }
 

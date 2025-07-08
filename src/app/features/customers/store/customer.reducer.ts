@@ -17,15 +17,15 @@ export const initialState: State = {
 export const customersReducer = createReducer(
 	initialState,
 
-	on(loadCustomersSuccess, (state, { customers }) => {
+	on(loadCustomersSuccess, (state, { items: customers }) => {
 		return { ...state, customers }
 	}),
 
-	on(createCustomerSuccess, (state, { newCustomer }) => {
+	on(createCustomerSuccess, (state, { newItem: newCustomer }) => {
 		return { ...state, customers: [...state.customers, newCustomer] }
 	}),
 
-	on(editCustomerSuccess, (state, { editedCustomer }) => {
+	on(editCustomerSuccess, (state, { editedItem: editedCustomer }) => {
 		return {
 			...state,
 			customers: state.customers.map(c => c.id === editedCustomer.id ? editedCustomer : c)
