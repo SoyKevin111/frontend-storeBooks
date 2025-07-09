@@ -19,11 +19,11 @@ export class CrudService<T extends { id?: number }> {
     return this.http.post<T>(this.baseUrl, itemWithId);
   }
 
-  update(item: T, id: number | string): Observable<T> {
+  update(item: T, id: number): Observable<T> {
     return this.http.put<T>(`${this.baseUrl}/${id}`, item);
   }
 
-  delete(id: number | string): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

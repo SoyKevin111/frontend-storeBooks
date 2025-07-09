@@ -12,7 +12,7 @@
     },
     {
       "id": "2",
-      "name": "María",
+      "name": "Maríaxd",
       "lastName": "López",
       "identityNumber": "876543210",
       "dateOfBirth": "1985-03-22",
@@ -106,6 +106,26 @@
       "lastName": "Lema",
       "identityNumber": "951399682",
       "dateOfBirth": "2025-07-02",
+      "address": "Flor de bastión",
+      "phone": "984164357",
+      "state": "ACTIVE"
+    },
+    {
+      "id": "747200",
+      "name": "Kevin 005",
+      "lastName": "Lema",
+      "identityNumber": "951399682",
+      "dateOfBirth": "2025-07-04",
+      "address": "Flor de bastión",
+      "phone": "984164357",
+      "state": "ACTIVE"
+    },
+    {
+      "id": 453734,
+      "name": "Kevin 007",
+      "lastName": "Lema",
+      "identityNumber": "951399682",
+      "dateOfBirth": "2025-07-04",
       "address": "Flor de bastión",
       "phone": "984164357",
       "state": "ACTIVE"

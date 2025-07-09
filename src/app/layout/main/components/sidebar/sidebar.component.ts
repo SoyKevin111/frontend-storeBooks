@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Customer } from '../../../../shared/models/customer.model';
-import { EventEmitterService } from '../../../../shared/services/event-emitter.service';
+
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../../../features/auth/authentication.service';
@@ -15,7 +15,7 @@ import { AuthenticationService } from '../../../../features/auth/authentication.
 export class SidebarComponent implements OnInit {
 
   Customer!: Customer;
-  eventEmitterService = inject(EventEmitterService);
+  
   private authService = inject(AuthenticationService);
   private router = inject(Router);
 
@@ -25,10 +25,6 @@ export class SidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.Customer = this.eventEmitterService.getCustomer();
-    this.eventEmitterService.CustomerChanged.subscribe(Customer => {
-      this.Customer = Customer;
-    });
   }
 
   onSidebarEnter() {
