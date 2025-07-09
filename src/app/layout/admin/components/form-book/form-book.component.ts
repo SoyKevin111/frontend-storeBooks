@@ -14,6 +14,7 @@ import { Author, loadAuthors, loadAuthorsSelector } from '../../../../features/a
 import { Editorial, loadEditorials, loadEditorialsSelector } from '../../../../features/editorials/store';
 import { Subscription } from 'rxjs';
 import { createBook, editBook } from '../../../../features/books/store';
+import { BookRequest } from '../../../../shared/models/request/book-request.model';
 
 @Component({
   selector: 'app-form-book',
@@ -135,7 +136,6 @@ export class FormBookComponent implements OnInit, OnDestroy {
   }
 
 
-
   save() {
     function normalizeValue(val: any) {
       if (val === null || val === undefined) return null;
@@ -143,25 +143,36 @@ export class FormBookComponent implements OnInit, OnDestroy {
       if (Array.isArray(val) && val.length === 0) return null;
       return val;
     }
-    const book: Book = {
+
+    const authorsArr = this.bookForm.get('authors')?.value;
+    const authorsId: number[] | null = Array.isArray(authorsArr)
+      ? authorsArr.map((a: any) => Number(a.id)).filter((id: number) => !isNaN(id))
+      : null;
+
+    const BookRequest: BookRequest = {
       id: this.book ? Number(this.book.id) : 0,
       isbn: normalizeValue(this.bookForm.get('isbn')?.value),
       title: normalizeValue(this.bookForm.get('title')?.value),
-      editorial: normalizeValue(this.bookForm.get('editorial')?.value),
+      editorialId: normalizeValue(Number(this.bookForm.get('editorial')?.get('id')?.value)),
       dateCreated: normalizeValue(this.bookForm.get('dateCreated')?.value),
       description: normalizeValue(this.bookForm.get('description')?.value),
       price: normalizeValue(this.bookForm.get('price')?.value),
       stock: normalizeValue(this.bookForm.get('stock')?.value),
       category: normalizeValue(this.bookForm.get('category')?.value),
       bestSeller: normalizeValue(this.bookForm.get('bestSeller')?.value),
-      authors: normalizeValue(this.bookForm.get('authors')?.value),
+      authorsId: normalizeValue(authorsId),
     };
+
+    console.log(BookRequest);
+
     if (!this.book) {
-      this.store.dispatch(createBook({ newItem: book }));
+      this.store.dispatch(createBook({ newItem: BookRequest }));
     } else {
-      this.store.dispatch(editBook({ editedItem: book }));
+      this.store.dispatch(editBook({ editedItem: BookRequest }));
     }
   }
+
+
 
 
   ngOnDestroy(): void {

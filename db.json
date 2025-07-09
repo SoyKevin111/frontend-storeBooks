@@ -485,51 +485,6 @@
       ]
     },
     {
-      "id": "7",
-      "isbn": "9780321356680",
-      "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
-      "description": "The classic book on object-oriented design.",
-      "editorial": {
-        "id": 1,
-        "name": "Addison-Wesley",
-        "phone": "1234567890",
-        "website": "https://www.awl.com",
-        "email": "contact@awl.com",
-        "state": "ACTIVE"
-      },
-      "dateCreated": "1994-10-31",
-      "price": 60,
-      "stock": 22,
-      "category": "Software Engineering",
-      "bestSeller": true,
-      "authors": [
-        {
-          "id": 1,
-          "name": "Erich",
-          "lastName": "Gamma",
-          "identityNumber": "1234567890",
-          "email": "egamma@example.com",
-          "state": "ACTIVE"
-        },
-        {
-          "id": 2,
-          "name": "Richard",
-          "lastName": "Helm",
-          "identityNumber": "2345678901",
-          "email": "rhelm@example.com",
-          "state": "INACTIVE"
-        },
-        {
-          "id": 3,
-          "name": "Ralph",
-          "lastName": "Johnson",
-          "identityNumber": "3456789012",
-          "email": "rjohnson@example.com",
-          "state": "ACTIVE"
-        }
-      ]
-    },
-    {
       "id": "8",
       "isbn": "9780596009205",
       "title": "Head First Java",
@@ -633,19 +588,26 @@
       ]
     },
     {
-      "id": "804992",
-      "isbn": null,
+      "id": "592208",
+      "isbn": "123-232-4545-22",
       "title": "ddddddddddd",
-      "editorial": "O’Reilly Media",
+      "description": "ddddddddddd",
+      "editorial": {
+        "id": 1,
+        "name": "Addison-Wesley",
+        "phone": "1234567890",
+        "website": "https://www.awl.com",
+        "email": "contact@awl.com",
+        "state": "ACTIVE"
+      },
       "dateCreated": "2025-07-10",
-      "description": "elmasraton",
-      "price": 12.5,
-      "stock": 5,
+      "price": 10,
+      "stock": 20,
       "category": "Programming",
       "bestSeller": true,
       "authors": [
         {
-          "id": "1",
+          "id": 1,
           "name": "Erich",
           "lastName": "Gamma",
           "identityNumber": "1234567890",
@@ -653,7 +615,7 @@
           "state": "ACTIVE"
         },
         {
-          "id": "2",
+          "id": 2,
           "name": "Richard",
           "lastName": "Helm",
           "identityNumber": "2345678901",
@@ -661,7 +623,52 @@
           "state": "INACTIVE"
         },
         {
-          "id": "3",
+          "id": 3,
+          "name": "Ralph",
+          "lastName": "Johnson",
+          "identityNumber": "3456789012",
+          "email": "rjohnson@example.com",
+          "state": "ACTIVE"
+        }
+      ]
+    },
+    {
+      "id": "242710",
+      "isbn": "123-232-4545-22",
+      "title": "milibro",
+      "description": "nada que ver",
+      "editorial": {
+        "id": 1,
+        "name": "Addison-Wesley",
+        "phone": "1234567890",
+        "website": "https://www.awl.com",
+        "email": "contact@awl.com",
+        "state": "ACTIVE"
+      },
+      "dateCreated": "2025-07-04",
+      "price": 12.5,
+      "stock": 7,
+      "category": "Fiction",
+      "bestSeller": true,
+      "authors": [
+        {
+          "id": 1,
+          "name": "Erich",
+          "lastName": "Gamma",
+          "identityNumber": "1234567890",
+          "email": "egamma@example.com",
+          "state": "ACTIVE"
+        },
+        {
+          "id": 2,
+          "name": "Richard",
+          "lastName": "Helm",
+          "identityNumber": "2345678901",
+          "email": "rhelm@example.com",
+          "state": "INACTIVE"
+        },
+        {
+          "id": 3,
           "name": "Ralph",
           "lastName": "Johnson",
           "identityNumber": "3456789012",
