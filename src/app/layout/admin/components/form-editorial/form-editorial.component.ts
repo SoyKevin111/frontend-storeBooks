@@ -63,22 +63,28 @@ export class FormEditorialComponent {
   }
 
   save() {
-    const edtorial: Editorial = {
+    const normalizeValue = (val: any) => {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'string' && val.trim() === '') return null;
+      return val;
+    };
+
+    const editorial: Editorial = {
       id: this.editorial ? Number(this.editorial.id) : 0,
-      name: this.editorialForm.get('name')?.value || '',
-      phone: String(this.editorialForm.get('phone')?.value || ''),
-      website: this.editorialForm.get('website')?.value || '',
-      email: this.editorialForm.get('email')?.value || '',
-      state: this.editorialForm.get('state')?.value || ''
+      name: normalizeValue(this.editorialForm.get('name')?.value),
+      phone: normalizeValue(this.editorialForm.get('phone')?.value ? String(this.editorialForm.get('phone')?.value) : null),
+      website: normalizeValue(this.editorialForm.get('website')?.value),
+      email: normalizeValue(this.editorialForm.get('email')?.value),
+      state: normalizeValue(this.editorialForm.get('state')?.value)
     };
 
     if (!this.editorial) {
-      this.store.dispatch(createEditorial({ newItem: edtorial }));
+      this.store.dispatch(createEditorial({ newItem: editorial }));
     } else {
-      this.store.dispatch(editEditorial({ editedItem: edtorial }));
+      this.store.dispatch(editEditorial({ editedItem: editorial }));
     }
-
   }
+
 
   close() {
     this.animationState = 'modal-animate-out';

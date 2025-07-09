@@ -60,22 +60,28 @@ export class FormAuthorComponent implements OnInit {
   }
 
   save() {
+    const normalizeValue = (val: any) => {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'string' && val.trim() === '') return null;
+      return val;
+    };
+
     const author: Author = {
       id: this.author ? Number(this.author.id) : 0,
-      name: this.authorForm.get('name')?.value || '',
-      lastName: this.authorForm.get('lastName')?.value || '',
-      identityNumber: String(this.authorForm.get('identityNumber')?.value || ''),
-      email: this.authorForm.get('email')?.value || '',
-      state: this.authorForm.get('state')?.value || ''
-    }
+      name: normalizeValue(this.authorForm.get('name')?.value),
+      lastName: normalizeValue(this.authorForm.get('lastName')?.value),
+      identityNumber: normalizeValue(this.authorForm.get('identityNumber')?.value ? String(this.authorForm.get('identityNumber')?.value) : null),
+      email: normalizeValue(this.authorForm.get('email')?.value),
+      state: normalizeValue(this.authorForm.get('state')?.value)
+    };
 
     if (!this.author) {
       this.store.dispatch(createAuthor({ newItem: author }));
     } else {
       this.store.dispatch(editAuthor({ editedItem: author }));
     }
-
   }
+
 
   close() {
     this.animationState = 'modal-animate-out';

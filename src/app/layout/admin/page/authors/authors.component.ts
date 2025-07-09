@@ -3,11 +3,10 @@ import { Author } from '../../../../shared/models/author.model';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { FormAuthorComponent } from '../../components/form-author/form-author.component';
-import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
 import { Store } from '@ngrx/store';
-import { loadAuthorsSelector, selectAuthorsState } from '../../../../features/authors/store/author.selectors';
-import { loadAuthors } from '../../../../features/authors/store/author.actions';
 import { Subscription } from 'rxjs';
+import { deleteAuthor, loadAuthors, loadAuthorsSelector } from '../../../../features/authors/store';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-authors',
@@ -19,7 +18,7 @@ import { Subscription } from 'rxjs';
 export class AuthorsComponent implements OnInit, OnDestroy {
 
   modalService = inject(ModalService);
-  private modalConfirmationService = inject(ModalConfirmationService);
+  private notificationService = inject(NotificationService);
   private store = inject(Store);
 
   private subscription: Subscription = new Subscription();
@@ -54,8 +53,11 @@ export class AuthorsComponent implements OnInit, OnDestroy {
     console.log('Edit:', author);
     this.modalService.open(FormAuthorComponent, { functionTyeEm: 'update', author: author });
   }
+
   deleteAuthor(author: Author) {
-    this.modalConfirmationService.deleteBook("Author");
+    this.notificationService.showConfirmationDelete('Author', () => {
+      this.store.dispatch(deleteAuthor({ id: author.id }));
+    });
     console.log('Delete:', author);
   }
 

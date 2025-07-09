@@ -3,7 +3,7 @@ const path = require('path');
 
 const dataDir = path.join(__dirname, 'database');
 
-const dataFiles = ['customers.json', 'administrators.json', 'editorials.json', 'authors.json'];
+const dataFiles = ['customers.json', 'administrators.json', 'editorials.json', 'authors.json', 'books.json'];
 const db = {};
 
 dataFiles.forEach((file) => {

@@ -13,6 +13,7 @@ import { editorialsReducer } from './features/editorials/store/editorial.reducer
 import { EditorialsEffects } from './features/editorials/store/editorial.effects';
 import { authorsReducer } from './features/authors/store/author.reducer';
 import { AuthorsEffects } from './features/authors/store/author.effects';
+import { BooksEffects, booksReducer } from './features/books/store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,12 +24,14 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       customers: customersReducer,
       editorials: editorialsReducer,
-      authors: authorsReducer
+      authors: authorsReducer,
+      books: booksReducer
     }),
     provideEffects([
       CustomersEffects,
       EditorialsEffects,
       AuthorsEffects,
+      BooksEffects,
       NotificationEffects,
     ])]
 };

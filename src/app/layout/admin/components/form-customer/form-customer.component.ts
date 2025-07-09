@@ -84,15 +84,21 @@ export class FormCustomerComponent implements OnInit {
   }
 
   save() {
+    const normalizeValue = (val: any) => {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'string' && val.trim() === '') return null;
+      return val;
+    };
+
     const customer: Customer = {
-      id: this.customer ? Number(this.customer.id) : 0, 
-      name: this.customerForm.get('name')?.value || '',
-      lastName: this.customerForm.get('lastName')?.value || '',
-      identityNumber: String(this.customerForm.get('identityNumber')?.value || ''), 
-      dateOfBirth: this.customerForm.get('dateOfBirth')?.value || '',
-      address: this.customerForm.get('address')?.value || '',
-      phone: String(this.customerForm.get('phone')?.value || ''),
-      state: this.customerForm.get('state')?.value || ''
+      id: this.customer ? Number(this.customer.id) : 0,
+      name: normalizeValue(this.customerForm.get('name')?.value),
+      lastName: normalizeValue(this.customerForm.get('lastName')?.value),
+      identityNumber: normalizeValue(this.customerForm.get('identityNumber')?.value ? String(this.customerForm.get('identityNumber')?.value) : null),
+      dateOfBirth: normalizeValue(this.customerForm.get('dateOfBirth')?.value),
+      address: normalizeValue(this.customerForm.get('address')?.value),
+      phone: normalizeValue(this.customerForm.get('phone')?.value ? String(this.customerForm.get('phone')?.value) : null),
+      state: normalizeValue(this.customerForm.get('state')?.value)
     };
 
     console.log('Customer Data:', customer);
@@ -103,6 +109,7 @@ export class FormCustomerComponent implements OnInit {
       this.store.dispatch(editCustomer({ editedItem: customer }));
     }
   }
+
 
   close() {
     this.animationState = 'modal-animate-out';
