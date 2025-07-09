@@ -1,10 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { Editorial } from '../../../../shared/models/editorial.model';
-import { MOCK_EDITORIALS } from '../../../../features/mocks/editorials-data.mock';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { FormEditorialComponent } from '../../components/form-editorial/form-editorial.component';
 import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { deleteEditorial, loadEditorials } from '../../../../features/editorials/store/editorial.actions';
+import { loadEditorialsSelector } from '../../../../features/editorials/store/editorial.selectors';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-editorials',
@@ -13,12 +17,15 @@ import { ModalConfirmationService } from '../../../../shared/services/modal-conf
   templateUrl: './editorials.component.html',
   styleUrl: './editorials.component.scss'
 })
-export class EditorialsComponent {
+export class EditorialsComponent implements OnInit, OnDestroy {
 
-  modalService = inject(ModalService);
-  private modalConfirmationService = inject(ModalConfirmationService);
+  private store = inject(Store);
+  private modalService = inject(ModalService);
+  private notificationService = inject(NotificationService);
 
-  editorials: Editorial[] = MOCK_EDITORIALS;
+  private subscription: Subscription = new Subscription();
+
+  editorials$: Editorial[] = [];
   columns = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
@@ -27,6 +34,17 @@ export class EditorialsComponent {
     { field: 'email', header: 'Email' },
     { field: 'state', header: 'State' }
   ];
+
+  ngOnInit(): void {
+    this.store.dispatch(loadEditorials());
+
+    const sub = this.store.select(loadEditorialsSelector).subscribe(editorials => {
+      this.editorials$ = editorials;
+    });
+
+    this.subscription.add(sub);
+  }
+
 
   createEditorial() {
     console.log('Create editorial clicked');
@@ -39,12 +57,14 @@ export class EditorialsComponent {
   }
 
   deleteEditorial(editorial: Editorial) {
-    this.modalConfirmationService.deleteBook("Editorial");
+    this.notificationService.showConfirmationDelete('Customer', () => {
+      this.store.dispatch(deleteEditorial({ id: editorial.id }));
+    });
     console.log('Delete:', editorial);
   }
 
-  viewEditorial(editorial: Editorial) {
-    console.log('View:', editorial);
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

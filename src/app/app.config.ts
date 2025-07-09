@@ -9,6 +9,8 @@ import { customersReducer } from './features/customers/store/customer.reducer';
 import { CustomersEffects } from './features/customers/store/customers.effects';
 import { provideHttpClient } from '@angular/common/http';
 import { NotificationEffects } from './shared/store/notification.effects';
+import { editorialsReducer } from './features/editorials/store/editorial.reducer';
+import { EditorialsEffects } from './features/editorials/store/editorial.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     ReactiveFormsModule,
-    provideStore({ customers: customersReducer }),
-    provideEffects([CustomersEffects, NotificationEffects])]
+    provideStore({ customers: customersReducer, editorials: editorialsReducer }),
+    provideEffects([
+      CustomersEffects,
+      EditorialsEffects,
+      NotificationEffects,
+    ])]
 };

@@ -6,7 +6,7 @@ import { FormCustomerComponent } from '../../components/form-customer/form-custo
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { NotificationService } from '../../../../shared/services/notification.service';
-import { loadCustomers, loadCustomersSelector } from '../../../../features/customers/store';
+import { deleteCustomer, loadCustomers, loadCustomersSelector } from '../../../../features/customers/store';
 
 @Component({
   selector: 'app-customers',
@@ -56,13 +56,12 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   deleteCustomer(customer: any) {
-    this.notificationService.showConfirmationDelete(customer.id);
+    this.notificationService.showConfirmationDelete('Customer', () => {
+      this.store.dispatch(deleteCustomer({ id: customer.id }));
+    });
     console.log('Delete:', customer);
   }
 
-  viewCustomer(customer: any) {
-    console.log('View:', customer);
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

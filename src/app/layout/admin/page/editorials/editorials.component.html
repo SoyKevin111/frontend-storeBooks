@@ -3,8 +3,10 @@
 		Editorials
 	</h1>
 	<div class="table-books">
-		<app-crud-table [columns]="columns" [data]="editorials" (create)="createEditorial()" (edit)="editEditorial($event)"
-			(delete)="deleteEditorial($event)" (view)="viewEditorial($event)">
+		<app-crud-table [columns]="columns" [data]="editorials$" 
+			(create)="createEditorial()" 
+			(edit)="editEditorial($event)"
+			(delete)="deleteEditorial($event)">
 		</app-crud-table>
 	</div>
 </div>

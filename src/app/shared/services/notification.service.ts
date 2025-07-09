@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
 import { deleteCustomer } from '../../features/customers/store/customer.actions';
+import { deleteEditorial } from '../../features/editorials/store/editorial.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,12 @@ export class NotificationService {
     });
   }
 
-  showConfirmationDelete(id: number) {
+  showConfirmationDelete(
+    entityName: string,
+    deleteAction: () => void
+  ) {
     Swal.fire({
-      title: 'Are you sure?',
+      title: `Are you sure you want to delete this ${entityName}?`,
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
@@ -53,13 +57,12 @@ export class NotificationService {
       buttonsStyling: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.store.dispatch(deleteCustomer({ id }));
-        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        deleteAction();
+        Swal.fire('Deleted!', `The ${entityName} has been deleted.`, 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
+        Swal.fire('Cancelled', `The ${entityName} was not deleted.`, 'info');
       }
     });
   }
-
 
 }
