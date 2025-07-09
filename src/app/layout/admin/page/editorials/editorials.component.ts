@@ -36,9 +36,8 @@ export class EditorialsComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.store.dispatch(loadEditorials());
-
     const sub = this.store.select(loadEditorialsSelector).subscribe(editorials => {
+      if (editorials.length === 0) this.store.dispatch(loadEditorials());
       this.editorials$ = editorials;
     });
 

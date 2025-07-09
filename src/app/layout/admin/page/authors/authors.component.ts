@@ -35,9 +35,9 @@ export class AuthorsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.store.dispatch(loadAuthors());
-
+    
     const sub = this.store.select(loadAuthorsSelector).subscribe(authors => {
+      if (authors.length === 0) this.store.dispatch(loadAuthors());
       this.authors$ = authors;
     });
 

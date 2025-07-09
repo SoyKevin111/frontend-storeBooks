@@ -146,12 +146,32 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
     this.invoice.customer = new Customer();
   }
 
+  resetInvoice() {
+    this.invoice = {
+      numberInvoice: '',
+      customer: new Customer(),
+      createdAt: new Date().toISOString(),
+      iva: 15,
+      ivaTotal: 0,
+      subtotal: 0,
+      total: 0,
+      items: []
+    };
+  }
 
   generateInvoice() {
     if (this.selectedCustomer === null) {
       alert('Select a customer, please.');
       return;
     }
+
+    if (this.invoice.items.length === 0) {
+      alert('Select at least one book, please.');
+      return;
+    }
+
+    this.resetInvoice();
+    this.clearSelectedCustomer()
     console.log('Factura generada:', this.invoice);
   }
 

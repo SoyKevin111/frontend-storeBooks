@@ -37,8 +37,9 @@ export class BooksComponent implements OnInit, OnDestroy {
     { field: 'stock', header: 'Stock' }
   ];
   ngOnInit(): void {
-    this.store.dispatch(loadBooks());
+
     const sub = this.store.select(loadBooksSelector).subscribe(booksLoaded => {
+      if (booksLoaded.length === 0) this.store.dispatch(loadBooks());
       this.booksWithExtras$ = booksLoaded.map(book => ({
         ...book,
         editorialName: book.editorial?.name || '',

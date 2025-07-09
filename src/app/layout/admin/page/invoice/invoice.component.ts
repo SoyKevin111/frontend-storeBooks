@@ -15,31 +15,5 @@ import { FormInvoiceComponent } from '../../components/form-invoice/form-invoice
 })
 export class InvoiceComponent {
 
-  private router = inject(Router)
-
-
-  invoices: Invoice[] = MOCK_INVOICES.map((invoice) => {
-    return {
-      customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
-      state: 'Issued',
-      ...invoice
-    };
-  });
-  columns = [
-    { field: 'numberInvoice', header: 'Nº' },
-    { field: 'customerNames', header: 'Customer' },
-    { field: 'createdAt', header: 'Date Created' },
-    { field: 'state', header: 'Customer State' },
-    { field: 'total', header: 'Total' }
-  ];
-
-  viewInvoice(invoice: any) {
-    this.router.navigate(['/storebooks/invoice-details'], { state: { invoice } });
-    console.log(invoice);
-  }
-
-
-
-
 
 }
