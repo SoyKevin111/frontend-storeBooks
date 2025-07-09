@@ -109,6 +109,16 @@
       "address": "Flor de bastión",
       "phone": "984164357",
       "state": "INACTIVE"
+    },
+    {
+      "id": "924929",
+      "name": "Diana ",
+      "lastName": "Medina",
+      "identityNumber": "123456789",
+      "dateOfBirth": "2025-07-17",
+      "address": "peru, lince",
+      "phone": "984164357",
+      "state": "ACTIVE"
     }
   ],
   "administrators": [
@@ -209,6 +219,14 @@
       "website": "https://www.crownpublishing.com",
       "email": "info@crown.com",
       "state": "INACTIVE"
+    },
+    {
+      "id": "987092",
+      "name": "editorialRandom",
+      "phone": "984164357",
+      "website": "dsdsd.com",
+      "email": "kevinstevennn768xd@gmail.com",
+      "state": "ACTIVE"
     }
   ],
   "authors": [
@@ -291,6 +309,14 @@
       "identityNumber": "0123456789",
       "email": "dowens@example.com",
       "state": "INACTIVE"
+    },
+    {
+      "id": "423778",
+      "name": "Kevin",
+      "lastName": "Lema",
+      "identityNumber": "951399682",
+      "email": "kevinstevennn768xd@gmail.com",
+      "state": "Active"
     }
   ],
   "books": [
@@ -664,6 +690,51 @@
       "dateCreated": "2025-07-04",
       "price": 12.5,
       "stock": 7,
+      "category": "Fiction",
+      "bestSeller": true,
+      "authors": [
+        {
+          "id": 1,
+          "name": "Erich",
+          "lastName": "Gamma",
+          "identityNumber": "1234567890",
+          "email": "egamma@example.com",
+          "state": "ACTIVE"
+        },
+        {
+          "id": 2,
+          "name": "Richard",
+          "lastName": "Helm",
+          "identityNumber": "2345678901",
+          "email": "rhelm@example.com",
+          "state": "INACTIVE"
+        },
+        {
+          "id": 3,
+          "name": "Ralph",
+          "lastName": "Johnson",
+          "identityNumber": "3456789012",
+          "email": "rjohnson@example.com",
+          "state": "ACTIVE"
+        }
+      ]
+    },
+    {
+      "id": "842271",
+      "isbn": "123-232-4545-22",
+      "title": "Mushoku Tensei Vol 2",
+      "description": "lorem ipsum dor isued grammar",
+      "editorial": {
+        "id": 1,
+        "name": "Addison-Wesley",
+        "phone": "1234567890",
+        "website": "https://www.awl.com",
+        "email": "contact@awl.com",
+        "state": "ACTIVE"
+      },
+      "dateCreated": "2025-07-17",
+      "price": 25,
+      "stock": 4,
       "category": "Fiction",
       "bestSeller": true,
       "authors": [

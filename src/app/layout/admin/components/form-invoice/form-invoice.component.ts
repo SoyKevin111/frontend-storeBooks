@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Invoice } from '../../../../shared/models/invoice.model';
 import { Customer } from '../../../../shared/models/customer.model';
 import { Book } from '../../../../shared/models/book.model';
@@ -7,6 +7,10 @@ import { InvoiceItemDetails } from '../../../../shared/models/invoice-item-detai
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
+import { Store } from '@ngrx/store';
+import { loadCustomers, loadCustomersSelector } from '../../../../features/customers/store';
+import { loadBooks, loadBooksSelector } from '../../../../features/books/store';
+
 
 @Component({
   selector: 'app-form-invoice',
@@ -15,7 +19,9 @@ import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
   templateUrl: './form-invoice.component.html',
   styleUrl: './form-invoice.component.scss'
 })
-export class FormInvoiceComponent {
+export class FormInvoiceComponent implements OnInit, OnDestroy {
+
+  private store = inject(Store);
 
   // Buscadores
   searchCustomerText = '';
@@ -26,10 +32,9 @@ export class FormInvoiceComponent {
 
   selectedCustomer: Customer | null = null;
 
-  // Datos simulados
-  customers: Customer[] = MOCK_CUSTOMERS;
-
-  books: Book[] = MOCK_BOOKS;
+  //Lista de datos a seleccionar
+  customers$: Customer[] = [];
+  books$: Book[] = [];
 
   // Factura
   invoice: Invoice = {
@@ -42,6 +47,22 @@ export class FormInvoiceComponent {
     total: 0,
     items: []
   };
+
+  ngOnInit() {
+    this.loadCustomersAndBooks();
+  }
+
+  loadCustomersAndBooks() {
+    this.store.select(loadCustomersSelector).subscribe(customers => {
+      if (customers.length === 0) this.store.dispatch(loadCustomers());
+      this.customers$ = customers
+    });
+
+    this.store.select(loadBooksSelector).subscribe(books => {
+      if (books.length === 0) this.store.dispatch(loadBooks());
+      this.books$ = books;
+    });
+  }
 
   incrementQuantity(item: InvoiceItemDetails) {
     const maxStock = this.getBookStock(item.id);
@@ -60,14 +81,14 @@ export class FormInvoiceComponent {
 
   // Devuelve el stock disponible según el ID del libro
   getBookStock(bookId: number): number {
-    const book = this.books.find(b => b.id === bookId);
-    return book?.stock || 1;  // valor por defecto si no se encuentra
+    const book = this.books$.find(b => b.id === bookId);
+    return book?.stock || 1;
   }
 
 
   onSearchCustomer() {
     const term = this.searchCustomerText.toLowerCase();
-    this.filteredCustomers = this.customers.filter(c =>
+    this.filteredCustomers = this.customers$.filter(c =>
       c.identityNumber.includes(term) ||
       `${c.name} ${c.lastName}`.toLowerCase().includes(term)
     );
@@ -75,7 +96,7 @@ export class FormInvoiceComponent {
 
   onSearchBook() {
     const term = this.searchBookText.toLowerCase();
-    this.filteredBooks = this.books.filter(b =>
+    this.filteredBooks = this.books$.filter(b =>
       b.title.toLowerCase().includes(term) || b.isbn.includes(term)
     );
   }
@@ -132,6 +153,10 @@ export class FormInvoiceComponent {
       return;
     }
     console.log('Factura generada:', this.invoice);
+  }
+
+  ngOnDestroy(): void {
+
   }
 
 }

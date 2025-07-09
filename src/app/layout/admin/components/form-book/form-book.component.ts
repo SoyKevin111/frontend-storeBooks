@@ -68,14 +68,12 @@ export class FormBookComponent implements OnInit, OnDestroy {
   }
 
   loadAuthorsAndEditorials() {
-    this.store.dispatch(loadAuthors());
-    this.store.dispatch(loadEditorials());
-
     const sub1 = this.store.select(loadAuthorsSelector).subscribe(authors => {
+      if (authors.length === 0) this.store.dispatch(loadAuthors());
       this.authorOptions$ = authors;
     });
-
     const sub2 = this.store.select(loadEditorialsSelector).subscribe(editorials => {
+      if (editorials.length === 0) this.store.dispatch(loadEditorials());
       this.editorialOptions$ = editorials;
     });
 
