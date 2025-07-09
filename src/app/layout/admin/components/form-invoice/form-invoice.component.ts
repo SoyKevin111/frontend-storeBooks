@@ -43,11 +43,27 @@ export class FormInvoiceComponent {
     items: []
   };
 
-  blockMinus(event: KeyboardEvent) {
-    if (event.key === '-' || event.key === 'e' || event.key === '+' || event.key === '.') {
-      event.preventDefault();
+  incrementQuantity(item: InvoiceItemDetails) {
+    const maxStock = this.getBookStock(item.id);
+    if (item.quantity < maxStock) {
+      item.quantity++;
+      this.updateInvoiceTotals();
     }
   }
+
+  decrementQuantity(item: InvoiceItemDetails) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.updateInvoiceTotals();
+    }
+  }
+
+  // Devuelve el stock disponible según el ID del libro
+  getBookStock(bookId: number): number {
+    const book = this.books.find(b => b.id === bookId);
+    return book?.stock || 1;  // valor por defecto si no se encuentra
+  }
+
 
   onSearchCustomer() {
     const term = this.searchCustomerText.toLowerCase();
@@ -111,6 +127,10 @@ export class FormInvoiceComponent {
 
 
   generateInvoice() {
+    if (this.selectedCustomer === null) {
+      alert('Select a customer, please.');
+      return;
+    }
     console.log('Factura generada:', this.invoice);
   }
 
