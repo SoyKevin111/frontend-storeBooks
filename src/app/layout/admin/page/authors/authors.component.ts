@@ -1,10 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Author } from '../../../../shared/models/author.model';
-import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { FormAuthorComponent } from '../../components/form-author/form-author.component';
 import { ModalConfirmationService } from '../../../../shared/services/modal-confirmation.service';
+import { Store } from '@ngrx/store';
+import { loadAuthorsSelector, selectAuthorsState } from '../../../../features/authors/store/author.selectors';
+import { loadAuthors } from '../../../../features/authors/store/author.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-authors',
@@ -13,12 +16,15 @@ import { ModalConfirmationService } from '../../../../shared/services/modal-conf
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.scss'
 })
-export class AuthorsComponent {
+export class AuthorsComponent implements OnInit, OnDestroy {
 
   modalService = inject(ModalService);
   private modalConfirmationService = inject(ModalConfirmationService);
+  private store = inject(Store);
 
-  authors: Author[] = MOCK_AUTHORS;
+  private subscription: Subscription = new Subscription();
+
+  authors$: Author[] = [];
   columns = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
@@ -27,6 +33,18 @@ export class AuthorsComponent {
     { field: 'email', header: 'Email' },
     { field: 'state', header: 'State' }
   ];
+
+
+  ngOnInit(): void {
+    this.store.dispatch(loadAuthors());
+
+    const sub = this.store.select(loadAuthorsSelector).subscribe(authors => {
+      this.authors$ = authors;
+    });
+
+    this.subscription.add(sub);
+  }
+
 
   createAuthor() {
     console.log('Create author clicked');
@@ -40,8 +58,10 @@ export class AuthorsComponent {
     this.modalConfirmationService.deleteBook("Author");
     console.log('Delete:', author);
   }
-  viewAuthor(author: Author) {
-    console.log('View:', author);
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

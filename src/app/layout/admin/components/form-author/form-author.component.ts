@@ -4,6 +4,8 @@ import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Author } from '../../../../shared/models/author.model';
 import { ModalService } from '../../../../shared/services/modal.service';
+import { Store } from '@ngrx/store';
+import { createAuthor, editAuthor } from '../../../../features/authors/store/author.actions';
 
 @Component({
   selector: 'app-form-author',
@@ -18,18 +20,19 @@ export class FormAuthorComponent implements OnInit {
   animationState = 'modal-animate-in';
   @Input() functionTyeEm: string = '';
   @Input() author!: Author;
+  private store = inject(Store);
   private _fb = inject(FormBuilder);
 
   toggleState = false;
   stateOptions = ['Active', 'Inactive'];
 
-authorForm = this._fb.group({
-  name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
-  lastName: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
-  identityNumber: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
-  email: ['', [Validators.required, Validators.email]],
-  state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
-});
+  authorForm = this._fb.group({
+    name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
+    lastName: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
+    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
+    email: ['', [Validators.required, Validators.email]],
+    state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
+  });
 
 
 
@@ -46,7 +49,7 @@ authorForm = this._fb.group({
 
   submit() {
     if (this.authorForm.valid) {
-      console.log('Customer Data:', this.authorForm.value);
+      this.save();
       this.close();
     } else {
       this.authorForm.markAllAsTouched();
@@ -56,11 +59,27 @@ authorForm = this._fb.group({
     }
   }
 
+  save() {
+    const author: Author = {
+      id: this.author ? Number(this.author.id) : 0,
+      name: this.authorForm.get('name')?.value || '',
+      lastName: this.authorForm.get('lastName')?.value || '',
+      identityNumber: String(this.authorForm.get('identityNumber')?.value || ''),
+      email: this.authorForm.get('email')?.value || '',
+      state: this.authorForm.get('state')?.value || ''
+    }
+
+    if (!this.author) {
+      this.store.dispatch(createAuthor({ newItem: author }));
+    } else {
+      this.store.dispatch(editAuthor({ editedItem: author }));
+    }
+
+  }
+
   close() {
     this.animationState = 'modal-animate-out';
-    setTimeout(() => {
-      this.modalService.close();
-    }, 150);
+    setTimeout(() => { this.modalService.close(); }, 150);
 
   }
 

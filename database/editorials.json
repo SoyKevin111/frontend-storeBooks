@@ -5,7 +5,7 @@
 		"phone": "1234567890",
 		"website": "https://www.awl.com",
 		"email": "contact@awl.com",
-		"state": "Massachusetts"
+		"state": "ACTIVE"
 	},
 	{
 		"id": 2,
@@ -13,7 +13,7 @@
 		"phone": "9876543210",
 		"website": "https://www.oreilly.com",
 		"email": "info@oreilly.com",
-		"state": "California"
+		"state": "INACTIVE"
 	},
 	{
 		"id": 3,
@@ -21,7 +21,7 @@
 		"phone": "8001234567",
 		"website": "https://www.harperone.com",
 		"email": "support@harperone.com",
-		"state": "New York"
+		"state": "ACTIVE"
 	},
 	{
 		"id": 4,
@@ -29,7 +29,7 @@
 		"phone": "8884567890",
 		"website": "https://www.harper.com",
 		"email": "contact@harper.com",
-		"state": "New Jersey"
+		"state": "INACTIVE"
 	},
 	{
 		"id": 5,
@@ -37,7 +37,7 @@
 		"phone": "3216549870",
 		"website": "https://www.celadonbooks.com",
 		"email": "info@celadon.com",
-		"state": "New York"
+		"state": "ACTIVE"
 	},
 	{
 		"id": 6,
@@ -45,7 +45,7 @@
 		"phone": "9998887777",
 		"website": "https://www.penguinrandomhouse.com",
 		"email": "help@putnam.com",
-		"state": "New York"
+		"state": "INACTIVE"
 	},
 	{
 		"id": 7,
@@ -53,7 +53,7 @@
 		"phone": "8005551212",
 		"website": "https://www.pearson.com",
 		"email": "info@prentice.com",
-		"state": "New Jersey"
+		"state": "ACTIVE"
 	},
 	{
 		"id": 8,
@@ -61,7 +61,7 @@
 		"phone": "1231231234",
 		"website": "https://www.awl.com/professional",
 		"email": "editorial@awl.com",
-		"state": "Massachusetts"
+		"state": "INACTIVE"
 	},
 	{
 		"id": 9,
@@ -69,7 +69,7 @@
 		"phone": "8777777777",
 		"website": "https://www.penguinrandomhouse.com",
 		"email": "prh@penguin.com",
-		"state": "New York"
+		"state": "ACTIVE"
 	},
 	{
 		"id": 10,
@@ -77,6 +77,6 @@
 		"phone": "8009990000",
 		"website": "https://www.crownpublishing.com",
 		"email": "info@crown.com",
-		"state": "New York"
+		"state": "INACTIVE"
 	}
 ]

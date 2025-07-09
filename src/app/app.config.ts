@@ -11,6 +11,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { NotificationEffects } from './shared/store/notification.effects';
 import { editorialsReducer } from './features/editorials/store/editorial.reducer';
 import { EditorialsEffects } from './features/editorials/store/editorial.effects';
+import { authorsReducer } from './features/authors/store/author.reducer';
+import { AuthorsEffects } from './features/authors/store/author.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,10 +20,15 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     ReactiveFormsModule,
-    provideStore({ customers: customersReducer, editorials: editorialsReducer }),
+    provideStore({
+      customers: customersReducer,
+      editorials: editorialsReducer,
+      authors: authorsReducer
+    }),
     provideEffects([
       CustomersEffects,
       EditorialsEffects,
+      AuthorsEffects,
       NotificationEffects,
     ])]
 };

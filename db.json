@@ -99,6 +99,16 @@
       "phone": "5550008888",
       "identityNumber": "8899001122",
       "state": "ACTIVE"
+    },
+    {
+      "id": "905110",
+      "name": "Kevinxd",
+      "lastName": "Lema",
+      "identityNumber": "9513996822",
+      "dateOfBirth": "2025-07-04",
+      "address": "Flor de bastión",
+      "phone": "984164357",
+      "state": "INACTIVE"
     }
   ],
   "administrators": [
@@ -121,92 +131,166 @@
   ],
   "editorials": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Addison-Wesley",
       "phone": "1234567890",
       "website": "https://www.awl.com",
       "email": "contact@awl.com",
-      "state": "Massachusetts"
+      "state": "ACTIVE"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "O’Reilly Media",
       "phone": "9876543210",
       "website": "https://www.oreilly.com",
       "email": "info@oreilly.com",
-      "state": "California"
+      "state": "INACTIVE"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "HarperOne",
       "phone": "8001234567",
       "website": "https://www.harperone.com",
       "email": "support@harperone.com",
-      "state": "New York"
+      "state": "ACTIVE"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Harper",
       "phone": "8884567890",
       "website": "https://www.harper.com",
       "email": "contact@harper.com",
-      "state": "New Jersey"
+      "state": "INACTIVE"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Celadon Books",
       "phone": "3216549870",
       "website": "https://www.celadonbooks.com",
       "email": "info@celadon.com",
-      "state": "New York"
+      "state": "ACTIVE"
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "G.P. Putnam’s Sons",
       "phone": "9998887777",
       "website": "https://www.penguinrandomhouse.com",
       "email": "help@putnam.com",
-      "state": "New York"
+      "state": "INACTIVE"
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Prentice Hall",
       "phone": "8005551212",
       "website": "https://www.pearson.com",
       "email": "info@prentice.com",
-      "state": "New Jersey"
+      "state": "ACTIVE"
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Addison-Wesley Professional",
       "phone": "1231231234",
       "website": "https://www.awl.com/professional",
       "email": "editorial@awl.com",
-      "state": "Massachusetts"
-    },
-    {
-      "id": "9",
-      "name": "Penguin Random House xd",
-      "phone": "8777777777",
-      "website": "https://www.penguinrandomhouse.com",
-      "email": "prh@penguin.com",
-      "state": "New York"
-    },
-    {
-      "id": "738746",
-      "name": "storebooks",
-      "phone": "984164357",
-      "website": "dsdsd.com",
-      "email": "kevinstevennn768xd@gmail.com",
       "state": "INACTIVE"
     },
     {
-      "id": "330226",
-      "name": "storebooks 2",
-      "phone": "984164357",
-      "website": "dsdsd.com",
-      "email": "kevinstevennn768xd@gmail.com",
+      "id": 9,
+      "name": "Penguin Random House",
+      "phone": "8777777777",
+      "website": "https://www.penguinrandomhouse.com",
+      "email": "prh@penguin.com",
       "state": "ACTIVE"
+    },
+    {
+      "id": 10,
+      "name": "Crown Publishing",
+      "phone": "8009990000",
+      "website": "https://www.crownpublishing.com",
+      "email": "info@crown.com",
+      "state": "INACTIVE"
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Erich",
+      "lastName": "Gamma",
+      "identityNumber": "1234567890",
+      "email": "egamma@example.com",
+      "state": "ACTIVE"
+    },
+    {
+      "id": 2,
+      "name": "Richard",
+      "lastName": "Helm",
+      "identityNumber": "2345678901",
+      "email": "rhelm@example.com",
+      "state": "INACTIVE"
+    },
+    {
+      "id": 3,
+      "name": "Ralph",
+      "lastName": "Johnson",
+      "identityNumber": "3456789012",
+      "email": "rjohnson@example.com",
+      "state": "ACTIVE"
+    },
+    {
+      "id": 4,
+      "name": "Eric",
+      "lastName": "Freeman",
+      "identityNumber": "4567890123",
+      "email": "efreeman@example.com",
+      "state": "INACTIVE"
+    },
+    {
+      "id": 5,
+      "name": "Bert",
+      "lastName": "Bates",
+      "identityNumber": "5678901234",
+      "email": "bbates@example.com",
+      "state": "ACTIVE"
+    },
+    {
+      "id": 6,
+      "name": "Kathy",
+      "lastName": "Sierra",
+      "identityNumber": "6789012345",
+      "email": "ksierra@example.com",
+      "state": "INACTIVE"
+    },
+    {
+      "id": 7,
+      "name": "Paulo",
+      "lastName": "Coelho",
+      "identityNumber": "7890123456",
+      "email": "pcoelho@example.com",
+      "state": "ACTIVE"
+    },
+    {
+      "id": 8,
+      "name": "Yuval",
+      "lastName": "Harari",
+      "identityNumber": "8901234567",
+      "email": "yharari@example.com",
+      "state": "INACTIVE"
+    },
+    {
+      "id": 9,
+      "name": "Alex",
+      "lastName": "Michaelides",
+      "identityNumber": "9012345678",
+      "email": "amichaelides@example.com",
+      "state": "ACTIVE"
+    },
+    {
+      "id": 10,
+      "name": "Delia",
+      "lastName": "Owens",
+      "identityNumber": "0123456789",
+      "email": "dowens@example.com",
+      "state": "INACTIVE"
     }
   ]
 }
