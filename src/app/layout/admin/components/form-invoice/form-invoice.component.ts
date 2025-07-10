@@ -2,15 +2,15 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Invoice } from '../../../../shared/models/invoice.model';
 import { Customer } from '../../../../shared/models/customer.model';
 import { Book } from '../../../../shared/models/book.model';
-import { MOCK_BOOKS } from '../../../../features/mocks/books-data.mock';
 import { InvoiceItemDetails } from '../../../../shared/models/invoice-item-details.mode';
+import { InvoiceItemRequest } from '../../../../shared/models/request/invoice-item-request.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
 import { Store } from '@ngrx/store';
 import { loadCustomers, loadCustomersSelector } from '../../../../features/customers/store';
 import { loadBooks, loadBooksSelector } from '../../../../features/books/store';
-
+import { InvoicesService } from '../../../../features/invoices/invoices.service';
+import { createInvoice } from '../../../../features/invoices/store/invoice.actions';
 
 @Component({
   selector: 'app-form-invoice',
@@ -23,7 +23,7 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
 
   private store = inject(Store);
 
-  // Buscadores
+
   searchCustomerText = '';
   searchBookText = '';
 
@@ -32,12 +32,11 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
 
   selectedCustomer: Customer | null = null;
 
-  //Lista de datos a seleccionar
   customers$: Customer[] = [];
   books$: Book[] = [];
 
-  // Factura
   invoice: Invoice = {
+    id: 0,
     numberInvoice: '',
     customer: new Customer(),
     createdAt: new Date().toISOString(),
@@ -55,7 +54,7 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
   loadCustomersAndBooks() {
     this.store.select(loadCustomersSelector).subscribe(customers => {
       if (customers.length === 0) this.store.dispatch(loadCustomers());
-      this.customers$ = customers
+      this.customers$ = customers;
     });
 
     this.store.select(loadBooksSelector).subscribe(books => {
@@ -79,12 +78,10 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Devuelve el stock disponible según el ID del libro
   getBookStock(bookId: number): number {
     const book = this.books$.find(b => b.id === bookId);
     return book?.stock || 1;
   }
-
 
   onSearchCustomer() {
     const term = this.searchCustomerText.toLowerCase();
@@ -148,6 +145,7 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
 
   resetInvoice() {
     this.invoice = {
+      id: 0,
       numberInvoice: '',
       customer: new Customer(),
       createdAt: new Date().toISOString(),
@@ -170,13 +168,18 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
       return;
     }
 
+    const invoiceRequest = {
+      customerId: this.selectedCustomer.id,
+      items: this.invoice.items.map(item => ({
+        bookId: item.id,
+        quantity: item.quantity
+      } as InvoiceItemRequest))
+    };
+    console.log('Factura para enviar:', invoiceRequest);
+    this.store.dispatch(createInvoice({ newItem: invoiceRequest }));
     this.resetInvoice();
-    this.clearSelectedCustomer()
-    console.log('Factura generada:', this.invoice);
+    this.clearSelectedCustomer();
   }
 
-  ngOnDestroy(): void {
-
-  }
-
+  ngOnDestroy(): void { }
 }

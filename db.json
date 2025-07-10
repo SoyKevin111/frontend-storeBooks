@@ -109,16 +109,6 @@
       "address": "Flor de bastión",
       "phone": "984164357",
       "state": "INACTIVE"
-    },
-    {
-      "id": "924929",
-      "name": "Diana ",
-      "lastName": "Medina",
-      "identityNumber": "123456789",
-      "dateOfBirth": "2025-07-17",
-      "address": "peru, lince",
-      "phone": "984164357",
-      "state": "ACTIVE"
     }
   ],
   "administrators": [
@@ -219,14 +209,6 @@
       "website": "https://www.crownpublishing.com",
       "email": "info@crown.com",
       "state": "INACTIVE"
-    },
-    {
-      "id": "987092",
-      "name": "editorialRandom",
-      "phone": "984164357",
-      "website": "dsdsd.com",
-      "email": "kevinstevennn768xd@gmail.com",
-      "state": "ACTIVE"
     }
   ],
   "authors": [
@@ -304,18 +286,10 @@
     },
     {
       "id": "10",
-      "name": "Delia",
+      "name": "Deliad",
       "lastName": "Owens",
-      "identityNumber": "0123456789",
+      "identityNumber": "123456782",
       "email": "dowens@example.com",
-      "state": "INACTIVE"
-    },
-    {
-      "id": "423778",
-      "name": "Kevin",
-      "lastName": "Lema",
-      "identityNumber": "951399682",
-      "email": "kevinstevennn768xd@gmail.com",
       "state": "Active"
     }
   ],
@@ -511,6 +485,51 @@
       ]
     },
     {
+      "id": "7",
+      "isbn": "9780321356680",
+      "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+      "description": "The classic book on object-oriented design.",
+      "editorial": {
+        "id": 1,
+        "name": "Addison-Wesley",
+        "phone": "1234567890",
+        "website": "https://www.awl.com",
+        "email": "contact@awl.com",
+        "state": "ACTIVE"
+      },
+      "dateCreated": "1994-10-31",
+      "price": 60,
+      "stock": 22,
+      "category": "Software Engineering",
+      "bestSeller": true,
+      "authors": [
+        {
+          "id": 1,
+          "name": "Erich",
+          "lastName": "Gamma",
+          "identityNumber": "1234567890",
+          "email": "egamma@example.com",
+          "state": "ACTIVE"
+        },
+        {
+          "id": 2,
+          "name": "Richard",
+          "lastName": "Helm",
+          "identityNumber": "2345678901",
+          "email": "rhelm@example.com",
+          "state": "INACTIVE"
+        },
+        {
+          "id": 3,
+          "name": "Ralph",
+          "lastName": "Johnson",
+          "identityNumber": "3456789012",
+          "email": "rjohnson@example.com",
+          "state": "ACTIVE"
+        }
+      ]
+    },
+    {
       "id": "8",
       "isbn": "9780596009205",
       "title": "Head First Java",
@@ -549,15 +568,15 @@
     },
     {
       "id": "9",
-      "isbn": "123-232-4545-22",
+      "isbn": "9780143127741",
       "title": "Homo Deus",
       "description": "Explores the future of humankind.",
       "editorial": {
-        "id": 1,
-        "name": "Addison-Wesley",
-        "phone": "1234567890",
-        "website": "https://www.awl.com",
-        "email": "contact@awl.com",
+        "id": 9,
+        "name": "Penguin Random House",
+        "phone": "8777777777",
+        "website": "https://www.penguinrandomhouse.com",
+        "email": "prh@penguin.com",
         "state": "ACTIVE"
       },
       "dateCreated": "2017-02-21",
@@ -567,43 +586,27 @@
       "bestSeller": true,
       "authors": [
         {
-          "id": 1,
-          "name": "Erich",
-          "lastName": "Gamma",
-          "identityNumber": "1234567890",
-          "email": "egamma@example.com",
-          "state": "ACTIVE"
-        },
-        {
-          "id": 2,
-          "name": "Richard",
-          "lastName": "Helm",
-          "identityNumber": "2345678901",
-          "email": "rhelm@example.com",
+          "id": 8,
+          "name": "Yuval",
+          "lastName": "Harari",
+          "identityNumber": "8901234567",
+          "email": "yharari@example.com",
           "state": "INACTIVE"
-        },
-        {
-          "id": 3,
-          "name": "Ralph",
-          "lastName": "Johnson",
-          "identityNumber": "3456789012",
-          "email": "rjohnson@example.com",
-          "state": "ACTIVE"
         }
       ]
     },
     {
       "id": "10",
-      "isbn": "9780137081073",
+      "isbn": "123-232-4545-22",
       "title": "Effective Java",
       "description": "Best practices for the Java platform.",
       "editorial": {
-        "id": 8,
-        "name": "Addison-Wesley Professional",
-        "phone": "1231231234",
-        "website": "https://www.awl.com/professional",
-        "email": "editorial@awl.com",
-        "state": "INACTIVE"
+        "id": 1,
+        "name": "Addison-Wesley",
+        "phone": "1234567890",
+        "website": "https://www.awl.com",
+        "email": "contact@awl.com",
+        "state": "ACTIVE"
       },
       "dateCreated": "2018-01-06",
       "price": 52.5,
@@ -612,155 +615,536 @@
       "bestSeller": true,
       "authors": [
         {
-          "id": 5,
-          "name": "Bert",
-          "lastName": "Bates",
-          "identityNumber": "5678901234",
-          "email": "bbates@example.com",
+          "id": 1,
+          "name": "Erich",
+          "lastName": "Gamma",
+          "identityNumber": "1234567890",
+          "email": "egamma@example.com",
           "state": "ACTIVE"
         },
+        {
+          "id": 2,
+          "name": "Richard",
+          "lastName": "Helm",
+          "identityNumber": "2345678901",
+          "email": "rhelm@example.com",
+          "state": "INACTIVE"
+        },
+        {
+          "id": 3,
+          "name": "Ralph",
+          "lastName": "Johnson",
+          "identityNumber": "3456789012",
+          "email": "rjohnson@example.com",
+          "state": "ACTIVE"
+        }
+      ]
+    }
+  ],
+  "invoices": [
+    {
+      "id": "1",
+      "numberInvoice": "INV-1001",
+      "customer": {
+        "id": 1,
+        "name": "Maria",
+        "lastName": "Gonzalez",
+        "dateOfBirth": "1985-03-12",
+        "address": "Av. Central 123",
+        "phone": "0998765432",
+        "identityNumber": "0102030405",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-06-01",
+      "iva": 15,
+      "ivaTotal": 11.85,
+      "subtotal": 79,
+      "total": 90.85,
+      "items": [
+        {
+          "id": 1,
+          "bookName": "One Hundred Years of Solitude",
+          "priceUnit": 18,
+          "quantity": 2,
+          "subtotal": 36,
+          "isbn": "9780060883287"
+        },
+        {
+          "id": 2,
+          "bookName": "The Little Prince",
+          "priceUnit": 12,
+          "quantity": 1,
+          "subtotal": 12,
+          "isbn": "9780156012195"
+        },
+        {
+          "id": 3,
+          "bookName": "Pride and Prejudice",
+          "priceUnit": 14,
+          "quantity": 1,
+          "subtotal": 14,
+          "isbn": "9781503290563"
+        },
+        {
+          "id": 4,
+          "bookName": "1984",
+          "priceUnit": 13,
+          "quantity": 1,
+          "subtotal": 13,
+          "isbn": "9780451524935"
+        },
+        {
+          "id": 5,
+          "bookName": "The Alchemist",
+          "priceUnit": 4,
+          "quantity": 1,
+          "subtotal": 4,
+          "isbn": "9780061122415"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "numberInvoice": "INV-1002",
+      "customer": {
+        "id": 2,
+        "name": "Carlos",
+        "lastName": "Ramirez",
+        "dateOfBirth": "1990-07-25",
+        "address": "Calle Luna 456",
+        "phone": "0987654321",
+        "identityNumber": "0203040506",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-06-02",
+      "iva": 15,
+      "ivaTotal": 9.3,
+      "subtotal": 62,
+      "total": 71.3,
+      "items": [
         {
           "id": 6,
-          "name": "Kathy",
-          "lastName": "Sierra",
-          "identityNumber": "6789012345",
-          "email": "ksierra@example.com",
-          "state": "INACTIVE"
+          "bookName": "The Great Gatsby",
+          "priceUnit": 13,
+          "quantity": 2,
+          "subtotal": 26,
+          "isbn": "9780743273565"
+        },
+        {
+          "id": 7,
+          "bookName": "Brave New World",
+          "priceUnit": 12,
+          "quantity": 2,
+          "subtotal": 24,
+          "isbn": "9780060850524"
+        },
+        {
+          "id": 8,
+          "bookName": "Jane Eyre",
+          "priceUnit": 16,
+          "quantity": 1,
+          "subtotal": 16,
+          "isbn": "9780141441146"
+        },
+        {
+          "id": 9,
+          "bookName": "The Catcher in the Rye",
+          "priceUnit": 8,
+          "quantity": 1,
+          "subtotal": 8,
+          "isbn": "9780316769488"
+        },
+        {
+          "id": 10,
+          "bookName": "Animal Farm",
+          "priceUnit": 3,
+          "quantity": 1,
+          "subtotal": 3,
+          "isbn": "9780451526342"
         }
       ]
     },
     {
-      "id": "592208",
-      "isbn": "123-232-4545-22",
-      "title": "ddddddddddd",
-      "description": "ddddddddddd",
-      "editorial": {
-        "id": 1,
-        "name": "Addison-Wesley",
-        "phone": "1234567890",
-        "website": "https://www.awl.com",
-        "email": "contact@awl.com",
+      "id": "3",
+      "numberInvoice": "INV-1003",
+      "customer": {
+        "id": 3,
+        "name": "Laura",
+        "lastName": "Mendez",
+        "dateOfBirth": "1988-12-03",
+        "address": "Av. Siempre Viva 789",
+        "phone": "0976543210",
+        "identityNumber": "0304050607",
         "state": "ACTIVE"
       },
-      "dateCreated": "2025-07-10",
-      "price": 10,
-      "stock": 20,
-      "category": "Programming",
-      "bestSeller": true,
-      "authors": [
+      "createdAt": "2025-06-03",
+      "iva": 15,
+      "ivaTotal": 13.95,
+      "subtotal": 93,
+      "total": 106.95,
+      "items": [
         {
-          "id": 1,
-          "name": "Erich",
-          "lastName": "Gamma",
-          "identityNumber": "1234567890",
-          "email": "egamma@example.com",
-          "state": "ACTIVE"
+          "id": 11,
+          "bookName": "Don Quixote",
+          "priceUnit": 20,
+          "quantity": 3,
+          "subtotal": 60,
+          "isbn": "9780060934347"
         },
         {
-          "id": 2,
-          "name": "Richard",
-          "lastName": "Helm",
-          "identityNumber": "2345678901",
-          "email": "rhelm@example.com",
-          "state": "INACTIVE"
+          "id": 12,
+          "bookName": "The Hobbit",
+          "priceUnit": 11,
+          "quantity": 1,
+          "subtotal": 11,
+          "isbn": "9780547928227"
         },
         {
-          "id": 3,
-          "name": "Ralph",
-          "lastName": "Johnson",
-          "identityNumber": "3456789012",
-          "email": "rjohnson@example.com",
-          "state": "ACTIVE"
+          "id": 13,
+          "bookName": "Moby Dick",
+          "priceUnit": 9,
+          "quantity": 2,
+          "subtotal": 18,
+          "isbn": "9781503280786"
+        },
+        {
+          "id": 14,
+          "bookName": "War and Peace",
+          "priceUnit": 10,
+          "quantity": 1,
+          "subtotal": 10,
+          "isbn": "9780199232765"
+        },
+        {
+          "id": 15,
+          "bookName": "The Odyssey",
+          "priceUnit": 4,
+          "quantity": 1,
+          "subtotal": 4,
+          "isbn": "9780140268867"
         }
       ]
     },
     {
-      "id": "242710",
-      "isbn": "123-232-4545-22",
-      "title": "milibro",
-      "description": "nada que ver",
-      "editorial": {
-        "id": 1,
-        "name": "Addison-Wesley",
-        "phone": "1234567890",
-        "website": "https://www.awl.com",
-        "email": "contact@awl.com",
+      "id": "4",
+      "numberInvoice": "INV-1004",
+      "customer": {
+        "id": 4,
+        "name": "Jorge",
+        "lastName": "Vargas",
+        "dateOfBirth": "1995-05-18",
+        "address": "Calle Falsa 123",
+        "phone": "0965432109",
+        "identityNumber": "0405060708",
         "state": "ACTIVE"
       },
-      "dateCreated": "2025-07-04",
-      "price": 12.5,
-      "stock": 7,
-      "category": "Fiction",
-      "bestSeller": true,
-      "authors": [
+      "createdAt": "2025-06-04",
+      "iva": 15,
+      "ivaTotal": 10.5,
+      "subtotal": 70,
+      "total": 80.5,
+      "items": [
         {
-          "id": 1,
-          "name": "Erich",
-          "lastName": "Gamma",
-          "identityNumber": "1234567890",
-          "email": "egamma@example.com",
-          "state": "ACTIVE"
+          "id": 16,
+          "bookName": "The Catcher in the Rye",
+          "priceUnit": 8,
+          "quantity": 2,
+          "subtotal": 16,
+          "isbn": "9780316769488"
         },
         {
-          "id": 2,
-          "name": "Richard",
-          "lastName": "Helm",
-          "identityNumber": "2345678901",
-          "email": "rhelm@example.com",
-          "state": "INACTIVE"
+          "id": 17,
+          "bookName": "Fahrenheit 451",
+          "priceUnit": 11,
+          "quantity": 2,
+          "subtotal": 22,
+          "isbn": "9781451673319"
         },
         {
-          "id": 3,
-          "name": "Ralph",
-          "lastName": "Johnson",
-          "identityNumber": "3456789012",
-          "email": "rjohnson@example.com",
-          "state": "ACTIVE"
+          "id": 18,
+          "bookName": "To Kill a Mockingbird",
+          "priceUnit": 16,
+          "quantity": 1,
+          "subtotal": 16,
+          "isbn": "9780060935467"
+        },
+        {
+          "id": 19,
+          "bookName": "The Lord of the Rings",
+          "priceUnit": 15,
+          "quantity": 1,
+          "subtotal": 15,
+          "isbn": "9780618640157"
+        },
+        {
+          "id": 20,
+          "bookName": "Dracula",
+          "priceUnit": 6,
+          "quantity": 1,
+          "subtotal": 6,
+          "isbn": "9780141439846"
         }
       ]
     },
     {
-      "id": "842271",
-      "isbn": "123-232-4545-22",
-      "title": "Mushoku Tensei Vol 2",
-      "description": "lorem ipsum dor isued grammar",
-      "editorial": {
-        "id": 1,
-        "name": "Addison-Wesley",
-        "phone": "1234567890",
-        "website": "https://www.awl.com",
-        "email": "contact@awl.com",
+      "id": "5",
+      "numberInvoice": "INV-1005",
+      "customer": {
+        "id": 5,
+        "name": "Ana",
+        "lastName": "Lopez",
+        "dateOfBirth": "1992-09-09",
+        "address": "Av. Libertad 321",
+        "phone": "0954321098",
+        "identityNumber": "0506070809",
         "state": "ACTIVE"
       },
-      "dateCreated": "2025-07-17",
-      "price": 25,
-      "stock": 4,
-      "category": "Fiction",
-      "bestSeller": true,
-      "authors": [
+      "createdAt": "2025-06-05",
+      "iva": 15,
+      "ivaTotal": 8.25,
+      "subtotal": 55,
+      "total": 63.25,
+      "items": [
         {
-          "id": 1,
-          "name": "Erich",
-          "lastName": "Gamma",
-          "identityNumber": "1234567890",
-          "email": "egamma@example.com",
-          "state": "ACTIVE"
+          "id": 21,
+          "bookName": "Frankenstein",
+          "priceUnit": 9,
+          "quantity": 3,
+          "subtotal": 27,
+          "isbn": "9780486282114"
         },
         {
-          "id": 2,
-          "name": "Richard",
-          "lastName": "Helm",
-          "identityNumber": "2345678901",
-          "email": "rhelm@example.com",
-          "state": "INACTIVE"
+          "id": 22,
+          "bookName": "Dr. Jekyll and Mr. Hyde",
+          "priceUnit": 8,
+          "quantity": 2,
+          "subtotal": 16,
+          "isbn": "9780486472154"
         },
         {
-          "id": 3,
-          "name": "Ralph",
-          "lastName": "Johnson",
-          "identityNumber": "3456789012",
-          "email": "rjohnson@example.com",
-          "state": "ACTIVE"
+          "id": 23,
+          "bookName": "The Picture of Dorian Gray",
+          "priceUnit": 10,
+          "quantity": 1,
+          "subtotal": 10,
+          "isbn": "9780141439570"
+        },
+        {
+          "id": 24,
+          "bookName": "The Grapes of Wrath",
+          "priceUnit": 12,
+          "quantity": 1,
+          "subtotal": 12,
+          "isbn": "9780143039433"
+        },
+        {
+          "id": 25,
+          "bookName": "Heart of Darkness",
+          "priceUnit": 5,
+          "quantity": 1,
+          "subtotal": 5,
+          "isbn": "9780486264646"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "numberInvoice": "INV-1006",
+      "customer": {
+        "id": 6,
+        "name": "Luis",
+        "lastName": "Martinez",
+        "dateOfBirth": "1980-11-21",
+        "address": "Calle Verde 654",
+        "phone": "0943210987",
+        "identityNumber": "0607080910",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-06-06",
+      "iva": 15,
+      "ivaTotal": 12.45,
+      "subtotal": 83,
+      "total": 95.45,
+      "items": [
+        {
+          "id": 26,
+          "bookName": "The Brothers Karamazov",
+          "priceUnit": 17,
+          "quantity": 2,
+          "subtotal": 34,
+          "isbn": "9780374528379"
+        },
+        {
+          "id": 27,
+          "bookName": "Les Misérables",
+          "priceUnit": 20,
+          "quantity": 2,
+          "subtotal": 40,
+          "isbn": "9780451419439"
+        },
+        {
+          "id": 28,
+          "bookName": "The Count of Monte Cristo",
+          "priceUnit": 9,
+          "quantity": 1,
+          "subtotal": 9,
+          "isbn": "9780140449266"
+        },
+        {
+          "id": 29,
+          "bookName": "Wuthering Heights",
+          "priceUnit": 10,
+          "quantity": 1,
+          "subtotal": 10,
+          "isbn": "9780141439556"
+        },
+        {
+          "id": 30,
+          "bookName": "Crime and Punishment",
+          "priceUnit": 10,
+          "quantity": 1,
+          "subtotal": 10,
+          "isbn": "9780140449136"
+        }
+      ]
+    },
+    {
+      "id": "262180",
+      "numberInvoice": "INV-001",
+      "customer": {
+        "id": "1",
+        "name": "Carlos",
+        "lastName": "Mendoza",
+        "dateOfBirth": "1990-08-15",
+        "address": "Av. Central 123, Quito",
+        "phone": "0991234567",
+        "identityNumber": "1723456789",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-07-10T03:00:40.923Z",
+      "iva": 15,
+      "ivaTotal": 30,
+      "subtotal": 200,
+      "total": 230,
+      "items": [
+        {
+          "id": "1",
+          "isbn": "978-000000001",
+          "bookName": "Libro 1",
+          "priceUnit": 50,
+          "quantity": 1,
+          "subtotal": 50
+        },
+        {
+          "id": "8",
+          "isbn": "978-000000008",
+          "bookName": "Libro 8",
+          "priceUnit": 50,
+          "quantity": 1,
+          "subtotal": 50
+        },
+        {
+          "id": "9",
+          "isbn": "978-000000009",
+          "bookName": "Libro 9",
+          "priceUnit": 50,
+          "quantity": 1,
+          "subtotal": 50
+        }
+      ]
+    },
+    {
+      "id": "235864",
+      "numberInvoice": "INV-001",
+      "customer": {
+        "id": "905110",
+        "name": "Carlos",
+        "lastName": "Mendoza",
+        "dateOfBirth": "1990-08-15",
+        "address": "Av. Central 123, Quito",
+        "phone": "0991234567",
+        "identityNumber": "1723456789",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-07-10T03:01:20.020Z",
+      "iva": 15,
+      "ivaTotal": 30,
+      "subtotal": 200,
+      "total": 230,
+      "items": [
+        {
+          "id": "8",
+          "isbn": "978-000000008",
+          "bookName": "Libro 8",
+          "priceUnit": 50,
+          "quantity": 1,
+          "subtotal": 50
+        }
+      ]
+    },
+    {
+      "id": "718255",
+      "numberInvoice": "INV-001",
+      "customer": {
+        "id": "9",
+        "name": "Carlos",
+        "lastName": "Mendoza",
+        "dateOfBirth": "1990-08-15",
+        "address": "Av. Central 123, Quito",
+        "phone": "0991234567",
+        "identityNumber": "1723456789",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-07-10T03:04:03.345Z",
+      "iva": 15,
+      "ivaTotal": 30,
+      "subtotal": 200,
+      "total": 230,
+      "items": [
+        {
+          "id": "8",
+          "isbn": "978-000000008",
+          "bookName": "Libro 8",
+          "priceUnit": 50,
+          "quantity": 7,
+          "subtotal": 350
+        }
+      ]
+    },
+    {
+      "id": "984886",
+      "numberInvoice": "INV-001",
+      "customer": {
+        "id": "905110",
+        "name": "Carlos",
+        "lastName": "Mendoza",
+        "dateOfBirth": "1990-08-15",
+        "address": "Av. Central 123, Quito",
+        "phone": "0991234567",
+        "identityNumber": "1723456789",
+        "state": "ACTIVE"
+      },
+      "createdAt": "2025-07-10T03:06:51.336Z",
+      "iva": 15,
+      "ivaTotal": 30,
+      "subtotal": 200,
+      "total": 230,
+      "items": [
+        {
+          "id": "2",
+          "isbn": "978-000000002",
+          "bookName": "Libro 2",
+          "priceUnit": 50,
+          "quantity": 1,
+          "subtotal": 50
+        },
+        {
+          "id": "7",
+          "isbn": "978-000000007",
+          "bookName": "Libro 7",
+          "priceUnit": 50,
+          "quantity": 1,
+          "subtotal": 50
         }
       ]
     }

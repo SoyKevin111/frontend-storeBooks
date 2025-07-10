@@ -1,7 +1,8 @@
 import { Invoice } from "../../shared/models/invoice.model";
 
-export const MOCK_INVOICES: Invoice[] = [
+export const MOCK_INVOICES_DATA: Invoice[] = [
 	{
+		id: 1,
 		numberInvoice: 'INV-1001',
 		customer: { id: 1, name: 'Maria', lastName: 'Gonzalez', dateOfBirth: '1985-03-12', address: 'Av. Central 123', phone: '0998765432', identityNumber: '0102030405', state: 'ACTIVE' },
 		createdAt: '2025-06-01',
@@ -18,6 +19,7 @@ export const MOCK_INVOICES: Invoice[] = [
 		]
 	},
 	{
+		id: 2,
 		numberInvoice: 'INV-1002',
 		customer: { id: 2, name: 'Carlos', lastName: 'Ramirez', dateOfBirth: '1990-07-25', address: 'Calle Luna 456', phone: '0987654321', identityNumber: '0203040506', state: 'ACTIVE' },
 		createdAt: '2025-06-02',
@@ -34,6 +36,7 @@ export const MOCK_INVOICES: Invoice[] = [
 		]
 	},
 	{
+		id: 3,
 		numberInvoice: 'INV-1003',
 		customer: { id: 3, name: 'Laura', lastName: 'Mendez', dateOfBirth: '1988-12-03', address: 'Av. Siempre Viva 789', phone: '0976543210', identityNumber: '0304050607', state: 'ACTIVE' },
 		createdAt: '2025-06-03',
@@ -50,6 +53,7 @@ export const MOCK_INVOICES: Invoice[] = [
 		]
 	},
 	{
+		id: 4,
 		numberInvoice: 'INV-1004',
 		customer: { id: 4, name: 'Jorge', lastName: 'Vargas', dateOfBirth: '1995-05-18', address: 'Calle Falsa 123', phone: '0965432109', identityNumber: '0405060708', state: 'ACTIVE' },
 		createdAt: '2025-06-04',
@@ -66,6 +70,7 @@ export const MOCK_INVOICES: Invoice[] = [
 		]
 	},
 	{
+		id: 5,
 		numberInvoice: 'INV-1005',
 		customer: { id: 5, name: 'Ana', lastName: 'Lopez', dateOfBirth: '1992-09-09', address: 'Av. Libertad 321', phone: '0954321098', identityNumber: '0506070809', state: 'ACTIVE' },
 		createdAt: '2025-06-05',
@@ -82,6 +87,7 @@ export const MOCK_INVOICES: Invoice[] = [
 		]
 	},
 	{
+		id: 6,
 		numberInvoice: 'INV-1006',
 		customer: { id: 6, name: 'Luis', lastName: 'Martinez', dateOfBirth: '1980-11-21', address: 'Calle Verde 654', phone: '0943210987', identityNumber: '0607080910', state: 'ACTIVE' },
 		createdAt: '2025-06-06',

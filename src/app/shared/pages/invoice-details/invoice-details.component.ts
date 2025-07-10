@@ -24,7 +24,7 @@ export class InvoiceDetailsComponent implements OnInit {
   }
 
   redirectBack() {
-    this.router.navigate(['/storebooks/admin/invoices'])
+    this.router.navigate(['/storebooks/admin/invoice-history'])
   }
 
 }

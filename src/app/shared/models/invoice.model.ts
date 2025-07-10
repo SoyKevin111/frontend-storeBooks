@@ -2,6 +2,7 @@ import { InvoiceItemDetails } from "./invoice-item-details.mode";
 import { Customer } from "./customer.model";
 
 export class Invoice {
+	id: number = 0;
 	numberInvoice:string = '';
 	customer: Customer = new Customer();
 	createdAt: string = '';
