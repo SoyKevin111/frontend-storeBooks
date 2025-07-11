@@ -36,8 +36,13 @@ export class CustomersComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
+    let customersLoadedOnce = false;
+
     const sub = this.store.select(loadCustomersSelector).subscribe(customers => {
-      if (customers.length === 0) this.store.dispatch(loadCustomers());
+      if (!customersLoadedOnce && customers.length === 0) {
+        this.store.dispatch(loadCustomers());
+        customersLoadedOnce = true;
+      }
       this.customers$ = customers;
     });
 

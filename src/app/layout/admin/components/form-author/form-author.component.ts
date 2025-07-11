@@ -24,12 +24,12 @@ export class FormAuthorComponent implements OnInit {
   private _fb = inject(FormBuilder);
 
   toggleState = false;
-  stateOptions = ['Active', 'Inactive'];
+  stateOptions = ['ACTIVE', 'INACTIVE'];
 
   authorForm = this._fb.group({
     name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
     lastName: ['', [Validators.required, Validators.maxLength(15), Validators.pattern(/^(?!\s*$).+/)]],
-    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
+    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     email: ['', [Validators.required, Validators.email]],
     state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
   });
@@ -39,6 +39,13 @@ export class FormAuthorComponent implements OnInit {
   ngOnInit() {
     if (!this.author) return;
     this.authorForm.patchValue({ ...this.author });
+  }
+
+  allowOnlyNumbers(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
   }
 
   selectState(state: string) {

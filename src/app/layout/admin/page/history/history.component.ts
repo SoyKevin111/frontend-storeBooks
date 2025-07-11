@@ -36,21 +36,24 @@ export class HistoryComponent implements OnInit, OnDestroy {
   }
 
   loadInvoices() {
-
+    let invoicesLoadedOnce = false;
 
     const sub = this.store.select(loadInvoicesSelector).subscribe(invoices => {
-      if (invoices.length === 0) this.store.dispatch(loadInvoices());
-      this.invoices$ = invoices.map((invoice) => {
-        return {
-          customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
-          state: 'Issued',
-          ...invoice
-        };
-      });;
+      if (!invoicesLoadedOnce && invoices.length === 0) {
+        this.store.dispatch(loadInvoices());
+        invoicesLoadedOnce = true;
+      }
+
+      this.invoices$ = invoices.map(invoice => ({
+        customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
+        state: 'Issued',
+        ...invoice
+      }));
     });
 
     this.suscription.add(sub);
   }
+
 
   viewInvoice(invoice: any) {
     this.router.navigate(['/storebooks/invoice-details'], { state: { invoice } });

@@ -36,10 +36,18 @@ export class BooksComponent implements OnInit, OnDestroy {
     { field: 'price', header: 'Price' },
     { field: 'stock', header: 'Stock' }
   ];
+
   ngOnInit(): void {
+    let booksLoadedOnce = false;
 
     const sub = this.store.select(loadBooksSelector).subscribe(booksLoaded => {
-      if (booksLoaded.length === 0) this.store.dispatch(loadBooks());
+      // Evita múltiples dispatch cuando el store está vacío varias veces (por ejemplo al recargar)
+      if (!booksLoadedOnce && booksLoaded.length === 0) {
+        this.store.dispatch(loadBooks());
+        booksLoadedOnce = true;
+      }
+
+      // Mapeamos los datos con campos extra
       this.booksWithExtras$ = booksLoaded.map(book => ({
         ...book,
         editorialName: book.editorial?.name || '',
@@ -49,6 +57,7 @@ export class BooksComponent implements OnInit, OnDestroy {
 
     this.subscription.add(sub);
   }
+
 
   createBook() {
     console.log('Create book clicked');

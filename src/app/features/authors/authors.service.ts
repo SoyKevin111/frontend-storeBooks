@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CrudService } from '../../shared/common/crud.service';
 import { Author } from '../../shared/models/author.model';
 
-const API_URL = 'http://localhost:3000/authors';
+const API_URL = 'http://localhost:8080/storebooks/authors';
 
 @Injectable({
   providedIn: 'root'

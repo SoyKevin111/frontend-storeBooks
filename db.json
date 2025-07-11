@@ -61,16 +61,6 @@
       "state": "ACTIVE"
     },
     {
-      "id": "7",
-      "name": "Diego",
-      "lastName": "Sánchez",
-      "dateOfBirth": "1991-09-14",
-      "address": "Av. Central 159",
-      "phone": "5550004321",
-      "identityNumber": "3344556677",
-      "state": "ACTIVE"
-    },
-    {
       "id": "8",
       "name": "Lucía",
       "lastName": "Mendoza",
@@ -107,6 +97,16 @@
       "identityNumber": "9513996822",
       "dateOfBirth": "2025-07-04",
       "address": "Flor de bastión",
+      "phone": "984164357",
+      "state": "INACTIVE"
+    },
+    {
+      "id": 0,
+      "name": "kevin Steven",
+      "lastName": "Lema Coro",
+      "identityNumber": "123456789",
+      "dateOfBirth": "2025-07-23",
+      "address": "flor de bastion",
       "phone": "984164357",
       "state": "INACTIVE"
     }

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Book } from '../../shared/models/book.model';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BookRequest } from '../../shared/models/request/book-request.model';
 import { Title } from '@angular/platform-browser';
@@ -11,38 +11,40 @@ import { Title } from '@angular/platform-browser';
 })
 export class BooksService {
 
-	API_URL: string = 'http://localhost:3000/books';
+	API_URL: string = 'http://localhost:8080/storebooks/books';
 	private http = inject(HttpClient);
 
 	constructor() { }
 
 	findAll(): Observable<Book[]> {
-		return this.http.get<Book[]>(this.API_URL);
+		return this.http.get<Book[]>(this.API_URL).pipe(
+			tap(data => console.log(data))
+		);
 	}
 
-	/* 	create(bookRequest: BookRequest): Observable<Book> {
-			return this.http.post<Book>(this.API_URL, bookRequest); //para el backend
-		} */
-
-	/* 	update(book: BookRequest, id: number): Observable<Book> {
-			return this.http.put<Book>(`${this.API_URL}/${id}}`, book);
-		} */
-
-	create(book: BookRequest): Observable<Book> { //solo para json
-
-		const bookMapping = this.mappingBook(book);
-		const bookWithId = {
-			...bookMapping,
-			id: String(Math.floor(Math.random() * 1000000) + 1)
-		};
-		console.log(bookWithId);
-		return this.http.post<Book>(this.API_URL, bookWithId);
+	create(bookRequest: BookRequest): Observable<Book> {
+		return this.http.post<Book>(this.API_URL, bookRequest); //para el backend
 	}
 
 	update(book: BookRequest, id: number): Observable<Book> {
-		const bookMapping = this.mappingBook(book);
-		return this.http.put<Book>(`${this.API_URL}/${String(id)}`, bookMapping);
+		return this.http.put<Book>(`${this.API_URL}/${id}`, book);
 	}
+
+	/* 	create(book: BookRequest): Observable<Book> { //solo para json
+	
+			const bookMapping = this.mappingBook(book);
+			const bookWithId = {
+				...bookMapping,
+				id: String(Math.floor(Math.random() * 1000000) + 1)
+			};
+			console.log(bookWithId);
+			return this.http.post<Book>(this.API_URL, bookWithId);
+		}
+	
+		update(book: BookRequest, id: number): Observable<Book> {
+			const bookMapping = this.mappingBook(book);
+			return this.http.put<Book>(`${this.API_URL}/${String(id)}`, bookMapping);
+		} */
 
 	delete(id: number): Observable<void> {
 		return this.http.delete<void>(`${this.API_URL}/${id}`);

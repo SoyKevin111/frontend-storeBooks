@@ -11,6 +11,7 @@ import { loadCustomers, loadCustomersSelector } from '../../../../features/custo
 import { loadBooks, loadBooksSelector } from '../../../../features/books/store';
 import { InvoicesService } from '../../../../features/invoices/invoices.service';
 import { createInvoice } from '../../../../features/invoices/store/invoice.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-invoice',
@@ -22,6 +23,7 @@ import { createInvoice } from '../../../../features/invoices/store/invoice.actio
 export class FormInvoiceComponent implements OnInit, OnDestroy {
 
   private store = inject(Store);
+  private suscription = new Subscription();
 
 
   searchCustomerText = '';
@@ -52,16 +54,29 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
   }
 
   loadCustomersAndBooks() {
-    this.store.select(loadCustomersSelector).subscribe(customers => {
-      if (customers.length === 0) this.store.dispatch(loadCustomers());
+    let customersLoadedOnce = false;
+    let booksLoadedOnce = false;
+
+    const sub1 = this.store.select(loadCustomersSelector).subscribe(customers => {
+      if (!customersLoadedOnce && customers.length === 0) {
+        this.store.dispatch(loadCustomers());
+        customersLoadedOnce = true;
+      }
       this.customers$ = customers;
     });
 
-    this.store.select(loadBooksSelector).subscribe(books => {
-      if (books.length === 0) this.store.dispatch(loadBooks());
+    const sub2 = this.store.select(loadBooksSelector).subscribe(books => {
+      if (!booksLoadedOnce && books.length === 0) {
+        this.store.dispatch(loadBooks());
+        booksLoadedOnce = true;
+      }
       this.books$ = books;
     });
+
+    this.suscription.add(sub1);
+    this.suscription.add(sub2);
   }
+
 
   incrementQuantity(item: InvoiceItemDetails) {
     const maxStock = this.getBookStock(item.id);
@@ -181,5 +196,7 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
     this.clearSelectedCustomer();
   }
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
+  }
 }

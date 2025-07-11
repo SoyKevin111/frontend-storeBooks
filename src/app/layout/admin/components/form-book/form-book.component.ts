@@ -33,10 +33,28 @@ export class FormBookComponent implements OnInit, OnDestroy {
 
   private suscription: Subscription = new Subscription();
 
+  editorialId: number | null = null;
+
   animationState = 'modal-animate-in';
   authorOptions$: Author[] = [];
   editorialOptions$: Editorial[] = [];
-  categoryOptions = ['Software Engineering', 'Programming', 'Fiction', 'History', 'Thriller', 'Mystery', 'Philosophy'];
+  categoryOptions = [
+    'FICTION',
+    'NON_FICTION',
+    'SCIENCE',
+    'HISTORY',
+    'FANTASY',
+    'BIOGRAPHY',
+    'MYSTERY',
+    'ROMANCE',
+    'THRILLER',
+    'CHILDREN',
+    'YOUNG_ADULT',
+    'SELF_HELP',
+    'COOKING',
+    'TRAVEL',
+    'HEALTH'
+  ];
 
 
   dropdownState = { editorial: false, category: false, authors: false };
@@ -68,12 +86,22 @@ export class FormBookComponent implements OnInit, OnDestroy {
   }
 
   loadAuthorsAndEditorials() {
+    let authorsLoadedOnce = false;
+    let editorialsLoadedOnce = false;
+
     const sub1 = this.store.select(loadAuthorsSelector).subscribe(authors => {
-      if (authors.length === 0) this.store.dispatch(loadAuthors());
+      if (!authorsLoadedOnce && authors.length === 0) {
+        this.store.dispatch(loadAuthors());
+        authorsLoadedOnce = true;
+      }
       this.authorOptions$ = authors;
     });
+
     const sub2 = this.store.select(loadEditorialsSelector).subscribe(editorials => {
-      if (editorials.length === 0) this.store.dispatch(loadEditorials());
+      if (!editorialsLoadedOnce && editorials.length === 0) {
+        this.store.dispatch(loadEditorials());
+        editorialsLoadedOnce = true;
+      }
       this.editorialOptions$ = editorials;
     });
 
@@ -81,14 +109,17 @@ export class FormBookComponent implements OnInit, OnDestroy {
     this.suscription.add(sub2);
   }
 
+
   toggleDropdown(type: keyof typeof this.dropdownState) {
     this.dropdownState[type] = !this.dropdownState[type];
   }
 
-  toggleSelect(type: 'editorial' | 'category', data: any) {
+  toggleSelect(type: 'editorial' | 'category', data: any, id?: number) {
     this.bookForm.get(type)?.setValue(data);
     this.dropdownState[type] = false;
+    if (id) this.editorialId = id
   }
+
 
   close() {
     this.animationState = 'modal-animate-out';
@@ -147,11 +178,16 @@ export class FormBookComponent implements OnInit, OnDestroy {
       ? authorsArr.map((a: any) => Number(a.id)).filter((id: number) => !isNaN(id))
       : null;
 
+
+
     const BookRequest: BookRequest = {
       id: this.book ? Number(this.book.id) : 0,
       isbn: normalizeValue(this.bookForm.get('isbn')?.value),
       title: normalizeValue(this.bookForm.get('title')?.value),
-      editorialId: normalizeValue(Number(this.bookForm.get('editorial')?.get('id')?.value)),
+      editorialId: this.book
+        ? Number(this.book.editorial.id)
+        : Number(this.editorialId),
+
       dateCreated: normalizeValue(this.bookForm.get('dateCreated')?.value),
       description: normalizeValue(this.bookForm.get('description')?.value),
       price: normalizeValue(this.bookForm.get('price')?.value),

@@ -38,7 +38,7 @@ export class FormCustomerComponent implements OnInit {
     ],
     identityNumber: [
       '',
-      [Validators.required, Validators.pattern(/^\d{9}$/)]
+      [Validators.required, Validators.pattern(/^\d{10}$/)]
     ],
     dateOfBirth: ['', Validators.required],
     address: [
@@ -63,6 +63,14 @@ export class FormCustomerComponent implements OnInit {
     if (!this.customer) return;
     this.customerForm.patchValue({ ...this.customer });
   }
+
+  allowOnlyNumbers(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
 
   selectState(state: string) {
     this.customerForm.get('state')?.setValue(state);

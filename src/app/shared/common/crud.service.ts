@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 export class CrudService<T extends { id?: number }> {
   protected http = inject(HttpClient);
@@ -8,18 +8,18 @@ export class CrudService<T extends { id?: number }> {
   constructor(protected baseUrl: string) { }
 
   findAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.baseUrl);
+    return this.http.get<T[]>(this.baseUrl).pipe(
+      tap(data => console.log(data))
+    );
   }
 
   create(item: T): Observable<T> {
-    const itemWithId = {
-      ...item,
-      id: String(Math.floor(Math.random() * 1000000) + 1)
-    };
-    return this.http.post<T>(this.baseUrl, itemWithId);
+    return this.http.post<T>(this.baseUrl, item);
   }
 
   update(item: T, id: number): Observable<T> {
+    console.log(id);
+    
     return this.http.put<T>(`${this.baseUrl}/${id}`, item);
   }
 
