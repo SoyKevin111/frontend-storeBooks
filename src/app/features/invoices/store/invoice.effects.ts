@@ -8,6 +8,9 @@ import {
 } from './invoice.actions';
 import { InvoicesService } from '../invoices.service';
 import { catchError, map, of, switchMap } from 'rxjs';
+import { loadBooks } from '../../books/store/book.actions';
+import { handleError } from '../../../shared/utils/handler.error';
+import { catchErrorFailure } from '../../../shared/store/notification.actions';
 
 @Injectable()
 export class InvoicesEffects {
@@ -35,12 +38,16 @@ export class InvoicesEffects {
 			switchMap(({ newItem }) =>
 				this.invoicesService.create(newItem).pipe(
 					map((created) => createInvoiceSuccess({ newItem: created })),
-					catchError((error) => {
-						console.error('Error creating invoice:', error);
-						return of();
-					})
+					catchError((error) => handleError(error, catchErrorFailure))
 				)
 			)
+		)
+	);
+
+	reloadBooksAfterInvoice$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(createInvoiceSuccess),
+			map(() => loadBooks())
 		)
 	);
 }

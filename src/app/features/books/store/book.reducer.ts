@@ -4,7 +4,8 @@ import {
 	createBookSuccess,
 	deleteBookSuccess,
 	editBookSuccess,
-	loadBooksSuccess
+	loadBooksSuccess,
+	updateBooks
 } from "./book.actions";
 
 const books: Book[] = [];
@@ -42,5 +43,16 @@ export const booksReducer = createReducer(
 			...state,
 			books: state.books.filter(b => b.id !== id)
 		};
-	})
+	}),
+
+	on(updateBooks, (state, { id, quantity }) => ({
+		...state,
+		books: state.books.map(book =>
+			book.id === id
+				? { ...book, stock: Math.max(book.stock - quantity, 0) }
+				: book
+		)
+	}))
+
+
 );

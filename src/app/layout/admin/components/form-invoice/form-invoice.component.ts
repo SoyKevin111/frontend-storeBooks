@@ -95,7 +95,7 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
 
   getBookStock(bookId: number): number {
     const book = this.books$.find(b => b.id === bookId);
-    return book?.stock || 1;
+    return book?.stock || 0;
   }
 
   onSearchCustomer() {

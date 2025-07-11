@@ -44,7 +44,8 @@ export function createCrudEffects<T>(
 					switchMap((updated: T) => of(
 						actions.editSuccess({ editedItem: updated }),
 						NotificationEditSuccess()
-					))
+					)),
+					catchError((error) => handleError(error, catchErrorFailure))
 				)
 			)
 		)
@@ -56,8 +57,9 @@ export function createCrudEffects<T>(
 			switchMap(({ id }: { id: number }) =>
 				service.delete(id).pipe(
 					map(() => actions.deleteSuccess({ id }))
-				)
-			)
+				),
+			),
+			catchError((error) => handleError(error, catchErrorFailure))
 		)
 	);
 
