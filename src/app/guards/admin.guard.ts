@@ -1,15 +1,19 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { EventEmitterService } from '../features/services/event-emitter.service';
+import { AuthenticationService } from '../features/auth/authentication.service';
 
 
 export const adminGuard: CanActivateFn = () => {
-  const auth = inject(EventEmitterService);
   const router = inject(Router);
-  const user = auth.getUser();
+  const authService = inject(AuthenticationService);
 
-  if (user?.isAdmin) {
+
+  if (authService.isSessionActive()) {
     return true;
   }
-  return router.createUrlTree(['/unauthorized']);
+  else {
+    authService.logout();
+    router.navigate(['login']);
+    return false;
+  }
 };

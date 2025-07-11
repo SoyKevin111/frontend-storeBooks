@@ -1,4 +1,4 @@
-import { Book } from "../models/book.model";
+import { Book } from "../../shared/models/book.model";
 
 export const MOCK_BOOKS: Book[] = [
   {

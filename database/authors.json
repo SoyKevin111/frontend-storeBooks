@@ -1,0 +1,82 @@
+[
+	{
+		"id": 1,
+		"name": "Erich",
+		"lastName": "Gamma",
+		"identityNumber": "1234567890",
+		"email": "egamma@example.com",
+		"state": "ACTIVE"
+	},
+	{
+		"id": 2,
+		"name": "Richard",
+		"lastName": "Helm",
+		"identityNumber": "2345678901",
+		"email": "rhelm@example.com",
+		"state": "INACTIVE"
+	},
+	{
+		"id": 3,
+		"name": "Ralph",
+		"lastName": "Johnson",
+		"identityNumber": "3456789012",
+		"email": "rjohnson@example.com",
+		"state": "ACTIVE"
+	},
+	{
+		"id": 4,
+		"name": "Eric",
+		"lastName": "Freeman",
+		"identityNumber": "4567890123",
+		"email": "efreeman@example.com",
+		"state": "INACTIVE"
+	},
+	{
+		"id": 5,
+		"name": "Bert",
+		"lastName": "Bates",
+		"identityNumber": "5678901234",
+		"email": "bbates@example.com",
+		"state": "ACTIVE"
+	},
+	{
+		"id": 6,
+		"name": "Kathy",
+		"lastName": "Sierra",
+		"identityNumber": "6789012345",
+		"email": "ksierra@example.com",
+		"state": "INACTIVE"
+	},
+	{
+		"id": 7,
+		"name": "Paulo",
+		"lastName": "Coelho",
+		"identityNumber": "7890123456",
+		"email": "pcoelho@example.com",
+		"state": "ACTIVE"
+	},
+	{
+		"id": 8,
+		"name": "Yuval",
+		"lastName": "Harari",
+		"identityNumber": "8901234567",
+		"email": "yharari@example.com",
+		"state": "INACTIVE"
+	},
+	{
+		"id": 9,
+		"name": "Alex",
+		"lastName": "Michaelides",
+		"identityNumber": "9012345678",
+		"email": "amichaelides@example.com",
+		"state": "ACTIVE"
+	},
+	{
+		"id": 10,
+		"name": "Delia",
+		"lastName": "Owens",
+		"identityNumber": "0123456789",
+		"email": "dowens@example.com",
+		"state": "INACTIVE"
+	}
+]

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { EventEmitterService } from '../../../features/services/event-emitter.service';
 
 @Component({
   selector: 'app-unathorized',
@@ -12,12 +11,9 @@ import { EventEmitterService } from '../../../features/services/event-emitter.se
 export class UnathorizedComponent {
 
   router = inject(Router);
-  private eventEmitter = inject(EventEmitterService)
 
   goBack(): void {
-    this.eventEmitter.getUser().isAdmin
-      ? this.router.navigate(['/storebooks/admin/dashboard'])
-      : this.router.navigate(['/storebooks/customer/home']);
+    this.router.navigate(['/unauthorized'])
   }
 
 }

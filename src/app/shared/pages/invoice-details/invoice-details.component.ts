@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { Invoice } from '../../../features/models/invoice.model';
-import { EventEmitterService } from '../../../features/services/event-emitter.service';
+import { Invoice } from '../../models/invoice.model';
 
 @Component({
   selector: 'app-invoice-details',
@@ -15,7 +14,6 @@ export class InvoiceDetailsComponent implements OnInit {
 
   invoice!: Invoice;
   router = inject(Router);
-  private eventEmitter = inject(EventEmitterService)
 
 
   ngOnInit() {
@@ -26,9 +24,7 @@ export class InvoiceDetailsComponent implements OnInit {
   }
 
   redirectBack() {
-    this.eventEmitter.getUser().isAdmin
-      ? this.router.navigate(['/storebooks/admin/invoices'])
-      : this.router.navigate(['/storebooks/customer/history']);
+    this.router.navigate(['/storebooks/admin/invoice-history'])
   }
 
 }

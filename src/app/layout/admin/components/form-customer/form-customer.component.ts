@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
-import { ModalService } from '../../../../features/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
-import { User } from '../../../../features/models/user.model';
+import { Customer } from '../../../../shared/models/customer.model';
+import { ModalService } from '../../../../shared/services/modal.service';
+import { Store } from '@ngrx/store';
+import { createCustomer, editCustomer } from '../../../../features/customers/store/customer.actions';
 
 @Component({
   selector: 'app-form-customer',
@@ -13,31 +15,62 @@ import { User } from '../../../../features/models/user.model';
   styleUrl: './form-customer.component.scss'
 })
 export class FormCustomerComponent implements OnInit {
-  private modalService = inject(ModalService);
   private fb = inject(FormBuilder);
+  private store = inject(Store);
+  private modalService = inject(ModalService);
 
   @Input() functionTyeEm = '';
-  @Input() customer!: User;
+  @Input() customer!: Customer;
 
   animationState = 'modal-animate-in';
   toggleState = false;
-  stateOptions = ['Active', 'Inactive'];
+
+  stateOptions = ['ACTIVE', 'INACTIVE'];
 
   customerForm = this.fb.group({
-    name: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
-    lastName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
-    username: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^(?!\s*$).+/)]],
-    identityNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+    name: [
+      '',
+      [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]
+    ],
+    lastName: [
+      '',
+      [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]
+    ],
+    identityNumber: [
+      '',
+      [Validators.required, Validators.pattern(/^\d{10}$/)]
+    ],
     dateOfBirth: ['', Validators.required],
-    address: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!\s*$).+/)]],
-    phone: ['', [Validators.required, Validators.pattern(/^\d{7,15}$/)]],
-    state: ['', [Validators.required, (control: AbstractControl) => this.stateOptions.includes(control.value) ? null : { invalidState: true }]]
+    address: [
+      '',
+      [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!\s*$).+/)]
+    ],
+    phone: [
+      '',
+      [Validators.required, Validators.pattern(/^\d{7,15}$/)]
+    ],
+    state: [
+      '',
+      [
+        Validators.required,
+        (control: AbstractControl) =>
+          this.stateOptions.includes(control.value) ? null : { invalidState: true }
+      ]
+    ]
   });
 
   ngOnInit() {
     if (!this.customer) return;
     this.customerForm.patchValue({ ...this.customer });
   }
+
+  allowOnlyNumbers(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
 
   selectState(state: string) {
     this.customerForm.get('state')?.setValue(state);
@@ -46,15 +79,45 @@ export class FormCustomerComponent implements OnInit {
 
   onSubmit() {
     if (this.customerForm.valid) {
-      console.log('Customer Data:', this.customerForm.value);
+      this.save();
       this.close();
     } else {
       this.customerForm.markAllAsTouched();
       for (const [key, control] of Object.entries(this.customerForm.controls)) {
-        if (control.errors) console.log(`Errores en ${key}:`, control.errors);
+        if (control.errors) {
+          console.log(`Errores en ${key}:`, control.errors);
+        }
       }
     }
   }
+
+  save() {
+    const normalizeValue = (val: any) => {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'string' && val.trim() === '') return null;
+      return val;
+    };
+
+    const customer: Customer = {
+      id: this.customer ? Number(this.customer.id) : 0,
+      name: normalizeValue(this.customerForm.get('name')?.value),
+      lastName: normalizeValue(this.customerForm.get('lastName')?.value),
+      identityNumber: normalizeValue(this.customerForm.get('identityNumber')?.value ? String(this.customerForm.get('identityNumber')?.value) : null),
+      dateOfBirth: normalizeValue(this.customerForm.get('dateOfBirth')?.value),
+      address: normalizeValue(this.customerForm.get('address')?.value),
+      phone: normalizeValue(this.customerForm.get('phone')?.value ? String(this.customerForm.get('phone')?.value) : null),
+      state: normalizeValue(this.customerForm.get('state')?.value)
+    };
+
+    console.log('Customer Data:', customer);
+
+    if (!this.customer) {
+      this.store.dispatch(createCustomer({ newItem: customer }));
+    } else {
+      this.store.dispatch(editCustomer({ editedItem: customer }));
+    }
+  }
+
 
   close() {
     this.animationState = 'modal-animate-out';

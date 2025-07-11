@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { User } from '../../../../features/models/user.model';
-import { EventEmitterService } from '../../../../features/services/event-emitter.service';
-import { RouterModule } from '@angular/router';
+import { Customer } from '../../../../shared/models/customer.model';
+
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthenticationService } from '../../../../features/auth/authentication.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,8 +14,10 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent implements OnInit {
 
-  user!: User;
-  eventEmitterService = inject(EventEmitterService);
+  Customer!: Customer;
+  
+  private authService = inject(AuthenticationService);
+  private router = inject(Router);
 
   isCollapsed = true;
   private collapseTimeout: any;
@@ -22,10 +25,6 @@ export class SidebarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = this.eventEmitterService.getUser();
-    this.eventEmitterService.userChanged.subscribe(user => {
-      this.user = user;
-    });
   }
 
   onSidebarEnter() {
@@ -36,7 +35,12 @@ export class SidebarComponent implements OnInit {
   onSidebarLeave() {
     this.collapseTimeout = setTimeout(() => {
       this.isCollapsed = true;
-    }, 200); 
+    }, 200);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['login']);
   }
 
 

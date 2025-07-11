@@ -38,9 +38,16 @@
       <!-- Identity Number -->
       <div>
         <label for="identityNumber" class="block mb-2 text-sm font-medium text-gray-900">Identity Number</label>
-        <input type="number" id="identityNumber" formControlName="identityNumber"
-          class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border no-spinner"
-          placeholder="Enter identity number" />
+<input
+  type="text"
+  id="identityNumber"
+  formControlName="identityNumber"
+  maxlength="10"
+  pattern="\d*"
+  (keypress)="allowOnlyNumbers($event)"
+  class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border no-spinner"
+  placeholder="Enter identity number"
+/>
         <div *ngIf="customerForm.get('identityNumber')?.touched && customerForm.get('identityNumber')?.invalid"
           class="text-red-500 text-sm mt-1">
           <div *ngIf="customerForm.get('identityNumber')?.errors?.['required']">identityNumber number is required.</div>
@@ -50,20 +57,7 @@
 
 
       <!-- Username & Date of Birth -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Username -->
-        <div>
-          <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
-          <input type="text" id="username" formControlName="username"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring focus:border"
-            placeholder="Enter username" />
-          <div *ngIf="customerForm.get('username')?.touched && customerForm.get('username')?.invalid"
-            class="text-red-500 text-sm mt-1">
-            <div *ngIf="customerForm.get('username')?.errors?.['required']">Username is required.</div>
-            <div *ngIf="customerForm.get('username')?.errors?.['maxlength']">Max 10 characters.</div>
-            <div *ngIf="customerForm.get('username')?.errors?.['pattern']">Cannot be blank or spaces only.</div>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
 
         <!-- Date of Birth -->
         <div>

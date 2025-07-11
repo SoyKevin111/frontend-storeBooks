@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
-import { Invoice } from '../../../../features/models/invoice.model';
-import { User } from '../../../../features/models/user.model';
-import { Book } from '../../../../features/models/book.model';
-import { MOCK_BOOKS } from '../../../../features/mocks/books-data.mock';
-import { InvoiceItemDetails } from '../../../../features/models/invoice-item-details.mode';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Invoice } from '../../../../shared/models/invoice.model';
+import { Customer } from '../../../../shared/models/customer.model';
+import { Book } from '../../../../shared/models/book.model';
+import { InvoiceItemDetails } from '../../../../shared/models/invoice-item-details.mode';
+import { InvoiceItemRequest } from '../../../../shared/models/request/invoice-item-request.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
+import { Store } from '@ngrx/store';
+import { loadCustomers, loadCustomersSelector } from '../../../../features/customers/store';
+import { loadBooks, loadBooksSelector } from '../../../../features/books/store';
+import { InvoicesService } from '../../../../features/invoices/invoices.service';
+import { createInvoice } from '../../../../features/invoices/store/invoice.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-invoice',
@@ -15,26 +20,27 @@ import { MOCK_CUSTOMERS } from '../../../../features/mocks/customers-data.mock';
   templateUrl: './form-invoice.component.html',
   styleUrl: './form-invoice.component.scss'
 })
-export class FormInvoiceComponent {
+export class FormInvoiceComponent implements OnInit, OnDestroy {
 
-  // Buscadores
+  private store = inject(Store);
+  private suscription = new Subscription();
+
+
   searchCustomerText = '';
   searchBookText = '';
 
-  filteredCustomers: User[] = [];
+  filteredCustomers: Customer[] = [];
   filteredBooks: Book[] = [];
 
-  selectedCustomer: User | null = null;
+  selectedCustomer: Customer | null = null;
 
-  // Datos simulados
-  customers: User[] = MOCK_CUSTOMERS;
+  customers$: Customer[] = [];
+  books$: Book[] = [];
 
-  books: Book[] = MOCK_BOOKS;
-
-  // Factura
   invoice: Invoice = {
+    id: 0,
     numberInvoice: '',
-    customer: new User(),
+    customer: new Customer(),
     createdAt: new Date().toISOString(),
     iva: 15,
     ivaTotal: 0,
@@ -43,9 +49,58 @@ export class FormInvoiceComponent {
     items: []
   };
 
+  ngOnInit() {
+    this.loadCustomersAndBooks();
+  }
+
+  loadCustomersAndBooks() {
+    let customersLoadedOnce = false;
+    let booksLoadedOnce = false;
+
+    const sub1 = this.store.select(loadCustomersSelector).subscribe(customers => {
+      if (!customersLoadedOnce && customers.length === 0) {
+        this.store.dispatch(loadCustomers());
+        customersLoadedOnce = true;
+      }
+      this.customers$ = customers;
+    });
+
+    const sub2 = this.store.select(loadBooksSelector).subscribe(books => {
+      if (!booksLoadedOnce && books.length === 0) {
+        this.store.dispatch(loadBooks());
+        booksLoadedOnce = true;
+      }
+      this.books$ = books;
+    });
+
+    this.suscription.add(sub1);
+    this.suscription.add(sub2);
+  }
+
+
+  incrementQuantity(item: InvoiceItemDetails) {
+    const maxStock = this.getBookStock(item.id);
+    if (item.quantity < maxStock) {
+      item.quantity++;
+      this.updateInvoiceTotals();
+    }
+  }
+
+  decrementQuantity(item: InvoiceItemDetails) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.updateInvoiceTotals();
+    }
+  }
+
+  getBookStock(bookId: number): number {
+    const book = this.books$.find(b => b.id === bookId);
+    return book?.stock || 1;
+  }
+
   onSearchCustomer() {
     const term = this.searchCustomerText.toLowerCase();
-    this.filteredCustomers = this.customers.filter(c =>
+    this.filteredCustomers = this.customers$.filter(c =>
       c.identityNumber.includes(term) ||
       `${c.name} ${c.lastName}`.toLowerCase().includes(term)
     );
@@ -53,12 +108,12 @@ export class FormInvoiceComponent {
 
   onSearchBook() {
     const term = this.searchBookText.toLowerCase();
-    this.filteredBooks = this.books.filter(b =>
+    this.filteredBooks = this.books$.filter(b =>
       b.title.toLowerCase().includes(term) || b.isbn.includes(term)
     );
   }
 
-  selectCustomer(customer: User) {
+  selectCustomer(customer: Customer) {
     this.searchCustomerText = '';
     this.selectedCustomer = customer;
     this.invoice.customer = customer;
@@ -100,12 +155,48 @@ export class FormInvoiceComponent {
 
   clearSelectedCustomer() {
     this.selectedCustomer = null;
-    this.invoice.customer = new User();
+    this.invoice.customer = new Customer();
   }
 
+  resetInvoice() {
+    this.invoice = {
+      id: 0,
+      numberInvoice: '',
+      customer: new Customer(),
+      createdAt: new Date().toISOString(),
+      iva: 15,
+      ivaTotal: 0,
+      subtotal: 0,
+      total: 0,
+      items: []
+    };
+  }
 
   generateInvoice() {
-    console.log('Factura generada:', this.invoice);
+    if (this.selectedCustomer === null) {
+      alert('Select a customer, please.');
+      return;
+    }
+
+    if (this.invoice.items.length === 0) {
+      alert('Select at least one book, please.');
+      return;
+    }
+
+    const invoiceRequest = {
+      customerId: this.selectedCustomer.id,
+      items: this.invoice.items.map(item => ({
+        bookId: item.id,
+        quantity: item.quantity
+      } as InvoiceItemRequest))
+    };
+    console.log('Factura para enviar:', invoiceRequest);
+    this.store.dispatch(createInvoice({ newItem: invoiceRequest }));
+    this.resetInvoice();
+    this.clearSelectedCustomer();
   }
 
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
+  }
 }

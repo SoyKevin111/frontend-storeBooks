@@ -3,7 +3,7 @@
 		Invoice History
 	</h1>
 	<div class="table-books">
-		<app-crud-table [columns]="columns" [data]="invoices" (view)="viewInvoice($event)" [type]="'view'">
+		<app-crud-table [columns]="columns" [data]="invoices$" (view)="viewInvoice($event)" [type]="'view'">
 		</app-crud-table>
 	</div>
 </div>

@@ -1,9 +1,11 @@
 import { Component, inject, Input } from '@angular/core';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { CommonModule } from '@angular/common';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Editorial } from '../../../../features/models/editorial.model';
+import { Editorial } from '../../../../shared/models/editorial.model';
+import { createEditorial, editEditorial } from '../../../../features/editorials/store/editorial.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-form-editorial',
@@ -17,11 +19,12 @@ export class FormEditorialComponent {
   private modalService = inject(ModalService);
   animationState = 'modal-animate-in';
   private _fb = inject(FormBuilder);
+  private store = inject(Store);
   @Input() functionTyeEm: string = '';
   @Input() editorial!: Editorial;
 
   toggleState = false;
-  stateOptions = ['Active', 'Inactive'];
+  stateOptions = ['ACTIVE', 'INACTIVE'];
 
 
   editorialForm = this._fb.group({
@@ -36,9 +39,9 @@ export class FormEditorialComponent {
   ngOnInit() {
     if (!this.editorial) return;
     console.log("Editorial cargado: ");
-    
+
     console.log(this.editorial);
-    
+
     this.editorialForm.patchValue({ ...this.editorial });
   }
 
@@ -49,7 +52,7 @@ export class FormEditorialComponent {
 
   onSubmit() {
     if (this.editorialForm.valid) {
-      console.log('Editorial Data:', this.editorialForm.value);
+      this.save();
       this.close();
     } else {
       this.editorialForm.markAllAsTouched();
@@ -59,12 +62,33 @@ export class FormEditorialComponent {
     }
   }
 
+  save() {
+    const normalizeValue = (val: any) => {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'string' && val.trim() === '') return null;
+      return val;
+    };
+
+    const editorial: Editorial = {
+      id: this.editorial ? Number(this.editorial.id) : 0,
+      name: normalizeValue(this.editorialForm.get('name')?.value),
+      phone: normalizeValue(this.editorialForm.get('phone')?.value ? String(this.editorialForm.get('phone')?.value) : null),
+      website: normalizeValue(this.editorialForm.get('website')?.value),
+      email: normalizeValue(this.editorialForm.get('email')?.value),
+      state: normalizeValue(this.editorialForm.get('state')?.value)
+    };
+
+    if (!this.editorial) {
+      this.store.dispatch(createEditorial({ newItem: editorial }));
+    } else {
+      this.store.dispatch(editEditorial({ editedItem: editorial }));
+    }
+  }
+
+
   close() {
     this.animationState = 'modal-animate-out';
-    setTimeout(() => {
-      this.modalService.close();
-    }, 150);
-
+    setTimeout(() => this.modalService.close(), 150);
   }
 
 }

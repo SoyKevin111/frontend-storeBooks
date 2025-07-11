@@ -12,7 +12,9 @@
   </div>
 
   <!-- Tabla -->
-  <div class="overflow-y-auto flex-1 rounded border border-gray-300">
+  <!-- <div class="overflow-y-auto flex-1 rounded border border-gray-300"> -->
+  <div class="overflow-y-auto scroll-minimal max-h-[620px] rounded border border-gray-300">
+
     <table class="min-w-full table-fixed text-gray-800">
       <!-- Encabezado -->
       <thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
@@ -28,7 +30,7 @@
 
       <!-- Cuerpo -->
       <tbody class="shadow-md">
-        @for (row of data; track row) {
+        @for (row of data; track row.id) {
         <tr class="hover:bg-gray-200 transition-colors duration-150">
           @for (col of columns; track col) {
 

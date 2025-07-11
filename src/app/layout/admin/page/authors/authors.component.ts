@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
-import { Author } from '../../../../features/models/author.model';
-import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Author } from '../../../../shared/models/author.model';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { ModalService } from '../../../../features/services/modal.service';
+import { ModalService } from '../../../../shared/services/modal.service';
 import { FormAuthorComponent } from '../../components/form-author/form-author.component';
-import { ModalConfirmationService } from '../../../../features/services/modal-confirmation.service';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { deleteAuthor, loadAuthors, loadAuthorsSelector } from '../../../../features/authors/store';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-authors',
@@ -13,12 +15,15 @@ import { ModalConfirmationService } from '../../../../features/services/modal-co
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.scss'
 })
-export class AuthorsComponent {
+export class AuthorsComponent implements OnInit, OnDestroy {
 
   modalService = inject(ModalService);
-  private modalConfirmationService = inject(ModalConfirmationService);
+  private notificationService = inject(NotificationService);
+  private store = inject(Store);
 
-  authors: Author[] = MOCK_AUTHORS;
+  private subscription: Subscription = new Subscription();
+
+  authors$: Author[] = [];
   columns = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
@@ -28,6 +33,22 @@ export class AuthorsComponent {
     { field: 'state', header: 'State' }
   ];
 
+
+  ngOnInit(): void {
+    let authorsLoadedOnce = false;
+
+    const sub = this.store.select(loadAuthorsSelector).subscribe(authors => {
+      if (!authorsLoadedOnce && authors.length === 0) {
+        this.store.dispatch(loadAuthors());
+        authorsLoadedOnce = true;
+      }
+      this.authors$ = authors;
+    });
+
+    this.subscription.add(sub);
+  }
+
+
   createAuthor() {
     console.log('Create author clicked');
     this.modalService.open(FormAuthorComponent, { functionTyeEm: 'create' });
@@ -36,12 +57,17 @@ export class AuthorsComponent {
     console.log('Edit:', author);
     this.modalService.open(FormAuthorComponent, { functionTyeEm: 'update', author: author });
   }
+
   deleteAuthor(author: Author) {
-    this.modalConfirmationService.deleteBook("Author");
+    this.notificationService.showConfirmationDelete('Author', () => {
+      this.store.dispatch(deleteAuthor({ id: author.id }));
+    });
     console.log('Delete:', author);
   }
-  viewAuthor(author: Author) {
-    console.log('View:', author);
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

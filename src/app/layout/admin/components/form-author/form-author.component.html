@@ -36,9 +36,9 @@
       <!-- Identity Number -->
       <div>
         <label for="identityNumber" class="block mb-2 text-sm font-medium text-gray-900">Identity Number</label>
-        <input type="number" id="identityNumber" formControlName="identityNumber"
+        <input type="text" id="identityNumber" formControlName="identityNumber"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 no-spinner"
-          placeholder="Enter identity number" />
+          placeholder="Enter identity number" maxlength="10" pattern="\d*" (keypress)="allowOnlyNumbers($event)" />
         <div *ngIf="authorForm.get('identityNumber')?.touched && authorForm.get('identityNumber')?.invalid"
           class="text-red-500 text-sm mt-1">
           <div *ngIf="authorForm.get('identityNumber')?.errors?.['required']">Identity number is required.</div>

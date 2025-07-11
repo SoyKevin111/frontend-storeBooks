@@ -3,8 +3,8 @@
 		Authors
 	</h1>
 	<div class="table-books">
-		<app-crud-table [columns]="columns" [data]="authors" (create)="createAuthor()" (edit)="editAuthor($event)"
-			(delete)="deleteAuthor($event)" (view)="viewAuthor($event)">
+		<app-crud-table [columns]="columns" [data]="authors$" (create)="createAuthor()" (edit)="editAuthor($event)"
+			(delete)="deleteAuthor($event)">
 		</app-crud-table>
 	</div>
 </div>

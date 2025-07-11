@@ -104,9 +104,9 @@
             <span class="float-right">▼</span>
           </button>
           <div [ngClass]="dropdownState.editorial ? 'block' : 'hidden'"
-            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-            @for (editorial of editorialOptions; track $index) {
-            <div (click)="toggleSelect('editorial', editorial.name)"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-28 overflow-y-auto">
+            @for (editorial of editorialOptions$; track $index) {
+            <div (click)="toggleSelect('editorial', editorial.name, editorial.id)"
               class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
               {{editorial.name}}
             </div>
@@ -127,8 +127,8 @@
             <span class="float-right">▼</span>
           </button>
           <div [ngClass]="dropdownState.authors ? 'block' : 'hidden'"
-            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
-            @for (author of authorOptions; track $index) {
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-28 overflow-y-auto">
+            @for (author of authorOptions$; track $index) {
             <div class="flex items-center px-4 py-2 hover:bg-gray-100">
               <input type="checkbox" class="mr-2" [id]="'author-'+author.id" [checked]="isAuthorSelected(author)"
                 (change)="onAuthorChange($event, author)">
