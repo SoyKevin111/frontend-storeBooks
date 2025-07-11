@@ -11,22 +11,22 @@ import { Invoice } from '../../shared/models/invoice.model';
 })
 export class InvoicesService {
 
-	API_URL: string = 'http://localhost:3000/invoices'
+	API_URL: string = 'http://localhost:8080/storebooks/invoices'
 	private http = inject(HttpClient)
 	constructor() { }
 
-	/* 		create(invoiceRequest: InvoiceRequest): Observable<Invoice> {
-				return this.http.post<Invoice>(this.API_URL, invoiceRequest);
-			} */
-
 	create(invoiceRequest: InvoiceRequest): Observable<Invoice> {
-		const invoiceMapping = this.mappingInvoice(invoiceRequest);
-		const invoiceWithId = {
-			...invoiceMapping,
-			id: String(invoiceMapping.id)
-		};
-		return this.http.post<Invoice>(this.API_URL, invoiceWithId);
+		return this.http.post<Invoice>(this.API_URL, invoiceRequest);
 	}
+
+	/* 	create(invoiceRequest: InvoiceRequest): Observable<Invoice> {
+			const invoiceMapping = this.mappingInvoice(invoiceRequest);
+			const invoiceWithId = {
+				...invoiceMapping,
+				id: String(invoiceMapping.id)
+			};
+			return this.http.post<Invoice>(this.API_URL, invoiceWithId);
+		} */
 
 	findAll(): Observable<Invoice[]> {
 		return this.http.get<Invoice[]>(this.API_URL);

@@ -3,7 +3,7 @@ import { createCustomerSuccess, editCustomerSuccess } from "../../features/custo
 import { inject, Injectable } from "@angular/core";
 import { NotificationService } from "../services/notification.service";
 import { tap } from "rxjs";
-import { NotificationCreateSuccess, NotificationEditSuccess } from "./notification.actions";
+import { catchErrorFailure, NotificationCreateSuccess, NotificationEditSuccess } from "./notification.actions";
 
 @Injectable()
 export class NotificationEffects {
@@ -31,4 +31,17 @@ export class NotificationEffects {
 				), { dispatch: false }
 	)
 
+
+	errorNotification$ = createEffect(
+		() =>
+			this.actions$
+				.pipe(
+					ofType(catchErrorFailure),
+					tap((action: { error: any }) => {
+						this.notificationService.showError(action.error);
+					})
+				), { dispatch: false }
+	)
+
 }
+

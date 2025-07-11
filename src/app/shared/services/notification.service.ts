@@ -13,6 +13,28 @@ export class NotificationService {
 
   constructor() { }
 
+  showError(error: any) {
+    Swal.fire({
+      title: error.type || 'An error occurred',
+      text: error.message || 'Something went wrong. Please try again.',
+      icon: 'error',
+      footer: error.timestamp ? `<small>${error.timestamp}</small>` : '',
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#d33',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
+      customClass: {
+        popup: 'swal2-border-radius',
+        confirmButton: 'swal2-ok-button'
+      }
+    });
+  }
+
+
   showSuccess(type: string) {
     let title = '';
     let text = '';

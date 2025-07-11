@@ -2,7 +2,6 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Invoice } from '../../../../shared/models/invoice.model';
 import { Router } from '@angular/router';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { MOCK_INVOICES_DATA } from '../../../../features/mocks/invoice-data.mocks';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { loadInvoicesSelector } from '../../../../features/invoices/store/invoice.selectors';
