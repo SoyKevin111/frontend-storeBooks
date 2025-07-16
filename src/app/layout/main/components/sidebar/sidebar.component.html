@@ -31,7 +31,7 @@
 	<nav class="sidebar-nav w-full flex-1 py-8 flex flex-col ps-3 pe-2">
 
 
-		<a [routerLink]="['/storebooks/admin/dashboard']"
+		<a [routerLink]="['/storebooks/admin/reports']"
 			class="relative group hover:bg-gray-500 w-full py-5 ps-[1rem] flex items-center gap-4 rounded-md transition cursor-pointer">
 			<div class="sidebar-item--icon text-white">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="size-6">
@@ -43,13 +43,13 @@
 			</div>
 
 			@if (!isCollapsed) {
-			<p class="text-[1rem] text-white">Dashboard</p>
+			<p class="text-[1rem] text-white">Reports</p>
 			}
 
 			@if (isCollapsed) {
 			<span
 				class="absolute left-[100%] top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap bg-gray-800 text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-				Dashboard
+				Reports
 			</span>
 			}
 		</a>

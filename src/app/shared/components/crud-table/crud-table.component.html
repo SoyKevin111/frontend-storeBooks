@@ -24,7 +24,9 @@
             {{ col.header }}
           </th>
           }
+          @if(type == 'no-view' || type == 'view') {
           <th class="px-5 py-3 text-center font-semibold border border-gray-600">Actions</th>
+          }
         </tr>
       </thead>
 
@@ -61,6 +63,7 @@
           }
 
           <!-- Botones de acción -->
+          
           <td class="px-5 py-3 border border-gray-300">
             <div class="flex gap-2 justify-center">
 
@@ -78,7 +81,7 @@
               </button>
 
               }
-              @if (type !== 'view') {
+              @if (type === 'no-view') {
               <!-- Editar -->
               <button
                 class="w-8 h-8 flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition"

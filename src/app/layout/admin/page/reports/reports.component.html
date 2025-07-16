@@ -1,0 +1,215 @@
+<div class="px-6 py-4 h-[calc(100vh-110px)] w-full overflow-y-scroll">
+	<div class="space-y-10 text-sm">
+
+		<!-- 📈 Monthly Sales -->
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-blue-100 border-b border-blue-200">
+				📈 Monthly Sales
+			</summary>
+			<div class="p-6 space-y-4">
+				<div class="flex justify-end">
+					<button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded shadow">
+						Export to PDF
+					</button>
+				</div>
+				<div class="overflow-auto max-h-[400px] rounded border border-gray-300">
+					<table class="min-w-full text-gray-800 text-sm">
+						<thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
+							<tr>
+								<th class="px-5 py-3 border border-gray-600 text-left">Month</th>
+								<th class="px-5 py-3 border border-gray-600 text-left">Sales</th>
+								<th class="px-5 py-3 border border-gray-600 text-left">Books Sold</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">January</td>
+								<td class="px-5 py-3 border border-gray-300">$8,500</td>
+								<td class="px-5 py-3 border border-gray-300">425</td>
+							</tr>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">February</td>
+								<td class="px-5 py-3 border border-gray-300">$7,200</td>
+								<td class="px-5 py-3 border border-gray-300">360</td>
+							</tr>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">March</td>
+								<td class="px-5 py-3 border border-gray-300">$9,000</td>
+								<td class="px-5 py-3 border border-gray-300">450</td>
+							</tr>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">April</td>
+								<td class="px-5 py-3 border border-gray-300">$10,500</td>
+								<td class="px-5 py-3 border border-gray-300">525</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</details>
+
+		<!-- 📉 Low-Rotation Books -->
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-yellow-100 border-b border-yellow-200">
+				📉 Low-Rotation Books
+			</summary>
+			<div class="p-6 space-y-4">
+				<div class="flex justify-end">
+					<button class="bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium py-2 px-4 rounded shadow">
+						Export to PDF
+					</button>
+				</div>
+				<div class="overflow-auto max-h-[400px] rounded border border-gray-300">
+					<table class="min-w-full text-gray-800 text-sm">
+						<thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
+							<tr>
+								<th class="px-5 py-3 border border-gray-600 text-left">Title</th>
+								<th class="px-5 py-3 border border-gray-600 text-left">Author</th>
+								<th class="px-5 py-3 border border-gray-600 text-left">Sales</th>
+								<th class="px-5 py-3 border border-gray-600 text-left">Last Sold</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">The Secret Garden</td>
+								<td class="px-5 py-3 border border-gray-300">Frances H. Burnett</td>
+								<td class="px-5 py-3 border border-gray-300">8</td>
+								<td class="px-5 py-3 border border-gray-300">Feb 2023</td>
+							</tr>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">Journey to the Center</td>
+								<td class="px-5 py-3 border border-gray-300">Jules Verne</td>
+								<td class="px-5 py-3 border border-gray-300">5</td>
+								<td class="px-5 py-3 border border-gray-300">Jan 2023</td>
+							</tr>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">Jungle Tales</td>
+								<td class="px-5 py-3 border border-gray-300">Horacio Quiroga</td>
+								<td class="px-5 py-3 border border-gray-300">6</td>
+								<td class="px-5 py-3 border border-gray-300">Dec 2022</td>
+							</tr>
+							<tr class="hover:bg-gray-100 transition">
+								<td class="px-5 py-3 border border-gray-300">Hopscotch</td>
+								<td class="px-5 py-3 border border-gray-300">Julio Cortázar</td>
+								<td class="px-5 py-3 border border-gray-300">4</td>
+								<td class="px-5 py-3 border border-gray-300">Mar 2023</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</details>
+
+		<!-- 🏆 Best Sellers by Category -->
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-green-100 border-b border-green-200">
+				🏆 Best Sellers by Category
+			</summary>
+			<div class="p-6 space-y-8">
+				<div class="flex justify-end">
+					<button class="bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-4 rounded shadow">
+						Export to PDF
+					</button>
+				</div>
+
+				<!-- Thriller -->
+				<div>
+					<h3 class="text-base font-semibold text-green-700 mb-2">Thriller</h3>
+					<div class="overflow-auto max-h-[300px] rounded border border-gray-300">
+						<table class="min-w-full text-sm text-gray-800">
+							<thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
+								<tr>
+									<th class="px-5 py-3 border border-gray-600 text-left">ISBN</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Title</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Author</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Publisher</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Price</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Genre</th>
+									<th class="px-5 py-3 border border-gray-600 text-center">Best Seller</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="hover:bg-gray-100 transition">
+									<td class="px-5 py-3 border border-gray-300">978-1-2345-6789-0</td>
+									<td class="px-5 py-3 border border-gray-300">The Silent Patient</td>
+									<td class="px-5 py-3 border border-gray-300">Alex Michaelides</td>
+									<td class="px-5 py-3 border border-gray-300">Celadon Books</td>
+									<td class="px-5 py-3 border border-gray-300">$18.99</td>
+									<td class="px-5 py-3 border border-gray-300">Thriller</td>
+									<td class="px-5 py-3 border border-gray-300 text-center text-green-600 font-semibold">true</td>
+								</tr>
+								<!-- Más filas si es necesario -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- Drama -->
+				<div>
+					<h3 class="text-base font-semibold text-green-700 mb-2">Drama</h3>
+					<div class="overflow-auto max-h-[300px] rounded border border-gray-300">
+						<table class="min-w-full text-sm text-gray-800">
+							<thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
+								<tr>
+									<th class="px-5 py-3 border border-gray-600 text-left">ISBN</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Title</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Author</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Publisher</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Price</th>
+									<th class="px-5 py-3 border border-gray-600 text-left">Genre</th>
+									<th class="px-5 py-3 border border-gray-600 text-center">Best Seller</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="hover:bg-gray-100 transition">
+									<td class="px-5 py-3 border border-gray-300">978-0-1234-5678-9</td>
+									<td class="px-5 py-3 border border-gray-300">A Streetcar Named Desire</td>
+									<td class="px-5 py-3 border border-gray-300">Tennessee Williams</td>
+									<td class="px-5 py-3 border border-gray-300">New Directions</td>
+									<td class="px-5 py-3 border border-gray-300">$12.99</td>
+									<td class="px-5 py-3 border border-gray-300">Drama</td>
+									<td class="px-5 py-3 border border-gray-300 text-center text-green-600 font-semibold">true</td>
+								</tr>
+								<!-- Más filas si es necesario -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- Puedes seguir con Romance, Science Fiction, etc. -->
+			</div>
+		</details>
+
+
+		<!-- 🔥 Best Sellers -->
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-red-100 border-b border-red-200">
+				🔥 Best Sellers
+			</summary>
+			<div class="p-6 space-y-4">
+				<div class="flex justify-end">
+					<button class="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded shadow">
+						Export to PDF
+					</button>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div class="flex items-start border-l-8 border-red-600 bg-white px-4 py-3 rounded shadow-sm">
+						<p class="text-gray-700 text-sm">
+							📕 Don Quixote<br>
+							<span class="font-semibold">1,200 sales</span>
+						</p>
+					</div>
+					<div class="flex items-start border-l-8 border-green-600 bg-white px-4 py-3 rounded shadow-sm">
+						<p class="text-gray-700 text-sm">
+							📗 One Hundred Years of Solitude<br>
+							<span class="font-semibold">1,150 sales</span>
+						</p>
+					</div>
+					<!-- Más ítems si lo deseas -->
+				</div>
+			</div>
+		</details>
+
+	</div>
+
+</div>

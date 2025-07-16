@@ -4,7 +4,7 @@
 	</h1>
 	<div class="table-books">
 		<app-crud-table [columns]="columns" [data]="authors$" (create)="createAuthor()" (edit)="editAuthor($event)"
-			(delete)="deleteAuthor($event)">
+			(delete)="deleteAuthor($event)" type="no-view">
 		</app-crud-table>
 	</div>
 </div>

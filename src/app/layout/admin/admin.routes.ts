@@ -39,6 +39,10 @@ export const ADMIN_ROUTES: Routes = [
 			{
 				path: 'invoice-history',
 				loadComponent: () => import('../admin/page/history/history.component').then(m => m.HistoryComponent)
+			},
+			{
+				path: 'reports',
+				loadComponent: () => import('../admin/page/reports/reports.component').then(m => m.ReportsComponent)
 			}
 		]
 	}
