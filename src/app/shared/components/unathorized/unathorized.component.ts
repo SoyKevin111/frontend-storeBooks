@@ -13,7 +13,7 @@ export class UnathorizedComponent {
   router = inject(Router);
 
   goBack(): void {
-    this.router.navigate(['/unauthorized'])
+    this.router.navigate(['/storebooks/admin/reports']);
   }
 
 }

@@ -32,7 +32,7 @@ export class LoginComponent {
       this.authService.login(username, password).subscribe({
         next: (token) => {
           console.log('Login success:', token);
-          this.router.navigate(['storebooks/admin/dashboard']);
+          this.router.navigate(['storebooks/admin/reports']);
         },
         error: (err) => {
           console.error('Login failed:', err);

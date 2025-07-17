@@ -10,8 +10,17 @@
     <tbody>
       <tr *ngFor="let row of data" class="hover:bg-gray-100 transition">
         <td *ngFor="let col of columns" class="px-5 py-3 border border-gray-300">
+          @if (col.field === 'bestSeller') {
+          @if (row[col.field]) {
+          <span class=" text-center text-green-600 font-semibold">TRUE</span>
+          } @else {
+          <span class=" text-center text-red-600 font-semibold">FALSE</span>
+          }
+          } @else {
           {{ row[col.field] }}
+          }
         </td>
+
       </tr>
     </tbody>
   </table>

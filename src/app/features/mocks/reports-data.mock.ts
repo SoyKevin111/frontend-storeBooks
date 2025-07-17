@@ -140,7 +140,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     editorial: 'Histobook',
     price: 23.0,
     category: 'HISTORY',
-    bestSeller: true,
+    bestSeller: false,
     sales: 9100,
   },
 
@@ -184,7 +184,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     editorial: 'MemoirWorks',
     price: 20.0,
     category: 'BIOGRAPHY',
-    bestSeller: true,
+    bestSeller: false,
     sales: 7300,
   },
 
