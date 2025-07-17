@@ -1,0 +1,18 @@
+<div class="overflow-y-auto scroll-minimal rounded border " [ngStyle]="{ 'max-height': maxHeight }">
+  <table class="min-w-full text-gray-800 text-sm table-fixed">
+    <thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10 ">
+      <tr>
+        <th *ngFor="let col of columns" class="px-5 py-3 border border-gray-300 text-left">
+          {{ col.header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data" class="hover:bg-gray-100 transition">
+        <td *ngFor="let col of columns" class="px-5 py-3 border border-gray-300">
+          {{ row[col.field] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

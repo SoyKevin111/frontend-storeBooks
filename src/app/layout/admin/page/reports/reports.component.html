@@ -2,62 +2,10 @@
 	<div class="space-y-10 text-sm">
 
 		<!-- 📈 Monthly Sales -->
-		<section class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
-			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-blue-100 border-b border-blue-200">
-				📈 Monthly Sales
-			</summary>
-			<div class="p-6 space-y-4">
-
-				<div class="flex justify-between items-center">
-					<h2 class="text-[1.5rem]">This Year</h2>
-					<button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded shadow">
-						Export to PDF
-					</button>
-				</div>
-				<div class="overflow-auto max-h-[400px] rounded border border-gray-300">
-
-
-
-					<table class="min-w-full text-gray-800 text-sm">
-						<thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
-							<tr>
-								<th class="px-5 py-3 border border-gray-600 text-left">Month</th>
-								<th class="px-5 py-3 border border-gray-600 text-left">Sales</th>
-								<th class="px-5 py-3 border border-gray-600 text-left">Books Sold</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="hover:bg-gray-100 transition">
-								<td class="px-5 py-3 border border-gray-300">January</td>
-								<td class="px-5 py-3 border border-gray-300">$8,500</td>
-								<td class="px-5 py-3 border border-gray-300">425</td>
-							</tr>
-							<tr class="hover:bg-gray-100 transition">
-								<td class="px-5 py-3 border border-gray-300">February</td>
-								<td class="px-5 py-3 border border-gray-300">$7,200</td>
-								<td class="px-5 py-3 border border-gray-300">360</td>
-							</tr>
-							<tr class="hover:bg-gray-100 transition">
-								<td class="px-5 py-3 border border-gray-300">March</td>
-								<td class="px-5 py-3 border border-gray-300">$9,000</td>
-								<td class="px-5 py-3 border border-gray-300">450</td>
-							</tr>
-							<tr class="hover:bg-gray-100 transition">
-								<td class="px-5 py-3 border border-gray-300">April</td>
-								<td class="px-5 py-3 border border-gray-300">$10,500</td>
-								<td class="px-5 py-3 border border-gray-300">525</td>
-							</tr>
-						</tbody>
-					</table>
-
-
-
-				</div>
-			</div>
-		</section>
+		<app-monthy-sales></app-monthy-sales>
 
 		<!-- 📉 Low-Rotation Books -->
-		<section class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
 			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-yellow-100 border-b border-yellow-200">
 				📉 Low-Rotation Books
 			</summary>
@@ -113,10 +61,10 @@
 
 				</div>
 			</div>
-		</section>
+		</details>
 
 		<!-- 🏆 Best Sellers by Category -->
-		<section class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
 			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-green-100 border-b border-green-200">
 				🏆 Best Sellers by Category
 			</summary>
@@ -193,11 +141,11 @@
 
 				<!-- Puedes seguir con Romance, Science Fiction, etc. -->
 			</div>
-		</section>
+		</details>
 
 
 		<!-- 🔥 Best Sellers -->
-		<section class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+		<details class="group bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
 			<summary class="cursor-pointer px-6 py-4 text-lg font-bold bg-red-100 border-b border-red-200">
 				🔥 Best Sellers
 			</summary>
@@ -258,7 +206,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</details>
 
 	</div>
 

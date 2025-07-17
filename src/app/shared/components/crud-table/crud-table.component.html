@@ -13,7 +13,7 @@
 
   <!-- Tabla -->
   <!-- <div class="overflow-y-auto flex-1 rounded border border-gray-300"> -->
-  <div class="overflow-y-auto scroll-minimal max-h-[620px] rounded border border-gray-300">
+  <div class="overflow-y-auto scroll-minimal rounded border border-gray-300" [style.max-height]="sizeHeight">
 
     <table class="min-w-full table-fixed text-gray-800">
       <!-- Encabezado -->
@@ -63,7 +63,7 @@
           }
 
           <!-- Botones de acción -->
-          
+
           <td class="px-5 py-3 border border-gray-300">
             <div class="flex gap-2 justify-center">
 

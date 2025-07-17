@@ -1,8 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
-import { deleteCustomer } from '../../features/customers/store/customer.actions';
-import { deleteEditorial } from '../../features/editorials/store/editorial.actions';
 
 @Injectable({
   providedIn: 'root'

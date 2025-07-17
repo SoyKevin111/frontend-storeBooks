@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-crud-table',
@@ -13,6 +13,7 @@ export class CrudTableComponent {
   @Input() columns: Array<{ field: string, header: string }> = [];
   @Input() data: any[] = [];
   @Input() type: string = '';
+  @Input() sizeHeight: string = '620px';
 
   @Output() create = new EventEmitter<void>();
   @Output() edit = new EventEmitter<any>();

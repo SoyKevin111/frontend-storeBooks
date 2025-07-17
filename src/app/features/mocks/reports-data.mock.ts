@@ -109,6 +109,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 19.99,
     category: 'FICTION',
     bestSeller: true,
+    sales: 12000,
   },
   {
     isbn: '978-0000000002',
@@ -118,6 +119,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 21.5,
     category: 'FICTION',
     bestSeller: true,
+    sales: 9800,
   },
 
   // HISTORY
@@ -129,6 +131,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 24.99,
     category: 'HISTORY',
     bestSeller: true,
+    sales: 8700,
   },
   {
     isbn: '978-0000000004',
@@ -138,6 +141,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 23.0,
     category: 'HISTORY',
     bestSeller: true,
+    sales: 9100,
   },
 
   // FANTASY
@@ -149,6 +153,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 22.5,
     category: 'FANTASY',
     bestSeller: true,
+    sales: 15000,
   },
   {
     isbn: '978-0000000006',
@@ -158,6 +163,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 26.0,
     category: 'FANTASY',
     bestSeller: true,
+    sales: 14100,
   },
 
   // BIOGRAPHY
@@ -169,6 +175,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 18.0,
     category: 'BIOGRAPHY',
     bestSeller: true,
+    sales: 6700,
   },
   {
     isbn: '978-0000000008',
@@ -178,6 +185,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 20.0,
     category: 'BIOGRAPHY',
     bestSeller: true,
+    sales: 7300,
   },
 
   // MYSTERY
@@ -189,6 +197,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 20.99,
     category: 'MYSTERY',
     bestSeller: true,
+    sales: 8900,
   },
   {
     isbn: '978-0000000010',
@@ -198,6 +207,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 19.5,
     category: 'MYSTERY',
     bestSeller: true,
+    sales: 9500,
   },
 
   // ROMANCE
@@ -209,6 +219,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 17.5,
     category: 'ROMANCE',
     bestSeller: true,
+    sales: 11200,
   },
   {
     isbn: '978-0000000012',
@@ -218,6 +229,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 16.8,
     category: 'ROMANCE',
     bestSeller: true,
+    sales: 10100,
   },
 
   // THRILLER
@@ -229,6 +241,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 21.0,
     category: 'THRILLER',
     bestSeller: true,
+    sales: 9700,
   },
   {
     isbn: '978-0000000014',
@@ -238,6 +251,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 22.3,
     category: 'THRILLER',
     bestSeller: true,
+    sales: 9900,
   },
 
   // HEALTH
@@ -249,6 +263,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 16.99,
     category: 'HEALTH',
     bestSeller: true,
+    sales: 6800,
   },
   {
     isbn: '978-0000000016',
@@ -258,6 +273,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 18.2,
     category: 'HEALTH',
     bestSeller: true,
+    sales: 7100,
   },
 
   // ANIME
@@ -269,6 +285,7 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 14.99,
     category: 'ANIME',
     bestSeller: true,
+    sales: 12300,
   },
   {
     isbn: '978-0000000018',
@@ -278,10 +295,6 @@ export const mockBestSellersByCategory: BestSellersByCategory[] = [
     price: 23.99,
     category: 'ANIME',
     bestSeller: true,
+    sales: 11700,
   },
 ];
-
-
-
-
-

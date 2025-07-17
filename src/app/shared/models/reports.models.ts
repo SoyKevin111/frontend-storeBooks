@@ -1,8 +1,8 @@
 
-export interface MonthlySales {
+export interface MonthlySales { 
 	month: string;
-	sales: number;
-	booksSold: number;
+	sales: number; //ventas
+	booksSold: number; //libros vendidos
 }
 
 export interface LowRotationBooks {
@@ -10,17 +10,18 @@ export interface LowRotationBooks {
 	title: string;
 	authors: string[];
 	sales: number;
-	lastSold: string; //fecha
+	lastSold: string; //fecha: relacion Item -> Libro --- <3
 }
 
 export interface BestSellersByCategory {
-	isbn: string;
-	title: string;
-	authors: string[];
-	editorial: string;
-	price: number;
-	category: string;
-	bestSeller: boolean;
+	isbn: string; //clase libro
+	title: string; //clase libro
+	authors: string[]; //clase author
+	editorial: string; //clase editorial
+	price: number; //clase libro
+	sales:number;
+	category: string; // clase libro
+	bestSeller: boolean; //clase libro
 }
 
 export interface BestSellers {
