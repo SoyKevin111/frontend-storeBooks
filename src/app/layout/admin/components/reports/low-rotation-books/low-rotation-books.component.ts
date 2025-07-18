@@ -3,6 +3,7 @@ import { LowRotationBooks } from '../../../../../shared/models/reports.models';
 import { mockLowRotationBooks } from '../../../../../features/mocks/reports-data.mock';
 import { ReportsTableComponent } from '../../../../../shared/components/reports-table/reports-table.component';
 import { ReportsService } from '../../../../../features/reports/reports.service';
+import { PdfGeneratorService } from '../../../../../shared/services/pdf-generator.service';
 
 @Component({
   selector: 'app-low-rotation-books',
@@ -22,11 +23,16 @@ export class LowRotationBooksComponent implements OnInit {
   ]
 
   private reportService = inject(ReportsService)
+  private pdfService = inject(PdfGeneratorService)
 
   data$: LowRotationBooks[] = mockLowRotationBooks;
 
   ngOnInit(): void {
     this.reportService.getLowRotationBooks().subscribe(data => this.data$ = data);
+  }
+
+  exportToPDF() {
+    this.pdfService.exportLowRotationBooks(this.data$);
   }
 
 }

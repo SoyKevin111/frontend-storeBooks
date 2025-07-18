@@ -4,6 +4,7 @@ import { BestSellersByCategory } from '../../../../../shared/models/reports.mode
 import { ReportsTableComponent } from '../../../../../shared/components/reports-table/reports-table.component';
 import { KeyValuePipe } from '@angular/common';
 import { ReportsService } from '../../../../../features/reports/reports.service';
+import { PdfGeneratorService } from '../../../../../shared/services/pdf-generator.service';
 
 @Component({
   selector: 'app-bestsellers-by-category',
@@ -30,12 +31,17 @@ export class BestsellersByCategoryComponent implements OnInit {
   groupedData: { [category: string]: BestSellersByCategory[] } = {};
 
   private reportService = inject(ReportsService)
+  private pdfService = inject(PdfGeneratorService);
 
   ngOnInit(): void {
     this.reportService.getBestSellersByCategory().subscribe(data => {
       this.data$ = data;
       this.groupedBooksByCategory();
     });
+  }
+
+  exportToPDF() {
+    this.pdfService.exportBestSellersByCategory(this.data$);
   }
 
   groupedBooksByCategory(): void {
