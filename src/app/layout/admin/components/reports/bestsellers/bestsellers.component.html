@@ -9,7 +9,7 @@
 				Export to PDF
 			</button>
 		</div>
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-h-[calc(4*7rem)] overflow-y-auto">
 			@for (book of data$; track book.title) {
 			<div class="flex items-start rounded shadow px-4 py-3 border-l-8 bg-white"
 				[ngClass]="color.getBorderColor(book.title)">

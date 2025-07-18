@@ -109,7 +109,7 @@ export class FormInvoiceComponent implements OnInit, OnDestroy {
   onSearchBook() {
     const term = this.searchBookText.toLowerCase();
     this.filteredBooks = this.books$.filter(b =>
-      b.title.toLowerCase().includes(term) || b.isbn.includes(term)
+      b.title.toLowerCase().includes(term) || b.isbn.includes(term) || b.category.toLowerCase().includes(term)
     );
   }
 
