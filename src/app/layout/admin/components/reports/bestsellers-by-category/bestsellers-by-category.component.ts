@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { mockBestSellersByCategory } from '../../../../../features/mocks/reports-data.mock';
 import { BestSellersByCategory } from '../../../../../shared/models/reports.models';
 import { ReportsTableComponent } from '../../../../../shared/components/reports-table/reports-table.component';
 import { KeyValuePipe } from '@angular/common';
+import { ReportsService } from '../../../../../features/reports/reports.service';
 
 @Component({
   selector: 'app-bestsellers-by-category',
@@ -25,18 +26,22 @@ export class BestsellersByCategoryComponent implements OnInit {
     { field: 'bestSeller', header: 'Best Seller' }
   ];
 
-
+  data$: BestSellersByCategory[] = mockBestSellersByCategory;
   groupedData: { [category: string]: BestSellersByCategory[] } = {};
 
+  private reportService = inject(ReportsService)
 
   ngOnInit(): void {
-    this.groupedBooksByCategory();
+    this.reportService.getBestSellersByCategory().subscribe(data => {
+      this.data$ = data;
+      this.groupedBooksByCategory();
+    });
   }
 
   groupedBooksByCategory(): void {
     const temp: { [category: string]: BestSellersByCategory[] } = {};
 
-    for (const book of mockBestSellersByCategory) {
+    for (const book of this.data$) {
       const category = book.category;
       if (!temp[category]) {
         temp[category] = [];

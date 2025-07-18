@@ -14,4 +14,10 @@ export class ReportsTableComponent {
   @Input() data: any[] = [];
   @Input() maxHeight: string = '620px';
 
+  formatAuthors(authors: string[]): string {
+  const joined = authors.join(', ');
+  return joined.length > 50 ? joined.slice(0, 50) + '...' : joined;
+}
+
+
 }

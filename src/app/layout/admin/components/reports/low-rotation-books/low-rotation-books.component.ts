@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LowRotationBooks } from '../../../../../shared/models/reports.models';
 import { mockLowRotationBooks } from '../../../../../features/mocks/reports-data.mock';
 import { ReportsTableComponent } from '../../../../../shared/components/reports-table/reports-table.component';
+import { ReportsService } from '../../../../../features/reports/reports.service';
 
 @Component({
   selector: 'app-low-rotation-books',
@@ -10,7 +11,7 @@ import { ReportsTableComponent } from '../../../../../shared/components/reports-
   templateUrl: './low-rotation-books.component.html',
   styleUrl: './low-rotation-books.component.scss'
 })
-export class LowRotationBooksComponent {
+export class LowRotationBooksComponent implements OnInit {
 
   columns = [
     { field: 'isbn', header: 'ISBN' },
@@ -20,6 +21,12 @@ export class LowRotationBooksComponent {
     { field: 'lastSold', header: 'Last Sold' }
   ]
 
+  private reportService = inject(ReportsService)
+
   data$: LowRotationBooks[] = mockLowRotationBooks;
+
+  ngOnInit(): void {
+    this.reportService.getLowRotationBooks().subscribe(data => this.data$ = data);
+  }
 
 }
