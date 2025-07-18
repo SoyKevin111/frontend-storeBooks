@@ -43,15 +43,23 @@ export class HistoryComponent implements OnInit, OnDestroy {
         invoicesLoadedOnce = true;
       }
 
-      this.invoices$ = invoices.map(invoice => ({
-        customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
-        state: 'Issued',
-        ...invoice
-      }));
+      this.invoices$ = invoices
+        .map(invoice => ({
+          customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
+          state: 'Issued',
+          ...invoice
+        }))
+        .sort((a, b) => {
+          const aNum = parseInt(a.numberInvoice?.replace(/\D/g, '') || '0', 10);
+          const bNum = parseInt(b.numberInvoice?.replace(/\D/g, '') || '0', 10);
+          return bNum - aNum;
+        });
     });
 
     this.suscription.add(sub);
   }
+
+
 
 
   viewInvoice(invoice: any) {

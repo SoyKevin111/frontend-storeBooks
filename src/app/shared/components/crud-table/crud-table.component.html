@@ -20,12 +20,12 @@
       <thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
         <tr>
           @for (col of columns; track col) {
-          <th class="px-5 py-3 text-left truncate font-semibold border border-gray-600">
+          <th class="px-5 py-3 text-left truncate font-semibold border border-gray-300">
             {{ col.header }}
           </th>
           }
           @if(type == 'no-view' || type == 'view') {
-          <th class="px-5 py-3 text-center font-semibold border border-gray-600">Actions</th>
+          <th class="px-5 py-3 text-center font-semibold border border-gray-300">Actions</th>
           }
         </tr>
       </thead>
