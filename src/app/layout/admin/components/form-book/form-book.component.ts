@@ -4,8 +4,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ModalService } from '../../../../shared/services/modal.service';
 import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
 import { Book } from '../../../../shared/models/book.model';
-import { MOCK_AUTHORS } from '../../../../features/mocks/authors-data.mock';
-import { MOCK_EDITORIALS } from '../../../../features/mocks/editorials-data.mock';
 import { FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import Swal from 'sweetalert2';

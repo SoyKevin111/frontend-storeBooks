@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { mockMonthlySales } from '../../../../../features/mocks/reports-data.mock';
 import { MonthlySales } from '../../../../../shared/models/reports.models';
 import { ReportsTableComponent } from '../../../../../shared/components/reports-table/reports-table.component';
 import { ReportsService } from '../../../../../features/reports/reports.service';
@@ -23,7 +22,7 @@ export class MonthySalesComponent implements OnInit {
     { field: 'sales', header: 'Total Sales' }
   ]
 
-  data$: MonthlySales[] = mockMonthlySales;
+  data$: MonthlySales[] = [];
 
   ngOnInit(): void {
     this.reportService.getMontlySales().subscribe(data => this.data$ = data);

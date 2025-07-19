@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { mockBestSellersByCategory } from '../../../../../features/mocks/reports-data.mock';
 import { BestSellersByCategory } from '../../../../../shared/models/reports.models';
 import { ReportsTableComponent } from '../../../../../shared/components/reports-table/reports-table.component';
 import { KeyValuePipe } from '@angular/common';
@@ -27,7 +26,7 @@ export class BestsellersByCategoryComponent implements OnInit {
     { field: 'bestSeller', header: 'Best Seller' }
   ];
 
-  data$: BestSellersByCategory[] = mockBestSellersByCategory;
+  data$: BestSellersByCategory[] = [];
   groupedData: { [category: string]: BestSellersByCategory[] } = {};
 
   private reportService = inject(ReportsService)
