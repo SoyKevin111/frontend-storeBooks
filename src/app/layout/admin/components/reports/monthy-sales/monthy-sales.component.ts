@@ -18,7 +18,7 @@ export class MonthySalesComponent implements OnInit {
   private pdfService = inject(PdfGeneratorService);
 
   columns = [
-    { field: 'month', header: 'Date' },
+    { field: 'month', header: 'Month' },
     { field: 'booksSold', header: 'Books Sold' },
     { field: 'sales', header: 'Total Sales' }
   ]
