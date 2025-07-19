@@ -10,11 +10,7 @@ export const ADMIN_ROUTES: Routes = [
 			{
 				path: '',
 				pathMatch: 'full',
-				redirectTo: 'dashboard'
-			},
-			{
-				path: 'dashboard',
-				loadComponent: () => import('./page/dashboard/dashboard.component').then(m => m.DashboardComponent)
+				redirectTo: 'reports'
 			},
 			{
 				path: 'customers',
@@ -39,6 +35,10 @@ export const ADMIN_ROUTES: Routes = [
 			{
 				path: 'invoice-history',
 				loadComponent: () => import('../admin/page/history/history.component').then(m => m.HistoryComponent)
+			},
+			{
+				path: 'reports',
+				loadComponent: () => import('../admin/page/reports/reports.component').then(m => m.ReportsComponent)
 			}
 		]
 	}

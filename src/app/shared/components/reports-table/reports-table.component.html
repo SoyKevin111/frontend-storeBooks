@@ -1,0 +1,49 @@
+<div class="overflow-y-auto scroll-minimal rounded border " [ngStyle]="{ 'max-height': maxHeight }">
+  <table class="min-w-full text-gray-800 text-sm table-fixed">
+    <thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10 ">
+      <tr>
+        <th *ngFor="let col of columns" class="px-5 py-3 border border-gray-300 text-left">
+          {{ col.header }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of data" class="hover:bg-gray-100 transition">
+        <td *ngFor="let col of columns" class="px-5 py-3 border border-gray-300">
+
+          @if (col.field === 'bestSeller') {
+          @if (row[col.field]) {
+          <span class="text-green-600 font-semibold">TRUE</span>
+          } @else {
+          <span class="text-red-600 font-semibold">FALSE</span>
+          }
+
+          } @else if (col.field === 'authors') {
+          <span title="{{ row[col.field] }}">
+            {{ formatAuthors(row[col.field]) }}
+          </span>
+
+          } @else if (col.field === 'month') {
+          <ng-container *ngIf="row[col.field] as dateStr">
+            <ng-container *ngIf="dateStr.includes('-')">
+              <span>
+                <span class="text-base">{{ monthNames[+dateStr.split('-')[1]] }}</span>
+                <span class="text-blue-400 text-lg font-semibold ml-1">
+                  {{ dateStr.split('-')[0] }}
+                </span>
+              </span>
+            </ng-container>
+          </ng-container>
+
+          } @else {
+          {{ row[col.field] }}
+          }
+
+        </td>
+      </tr>
+    </tbody>
+
+
+  </table>
+</div>

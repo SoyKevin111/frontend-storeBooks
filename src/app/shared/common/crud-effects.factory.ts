@@ -1,7 +1,8 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, of, switchMap } from "rxjs";
+import { catchError, map, of, switchMap } from "rxjs";
 import { CrudActions, CrudService } from "./crud-effects.model";
-import { NotificationCreateSuccess, NotificationEditSuccess } from "../store/notification.actions";
+import { catchErrorFailure, NotificationCreateSuccess, NotificationEditSuccess } from "../store/notification.actions";
+import { handleError } from "../utils/handler.error";
 
 export function createCrudEffects<T>(
 	actions$: Actions,
@@ -28,7 +29,8 @@ export function createCrudEffects<T>(
 					switchMap((created: T) => of(
 						actions.createSuccess({ newItem: created }),
 						NotificationCreateSuccess()
-					))
+					)),
+					catchError((error) => handleError(error, catchErrorFailure))
 				)
 			)
 		)
@@ -42,7 +44,8 @@ export function createCrudEffects<T>(
 					switchMap((updated: T) => of(
 						actions.editSuccess({ editedItem: updated }),
 						NotificationEditSuccess()
-					))
+					)),
+					catchError((error) => handleError(error, catchErrorFailure))
 				)
 			)
 		)
@@ -54,8 +57,9 @@ export function createCrudEffects<T>(
 			switchMap(({ id }: { id: number }) =>
 				service.delete(id).pipe(
 					map(() => actions.deleteSuccess({ id }))
-				)
-			)
+				),
+			),
+			catchError((error) => handleError(error, catchErrorFailure))
 		)
 	);
 

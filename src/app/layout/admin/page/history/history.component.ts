@@ -2,7 +2,6 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Invoice } from '../../../../shared/models/invoice.model';
 import { Router } from '@angular/router';
 import { CrudTableComponent } from '../../../../shared/components/crud-table/crud-table.component';
-import { MOCK_INVOICES_DATA } from '../../../../features/mocks/invoice-data.mocks';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { loadInvoicesSelector } from '../../../../features/invoices/store/invoice.selectors';
@@ -17,7 +16,7 @@ import { loadInvoices } from '../../../../features/invoices/store/invoice.action
 })
 export class HistoryComponent implements OnInit, OnDestroy {
 
-  private router = inject(Router)
+  private router = inject(Router);
   private store = inject(Store);
   private suscription: Subscription = new Subscription();
 
@@ -31,7 +30,6 @@ export class HistoryComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    console.log('desdes load invoices');
     this.loadInvoices();
   }
 
@@ -44,20 +42,30 @@ export class HistoryComponent implements OnInit, OnDestroy {
         invoicesLoadedOnce = true;
       }
 
-      this.invoices$ = invoices.map(invoice => ({
-        customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
-        state: 'Issued',
-        ...invoice
-      }));
+      this.invoices$ = invoices
+        .map(invoice => {
+          return {
+            ...invoice,
+            rawCreatedAt: invoice.createdAt, // guardamos fecha original
+            createdAt: invoice.createdAt
+              ? invoice.createdAt.substring(0, 16).replace('T', ' - ')
+              : '',
+            customerNames: `${invoice.customer.name} ${invoice.customer.lastName}`,
+            state: 'Issued'
+          };
+        })
+        .sort((a, b) => {
+          const aDate = new Date(a.rawCreatedAt).getTime();
+          const bDate = new Date(b.rawCreatedAt).getTime();
+          return bDate - aDate; // orden descendente: más reciente primero
+        });
     });
 
     this.suscription.add(sub);
   }
 
-
   viewInvoice(invoice: any) {
     this.router.navigate(['/storebooks/invoice-details'], { state: { invoice } });
-    console.log(invoice);
   }
 
   ngOnDestroy(): void {

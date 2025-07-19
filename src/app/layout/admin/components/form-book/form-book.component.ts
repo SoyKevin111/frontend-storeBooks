@@ -40,21 +40,16 @@ export class FormBookComponent implements OnInit, OnDestroy {
   editorialOptions$: Editorial[] = [];
   categoryOptions = [
     'FICTION',
-    'NON_FICTION',
-    'SCIENCE',
     'HISTORY',
     'FANTASY',
     'BIOGRAPHY',
     'MYSTERY',
     'ROMANCE',
     'THRILLER',
-    'CHILDREN',
-    'YOUNG_ADULT',
-    'SELF_HELP',
-    'COOKING',
-    'TRAVEL',
-    'HEALTH'
+    'HEALTH',
+    'ANIME'
   ];
+
 
 
   dropdownState = { editorial: false, category: false, authors: false };

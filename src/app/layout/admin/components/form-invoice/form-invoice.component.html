@@ -16,9 +16,13 @@
       <div *ngIf="searchCustomerText && filteredCustomers.length && !selectedCustomer"
         class="absolute z-[100] w-full bg-white border border-gray-300 mt-1 max-h-44 overflow-y-auto rounded shadow-lg">
         <div *ngFor="let c of filteredCustomers" (click)="selectCustomer(c)"
-          class="cursor-pointer hover:bg-gray-200 p-3 text-sm text-gray-900 font-medium">
-          {{ c.identityNumber }} - {{ c.name }} {{ c.lastName }}
+          class="cursor-pointer hover:bg-gray-200 p-3 text-sm text-gray-900 font-medium border-b border-gray-100">
+          <div class="flex flex-col">
+            <span class="text-gray-800 font-semibold">{{ c.name }} {{ c.lastName }}</span>
+            <span class="text-xs text-gray-500">ID: {{ c.identityNumber }}</span>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -47,16 +51,22 @@
     <!-- Search Book -->
     <div class="mb-8 relative">
       <label class="block mb-2 font-semibold text-gray-700">Book</label>
-      <input type="text" [(ngModel)]="searchBookText" (input)="onSearchBook()" placeholder="Search by title or ISBN"
+      <input type="text" [(ngModel)]="searchBookText" (input)="onSearchBook()"
+        placeholder="Search by title, ISBN or category"
         class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:border-gray-600 transition" />
 
       <!-- Dropdown books -->
       <div *ngIf="searchBookText && filteredBooks.length"
         class="absolute z-50 w-full bg-white border border-gray-300 mt-1 max-h-44 overflow-y-auto rounded shadow-lg">
         <div *ngFor="let b of filteredBooks" (click)="addBook(b)"
-          class="cursor-pointer hover:bg-gray-200 p-3 text-sm text-gray-900 font-medium">
-          {{ b.isbn }} - {{ b.title }}
+          class="cursor-pointer hover:bg-gray-200 p-3 text-sm text-gray-900 font-medium border-b border-gray-100">
+          <div class="flex flex-col">
+            <span class="text-gray-800 font-semibold">{{ b.title }}</span>
+            <span class="text-xs text-gray-500">ISBN: {{ b.isbn }}</span>
+            <span class="text-xs text-indigo-600 font-medium">{{ b.category }}</span>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -80,15 +90,20 @@
             <td class="p-3 border border-gray-300">{{ item.priceUnit | currency }}</td>
             <td class="p-3 border border-gray-300">
 
+              @if(getBookStock(item.id) == 0){
+              <span class="text-red-600 font-semibold">Out of stock</span>
+              }@else{
               <div class="flex items-center justify-center gap-2">
                 <button (click)="decrementQuantity(item)" [disabled]="item.quantity <= 1"
                   class="px-3 py-1 border rounded bg-red-400 hover:bg-red-300 cursor-pointer">-</button>
 
-                <span class="w-8 text-center">{{ item.quantity }}</span>
+                <span class="font-semibold">{{ item.quantity }}</span>
 
                 <button (click)="incrementQuantity(item)" [disabled]="item.quantity >= getBookStock(item.id)"
                   class="px-2.5 py-1 border rounded bg-blue-400 hover:bg-blue-300">+</button>
               </div>
+              }
+
 
             </td>
             <td class="p-3 border border-gray-300 font-semibold">

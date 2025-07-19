@@ -10,3 +10,8 @@ export const NotificationEditSuccess = createAction(
 	'[shared] edit success'
 	//props<{ info: string }>()
 )
+
+export const catchErrorFailure = createAction(
+	'[shared] catch error',
+	props<{ error: any }>()
+)

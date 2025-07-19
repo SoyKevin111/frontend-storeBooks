@@ -13,18 +13,20 @@
 
   <!-- Tabla -->
   <!-- <div class="overflow-y-auto flex-1 rounded border border-gray-300"> -->
-  <div class="overflow-y-auto scroll-minimal max-h-[620px] rounded border border-gray-300">
+  <div class="overflow-y-auto scroll-minimal rounded border border-gray-300" [style.max-height]="sizeHeight">
 
     <table class="min-w-full table-fixed text-gray-800">
       <!-- Encabezado -->
       <thead class="bg-gray-700 text-white uppercase text-xs font-semibold sticky top-0 z-10">
         <tr>
           @for (col of columns; track col) {
-          <th class="px-5 py-3 text-left truncate font-semibold border border-gray-600">
+          <th class="px-5 py-3 text-left truncate font-semibold border border-gray-300">
             {{ col.header }}
           </th>
           }
-          <th class="px-5 py-3 text-center font-semibold border border-gray-600">Actions</th>
+          @if(type == 'no-view' || type == 'view') {
+          <th class="px-5 py-3 text-center font-semibold border border-gray-300">Actions</th>
+          }
         </tr>
       </thead>
 
@@ -61,6 +63,7 @@
           }
 
           <!-- Botones de acción -->
+
           <td class="px-5 py-3 border border-gray-300">
             <div class="flex gap-2 justify-center">
 
@@ -78,7 +81,7 @@
               </button>
 
               }
-              @if (type !== 'view') {
+              @if (type === 'no-view') {
               <!-- Editar -->
               <button
                 class="w-8 h-8 flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-md transition"

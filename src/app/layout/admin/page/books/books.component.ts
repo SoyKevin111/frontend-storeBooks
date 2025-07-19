@@ -41,13 +41,10 @@ export class BooksComponent implements OnInit, OnDestroy {
     let booksLoadedOnce = false;
 
     const sub = this.store.select(loadBooksSelector).subscribe(booksLoaded => {
-      // Evita múltiples dispatch cuando el store está vacío varias veces (por ejemplo al recargar)
       if (!booksLoadedOnce && booksLoaded.length === 0) {
         this.store.dispatch(loadBooks());
         booksLoadedOnce = true;
       }
-
-      // Mapeamos los datos con campos extra
       this.booksWithExtras$ = booksLoaded.map(book => ({
         ...book,
         editorialName: book.editorial?.name || '',

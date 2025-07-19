@@ -54,3 +54,9 @@ export const deleteBookFailure = createAction(
 	'[book] delete book failure',
 	props<{ error: any }>()
 );
+
+//Buy
+export const updateBooks = createAction(
+	'[book] buy book',
+	props<{ id: number, quantity: number }>()
+);
