@@ -1,0 +1,12 @@
+<div class="admin-mainContainer w-full h-screen max-h-screen flex">
+	<!-- sidebar -->
+	<div class="admin-sidebar h-full bg-white">
+		<app-sidebar></app-sidebar>
+	</div>
+	<div class="admin-content h-screen w-full flex flex-col">
+		<app-header-page></app-header-page>
+		<div class="flex-1 pt-4">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="px-6 h-full">
+	<h1 class="text-2xl font-extrabold  text-gray-800 flex items-center gap-3">
+		Customers
+	</h1>
+	<div class="table-books">
+		<app-crud-table [columns]="columns" [data]="customers$" (create)="createCustomer()" (edit)="editCustomer($event)"
+			(delete)="deleteCustomer($event)" type="no-view">
+
+		</app-crud-table>
+	</div>
+</div>

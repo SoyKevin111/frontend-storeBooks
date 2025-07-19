@@ -1,0 +1,9 @@
+<div class="px-6 h-full">
+	<h1 class="text-2xl font-extrabold  text-gray-800 flex items-center gap-3">
+		Invoice History
+	</h1>
+	<div class="table-books">
+		<app-crud-table [columns]="columns" [data]="invoices$" (view)="viewInvoice($event)" [type]="'view'">
+		</app-crud-table>
+	</div>
+</div>

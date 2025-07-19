@@ -1,0 +1,10 @@
+<div class="px-6 h-full">
+	<h1 class="text-2xl font-extrabold  text-gray-800 flex items-center gap-3">
+		Books
+	</h1>
+	<div class="table-books">
+		<app-crud-table [columns]="columns" [data]="booksWithExtras$" (create)="createBook()" (edit)="editBook($event)"
+			(delete)="deleteBook($event)" (view)="viewBook($event)" type="no-view">
+		</app-crud-table>
+	</div>
+</div>

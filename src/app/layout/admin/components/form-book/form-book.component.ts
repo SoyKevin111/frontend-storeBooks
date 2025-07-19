@@ -1,0 +1,209 @@
+import { CommonModule } from '@angular/common';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ModalService } from '../../../../shared/services/modal.service';
+import { CancelSaveButtonsComponent } from '../../../../shared/components/cancel-save-buttons/cancel-save-buttons.component';
+import { Book } from '../../../../shared/models/book.model';
+import { FormControl } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { Author, loadAuthors, loadAuthorsSelector } from '../../../../features/authors/store';
+import { Editorial, loadEditorials, loadEditorialsSelector } from '../../../../features/editorials/store';
+import { Subscription } from 'rxjs';
+import { createBook, editBook } from '../../../../features/books/store';
+import { BookRequest } from '../../../../shared/models/request/book-request.model';
+
+@Component({
+  selector: 'app-form-book',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, CancelSaveButtonsComponent],
+  templateUrl: './form-book.component.html',
+  styleUrl: './form-book.component.scss'
+})
+export class FormBookComponent implements OnInit, OnDestroy {
+  private modalService = inject(ModalService);
+  private fb = inject(FormBuilder);
+
+  @Input() functionTyeEm = '';
+  @Input() book!: Book;
+  private store = inject(Store);
+
+  private suscription: Subscription = new Subscription();
+
+  editorialId: number | null = null;
+
+  animationState = 'modal-animate-in';
+  authorOptions$: Author[] = [];
+  editorialOptions$: Editorial[] = [];
+  categoryOptions = [
+    'FICTION',
+    'HISTORY',
+    'FANTASY',
+    'BIOGRAPHY',
+    'MYSTERY',
+    'ROMANCE',
+    'THRILLER',
+    'HEALTH',
+    'ANIME'
+  ];
+
+
+
+  dropdownState = { editorial: false, category: false, authors: false };
+
+  bookForm = this.fb.group({
+    title: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(?!\s*$).+/)]],
+    editorial: ['',],
+    dateCreated: ['', Validators.required],
+    description: ['', Validators.required],
+    price: [0, [Validators.required, Validators.min(1)]],
+    stock: [0, [Validators.required, Validators.min(1)]],
+    category: ['', [Validators.required, Validators.maxLength(20)]],
+    authors: this.fb.array([], [Validators.required]),
+    bestSeller: [false]
+  });
+
+  ngOnInit() {
+    this.loadAuthorsAndEditorials();
+    if (!this.book) return;
+    const { title, editorial, description, dateCreated, price, stock, category, bestSeller, authors } = this.book;
+    this.bookForm.patchValue({ title, editorial: editorial.name, description, dateCreated, price, stock, category, bestSeller });
+
+    const authorsArray = this.bookForm.get('authors') as FormArray;
+    authorsArray.clear();
+    authors.forEach((author: any) => {
+      authorsArray.push(new FormControl(author));
+    });
+    console.log(this.bookForm.value);
+  }
+
+  loadAuthorsAndEditorials() {
+    let authorsLoadedOnce = false;
+    let editorialsLoadedOnce = false;
+
+    const sub1 = this.store.select(loadAuthorsSelector).subscribe(authors => {
+      if (!authorsLoadedOnce && authors.length === 0) {
+        this.store.dispatch(loadAuthors());
+        authorsLoadedOnce = true;
+      }
+      this.authorOptions$ = authors;
+    });
+
+    const sub2 = this.store.select(loadEditorialsSelector).subscribe(editorials => {
+      if (!editorialsLoadedOnce && editorials.length === 0) {
+        this.store.dispatch(loadEditorials());
+        editorialsLoadedOnce = true;
+      }
+      this.editorialOptions$ = editorials;
+    });
+
+    this.suscription.add(sub1);
+    this.suscription.add(sub2);
+  }
+
+
+  toggleDropdown(type: keyof typeof this.dropdownState) {
+    this.dropdownState[type] = !this.dropdownState[type];
+  }
+
+  toggleSelect(type: 'editorial' | 'category', data: any, id?: number) {
+    this.bookForm.get(type)?.setValue(data);
+    this.dropdownState[type] = false;
+    if (id) this.editorialId = id
+  }
+
+
+  close() {
+    this.animationState = 'modal-animate-out';
+    setTimeout(() => this.modalService.close(), 150);
+  }
+
+
+  onAuthorChange(event: any, author: any) {
+    const authorsArray = this.bookForm.get('authors') as FormArray;
+    if (event.target.checked) {
+      if (authorsArray.length >= 3) {
+        event.target.checked = false; // Revierte la selección
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'You can select up to 3 authors only.',
+          confirmButtonColor: '#3085d6'
+        });
+        return;
+      }
+      authorsArray.push(new FormControl(author));
+    } else {
+      const index = authorsArray.controls.findIndex(ctrl => ctrl.value.id === author.id);
+      if (index !== -1) authorsArray.removeAt(index);
+    }
+  }
+
+  isAuthorSelected(author: any): boolean {
+    const authorsArray = this.bookForm.get('authors') as FormArray;
+    return authorsArray.value.some((a: any) => a.id === author.id);
+  }
+
+  onSubmit() {
+    if (this.bookForm.valid) {
+      this.save();
+      this.close();
+    } else {
+      this.bookForm.markAllAsTouched();
+      for (const [key, control] of Object.entries(this.bookForm.controls)) {
+        if (control.errors) console.log(`Errores en ${key}:`, control.errors);
+      }
+    }
+  }
+
+
+  save() {
+    function normalizeValue(val: any) {
+      if (val === null || val === undefined) return null;
+      if (typeof val === 'string' && val.trim() === '') return null;
+      if (Array.isArray(val) && val.length === 0) return null;
+      return val;
+    }
+
+    const authorsArr = this.bookForm.get('authors')?.value;
+    const authorsId: number[] | null = Array.isArray(authorsArr)
+      ? authorsArr.map((a: any) => Number(a.id)).filter((id: number) => !isNaN(id))
+      : null;
+
+
+
+    const BookRequest: BookRequest = {
+      id: this.book ? Number(this.book.id) : 0,
+      isbn: normalizeValue(this.bookForm.get('isbn')?.value),
+      title: normalizeValue(this.bookForm.get('title')?.value),
+      editorialId: this.book
+        ? Number(this.book.editorial.id)
+        : Number(this.editorialId),
+
+      dateCreated: normalizeValue(this.bookForm.get('dateCreated')?.value),
+      description: normalizeValue(this.bookForm.get('description')?.value),
+      price: normalizeValue(this.bookForm.get('price')?.value),
+      stock: normalizeValue(this.bookForm.get('stock')?.value),
+      category: normalizeValue(this.bookForm.get('category')?.value),
+      bestSeller: normalizeValue(this.bookForm.get('bestSeller')?.value),
+      authorsId: normalizeValue(authorsId),
+    };
+
+    console.log(BookRequest);
+
+    if (!this.book) {
+      this.store.dispatch(createBook({ newItem: BookRequest }));
+    } else {
+      this.store.dispatch(editBook({ editedItem: BookRequest }));
+    }
+  }
+
+
+
+
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
+  }
+
+}

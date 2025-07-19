@@ -1,0 +1,162 @@
+<div class="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center">
+  <div [ngClass]="animationState" class="w-full max-w-4xl bg-white rounded-xl shadow-lg mx-4 md:mx-0">
+    <h1 class="py-8 text-center font-bold text-2xl text-gray-800">BOOK FORM</h1>
+
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="px-8 pb-8 space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Title -->
+        <div>
+          <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+          <input type="text" id="title" formControlName="title"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter book title" />
+          <div *ngIf="bookForm.get('title')?.touched && bookForm.get('title')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('title')?.errors?.['required']">Title is required.</div>
+            <div *ngIf="bookForm.get('title')?.errors?.['maxlength']">Max 30 characters.</div>
+            <div *ngIf="bookForm.get('title')?.errors?.['pattern']">Title cannot be blank.</div>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="relative">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Category</label>
+          <button type="button" (click)="toggleDropdown('category')"
+            class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
+            {{ bookForm.get('category')?.value || 'Choose category' }}
+            <span class="float-right">▼</span>
+          </button>
+          <div [ngClass]="dropdownState.category ? 'block' : 'hidden'"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-60 overflow-y-auto">
+            @for (category of categoryOptions; track $index) {
+            <div (click)="toggleSelect('category', category)" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              {{ category }}
+            </div>
+            }
+          </div>
+          <div *ngIf="bookForm.get('category')?.touched && bookForm.get('category')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('category')?.errors?.['required']">Category is required.</div>
+            <div *ngIf="bookForm.get('category')?.errors?.['maxlength']">Max 10 characters.</div>
+          </div>
+        </div>
+
+
+        <!-- Description -->
+        <div class="md:col-span-2">
+          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+          <textarea id="description" formControlName="description" rows="3" maxlength="100"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 resize-none"
+            placeholder="Enter a short description (max 100 characters)">
+          </textarea>
+          <div *ngIf="bookForm.get('description')?.touched && bookForm.get('description')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('description')?.errors?.['required']">Description is required.</div>
+            <div *ngIf="bookForm.get('description')?.errors?.['maxlength']">Max 100 characters allowed.</div>
+            <div *ngIf="bookForm.get('description')?.errors?.['pattern']">Description cannot be blank.</div>
+          </div>
+        </div>
+
+
+        <!-- Price -->
+        <div>
+          <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+          <input type="number" step="0.01" min="1" id="price" formControlName="price"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 no-spinner"
+            placeholder="0.00" />
+          <div *ngIf="bookForm.get('price')?.touched && bookForm.get('price')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('price')?.errors?.['required']">Price is required.</div>
+            <div *ngIf="bookForm.get('price')?.errors?.['min']">Price must be at least 1.</div>
+          </div>
+        </div>
+
+        <!-- Stock -->
+        <div>
+          <label for="stock" class="block mb-2 text-sm font-medium text-gray-900">Stock</label>
+          <input type="number" min="1" id="stock" formControlName="stock"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 no-spinner" />
+          <div *ngIf="bookForm.get('stock')?.touched && bookForm.get('stock')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('stock')?.errors?.['required']">Stock is required.</div>
+            <div *ngIf="bookForm.get('stock')?.errors?.['min']">Stock must be at least 1.</div>
+          </div>
+        </div>
+
+        <!-- Publication Date -->
+        <div>
+          <label for="publication_date" class="block mb-2 text-sm font-medium text-gray-900">Publication Date</label>
+          <input type="date" id="publication_date" formControlName="dateCreated"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          <div *ngIf="bookForm.get('dateCreated')?.touched && bookForm.get('dateCreated')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('dateCreated')?.errors?.['required']">Publication date is required.</div>
+          </div>
+        </div>
+
+        <!-- Editorial -->
+        <div class="relative">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Editorials</label>
+          <button type="button" (click)="toggleDropdown('editorial')"
+            class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
+            {{ bookForm.get('editorial')?.value || 'Choose editorials' }}
+            <span class="float-right">▼</span>
+          </button>
+          <div [ngClass]="dropdownState.editorial ? 'block' : 'hidden'"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-28 overflow-y-auto">
+            @for (editorial of editorialOptions$; track $index) {
+            <div (click)="toggleSelect('editorial', editorial.name, editorial.id)"
+              class="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              {{editorial.name}}
+            </div>
+            }
+          </div>
+          <div *ngIf="bookForm.get('editorial')?.touched && bookForm.get('editorial')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('editorial')?.errors?.['required']">Editorial is required.</div>
+          </div>
+        </div>
+
+        <!-- Authors -->
+        <div class="relative md:col-span-2">
+          <label class="block mb-2 text-sm font-medium text-gray-900">Authors</label>
+          <button type="button" (click)="toggleDropdown('authors')"
+            class="w-full border border-gray-300 rounded px-4 py-2 text-left bg-white shadow-sm hover:bg-gray-50">
+            Choose authors
+            <span class="float-right">▼</span>
+          </button>
+          <div [ngClass]="dropdownState.authors ? 'block' : 'hidden'"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-md max-h-28 overflow-y-auto">
+            @for (author of authorOptions$; track $index) {
+            <div class="flex items-center px-4 py-2 hover:bg-gray-100">
+              <input type="checkbox" class="mr-2" [id]="'author-'+author.id" [checked]="isAuthorSelected(author)"
+                (change)="onAuthorChange($event, author)">
+              <label [for]="'author-'+ author.id"> {{author.name}}</label>
+            </div>
+            }
+          </div>
+          <div *ngIf="bookForm.get('authors')?.touched && bookForm.get('authors')?.invalid"
+            class="text-red-500 text-sm mt-1">
+            <div *ngIf="bookForm.get('authors')?.errors?.['required']">At least one author is required.</div>
+            <div *ngIf="bookForm.get('authors')?.errors?.['maxAuthors']">You can select up to 3 authors only.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Best Seller -->
+      <div>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" formControlName="bestSeller"
+            class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+          <span class="text-sm font-medium text-gray-900">Mark as Best Seller</span>
+        </label>
+      </div>
+
+
+      <!-- Buttons -->
+      <app-cancel-save-buttons (closeModal)="close()" [functionTyeRec]="functionTyeEm"></app-cancel-save-buttons>
+    </form>
+  </div>
+</div>
